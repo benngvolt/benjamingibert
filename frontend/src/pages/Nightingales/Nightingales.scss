@@ -1,0 +1,128 @@
+@import '../../utils/mixins';
+
+.nightingales {
+    height: 100vh;
+    width: 100vw;
+    background-color:$nightColor1;
+    margin: auto;
+    @include Column;
+    animation: apparition 1s ease forwards;
+    overflow: scroll;
+
+    &_section {
+
+        height: 100%;
+        margin: auto;
+        @include Row;
+        column-gap: 40px;
+    
+        &_artwork {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &_text {
+            
+            width: 50%;
+            height: 100%;
+            @include Column;
+            justify-content: center;
+            padding-right: 40px;
+            box-sizing: border-box;
+            margin: auto;
+
+            &_title {
+                color: $nightColor2;
+                // width: 100%;
+                width: fit-content;
+                font-size: clamp(3rem, 5vw, 5rem);
+                margin: auto;
+                font-family: 'TitleFont'
+            }
+
+            &_paragraph {
+                width: 100%;
+                color: $nightColor2;
+                font-size: $fontSize4;
+                text-align: justify;
+                font-family: $mainFont;
+            }
+
+            &_credits, &_tracklist {
+                width: 100%;
+                @include Column;
+                margin: 50px auto;
+                justify-content: center;
+
+                &_line {
+                    @include Row;
+                    column-gap:20px;
+                    width: 100%;
+                    justify-content: center;
+                    color: $nightColor2;
+                    font-size: $fontSize4;
+                    text-align: justify;
+                    font-family: $mainFont;
+
+                    &_role {
+                        display: flex;
+                        width: 50%;
+                        justify-content: flex-end;
+                    }
+                    &_name {
+                        color: $nightColor3;
+                        display: flex;
+                        width: 50%;
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+    }
+
+    &_imagesSection {
+        margin : 5px 0;
+        width: 50%;
+        &_grid {
+            display: grid;
+            grid-gap: 5px;
+            width: 100%;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            &_item {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                &:hover {
+                    
+                    // .nightingales_imagesSection_grid_item_caption {
+                    //     display: flex;
+                    //     animation: apparition 0.5 ease forwards;
+                    // }
+                    .nightingales_imagesSection_grid_item_img {
+                        filter: brightness(1.2);
+                        cursor: pointer;
+                    }
+                }
+                &_img {
+                    aspect-ratio: 1;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                &_caption {
+                    
+                    display:none;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    z-index:10;
+                    color: $nightColor2;
+                    font-size: $fontSize4;
+                    text-align: justify;
+                    font-family: $mainFont;
+                }
+            }
+        }
+    }
+}
