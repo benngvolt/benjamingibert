@@ -14,6 +14,7 @@ import deezerLogo from '../../assets/deezer.png'
 import deezerLogo2 from '../../assets/deezer2.png'
 import instagramLogo from '../../assets/instagram.png'
 import instagramLogo2 from '../../assets/instagram2.png'
+import video from '../../assets/videoLive.mp4'
 
 function Home () {
     const networks = [
@@ -58,6 +59,11 @@ function Home () {
     return (
         <main className='home'>
             <section className='home_menu'>
+                <div class="home_video">
+                    <video autoPlay muted loop>
+                        <source src={video} type="video/mp4"/>
+                    </video>
+                </div>
                 <h1 className='home_menu_artistName'>BENJAMIN GIBERT</h1>
                 <Link
                     className='home_menu_albumTitle'

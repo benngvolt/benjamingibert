@@ -9,6 +9,16 @@
     animation: apparition 1s ease forwards;
     overflow: scroll;
 
+    &_backButton {
+        position: fixed;
+        font-family: $mainFont;
+        font-size: $fontSize4;
+        color: black;
+        background-color: white;
+        padding: 3px 50px;
+        top: 40px;
+        right: 0;
+    }
     &_section {
 
         height: 100%;
@@ -33,7 +43,6 @@
 
             &_title {
                 color: $nightColor2;
-                // width: 100%;
                 width: fit-content;
                 font-size: clamp(3rem, 5vw, 5rem);
                 margin: auto;
@@ -75,9 +84,38 @@
                         width: 50%;
                         justify-content: flex-start;
                     }
+
+                    &_index {
+                        display: flex;
+                        width: auto;
+                        justify-content: flex-end;
+                    }
+                    &_trackname {
+                        color: $nightColor3;
+                        display: flex;
+                        width: 30%;
+                        justify-content: flex-start;
+                    }
+                    &_tracklength {
+                        color: $nightColor3;
+                        display: flex;
+                        width: 20%;
+                        justify-content: flex-start;
+                    }
+
+                    audio {
+                        margin:auto;
+                        opacity: 0.8;
+                        height: 20px;
+                        width: 70%;
+                    }
                 }
             }
         }
+    }
+
+    &_secondContainer {
+        @include Row;
     }
 
     &_imagesSection {
@@ -124,5 +162,68 @@
                 }
             }
         }
+    }
+
+    &_tracksInfos {
+        width: 50%;
+        height: 100%;
+        @include Column;
+        justify-content: center;
+        padding: 0 40px;
+        box-sizing: border-box;
+        margin: auto;
+
+        &_list {
+            &_item {
+                &_title {
+                    color: $nightColor3;
+                    // width: 100%;
+                    width: fit-content;
+                    font-size: clamp(1rem, 5vw, 3rem);
+                    margin: 40px 0;
+                    font-family: 'TitleFont'
+                }
+                &_description,  &_style, &_references, &_bpm, &_scale {
+                    width: 100%; 
+                    font-size: $fontSize4;
+                    text-align: justify;
+                    font-family: $mainFont;
+                    margin-bottom: 10px;
+                }
+
+                &_description {
+                    color: $nightColor2;
+                }
+
+                &_style {
+                    color: white;
+                }
+
+                &_references {
+                    color: $nightColor3;
+                }
+
+                &_bpm {
+                    color: $nightColor2;
+                }
+
+                &_scale {
+                    color: $nightColor2;
+                }
+                
+            }
+        }
+    }
+}
+
+.imageGallery {
+    &_imageBox {
+        z-index: 1000;
+        background-color: rgba(0, 0 , 0 , 0.8);
+        width: 100vw;
+        top: 0;
+        position: fixed;
+        margin: auto;
+        height: 100vh;
     }
 }

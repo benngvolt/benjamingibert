@@ -3,11 +3,30 @@
 .home {
     height: 100vh;
     width: 100vw;
-    background-image: url('../../assets/background1.webp');
-    background-size: cover;
-    background-position: center;
+    // background-image: url('../../assets/background1.webp');
+    // background-size: cover;
+    // background-position: center;
     margin: auto;
     @include Column;
+    
+    &_video {
+        background-color: black;
+        position: fixed; /* arrière-plan */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* derrière tout le reste */
+        overflow: hidden;
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(6px);
+            transform: scale(1.1); /* évite les bords flous */
+        }
+    }
 
     &_menu {
         width: 100%;
@@ -27,7 +46,10 @@
             color: white;
             font-size: 140px;
             margin: auto;
-            font-family: 'TitleFont'
+            font-family: 'TitleFont';
+            &:hover {
+                color: $nightColor2;
+            }
         }
 
         &_networksList {
