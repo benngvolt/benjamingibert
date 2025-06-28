@@ -70,7 +70,7 @@ function Home () {
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
                 >
-                    NIGHTINGALES
+                    nightingales
                 </Link>
                 <ul className='home_menu_networksList'>
                     {networks.map((ntw, index) => (

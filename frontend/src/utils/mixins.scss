@@ -1,14 +1,9 @@
 /*-------------------
 ----- VARIABLES -----
 -------------------*/
-@font-face {
-    font-family: 'TitleFont';
-    src: url('../../public/against.otf') format('opentype');
-    font-display: block;
-    /* Ajouter ici les autres formats de police (.woff2, .ttf, .eot, etc.) pour la compatibilité des navigateurs */
-}
 
-$mainFont: 'Oswald', sans-serif;
+$titleFont: 'Nova Mono', sans-serif;
+$mainFont: 'Raleway', sans-serif;
 
 // $colorLightGrey: rgb(233, 233, 233);
 // $colorLightTransparentGrey: rgba(233, 233, 233, 0.8);
@@ -26,9 +21,13 @@ $fontSize3: 22px;
 $fontSize4: 17px;
 $fontSize5: 15px;
 
-$nightColor1: rgb(26, 29, 61);
-$nightColor2: rgb(196, 164, 211);
-$nightColor3: rgb(150, 163, 230);
+// $nightColor1: rgb(26, 29, 61);
+// $nightColor2: rgb(196, 164, 211);
+// $nightColor3: rgb(150, 163, 230);
+// $nightColor4: rgb(8, 9, 20);
+$nightColor1: rgb(35, 35, 35);
+$nightColor2: rgb(226, 226, 226);
+$nightColor3: rgb(105, 105, 105);
 $nightColor4: rgb(8, 9, 20);
 
 

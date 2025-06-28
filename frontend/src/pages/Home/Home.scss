@@ -3,20 +3,17 @@
 .home {
     height: 100vh;
     width: 100vw;
-    // background-image: url('../../assets/background1.webp');
-    // background-size: cover;
-    // background-position: center;
     margin: auto;
     @include Column;
     
     &_video {
         background-color: black;
-        position: fixed; /* arrière-plan */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1; /* derrière tout le reste */
+        z-index: -1;
         overflow: hidden;
 
         video {
@@ -24,7 +21,7 @@
             height: 100%;
             object-fit: cover;
             filter: blur(6px);
-            transform: scale(1.1); /* évite les bords flous */
+            transform: scale(1.1);
         }
     }
 
@@ -35,32 +32,64 @@
         justify-content: space-around;
         margin: auto;
         position: relative;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            row-gap:20px;
+        }
 
         &_artistName {
             color: white;
             font-size: $fontSize1;
             margin: auto;
+            font-family: $mainFont;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                font-size: $fontSize2;
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                font-size: $fontSize3;
+            }  
         }
 
         &_albumTitle {
             color: white;
             font-size: 140px;
             margin: auto;
-            font-family: 'TitleFont';
+            font-family: $titleFont;
             &:hover {
-                color: $nightColor2;
+                color: $nightColor3;
             }
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                font-size: 100px;
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                padding: 20px;
+                font-size: clamp(40px, 10vw, 90px);
+            }  
         }
 
         &_networksList {
             @include Row;
             justify-content: center;
             gap: 1rem; // petit espace entre les logos
+            
 
             &_item {
                 position: relative;
                 width: 40px; // ajuste selon la taille de tes logos
                 height: 40px;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    width: 30px; // ajuste selon la taille de tes logos
+                    height: 30px;
+                }
 
                 &_link {
                     display: block;
