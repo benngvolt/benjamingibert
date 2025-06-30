@@ -85,8 +85,33 @@
                 } 
             }
 
+            &_language {
+                @include Row;
+                margin: 0 auto 50px auto;
+                width: auto;
+               
+                &_button {
+                    background: none;
+                    border: none;
+                    font-family:$mainFont;
+                    color: $nightColor2;
+                    font-size: $fontSize4;
+                    &--selected {
+                        font-weight: bold;
+                    }
+                    &--notSelected {
+                        font-weight: normal;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+            }
+
             &_paragraph {
                 width: 100%;
+                height: 100%;
                 color: $nightColor2;
                 font-size: $fontSize4;
                 text-align: justify;
@@ -344,7 +369,6 @@
                 &_description,  &_style, &_references, &_bpm, &_scale {
                     width: 100%; 
                     font-size: $fontSize4;
-                    text-align: justify;
                     font-family: $mainFont;
                     margin-bottom: 10px;
                     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
@@ -355,6 +379,15 @@
                         font-size: $fontSize5;
                         
                     } 
+                }
+                &_description, &_scale {
+                  
+                    text-align: justify;
+                   
+                }
+
+                &_style, &_references, &_bpm {
+                    text-align: left;
                 }
 
                 &_description {
@@ -380,6 +413,68 @@
             }
         }
     }
+
+    &_bioSection {
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        padding: 0 40px;
+        box-sizing: border-box;
+        margin: 80px auto;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            padding: 0 20px;
+            margin: 30px auto;
+        }
+
+        &_container {
+            width: 50%;
+            margin: auto;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                width: 100%;
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                width: 100%;
+            } 
+            &_title {
+                color: $nightColor3;
+                // width: 100%;
+                width: fit-content;
+                font-size: clamp(1rem, 5vw, 3rem);
+                margin: 40px 0;
+                font-family: $titleFont;
+                box-sizing: border-box;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    font-size: clamp(2rem, 5vw, 3rem);
+                    margin: 10px 0 20px 0;
+                } 
+            }
+            &_paragraph {
+                color: $nightColor2;
+                width: 100%; 
+                font-size: $fontSize4;
+                text-align: justify;
+                font-family: $mainFont;
+                margin-bottom: 10px;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    font-size: $fontSize5;
+                    
+                } 
+            }
+        }
+    }
 }
 
 .imageGallery {
@@ -393,3 +488,7 @@
         height: 100vh;
     }
 }
+
+em {
+    font-style: italic;
+  }
