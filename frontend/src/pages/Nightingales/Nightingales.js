@@ -14,6 +14,7 @@ import live2 from '../../assets/live2.webp'
 import live3 from '../../assets/live3.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import titleImage from '../../assets/nightingales_2ROW_LQ.png'
 
 function Nightingales () {
   const audioRefs = useRef([])
@@ -206,11 +207,12 @@ function Nightingales () {
       <section className='nightingales_section'>
         <img className='nightingales_section_artwork' src={nightingalesArtwork} alt="artwork de Nightingales" />
         <div className='nightingales_section_text'>
-          <h2 className='nightingales_section_text_title'>nightingales</h2>
+          {/* <h2 className='nightingales_section_text_title'>nightingales</h2> */}
+          <img className='nightingales_section_text_title' src={titleImage}/>
           <div className='nightingales_section_text_language'>
-            <button onClick={() => setLanguage('french')} className={language==='french'?'nightingales_section_text_language_button nightingales_section_text_language_button--selected':'nightingales_section_text_language_button nightingales_section_text_language_button--notSelected'}>french</button>
+            <button onClick={() => setLanguage('french')} className={language==='french'?'nightingales_section_text_language_button nightingales_section_text_language_button--selected':'nightingales_section_text_language_button nightingales_section_text_language_button--notSelected'}>FR</button>
             <p className='nightingales_section_text_language_button'>|</p>
-            <button onClick={() => setLanguage('english')} className={language==='english'?'nightingales_section_text_language_button nightingales_section_text_language_button--selected':'nightingales_section_text_language_button nightingales_section_text_language_button--notSelected'}>english</button>
+            <button onClick={() => setLanguage('english')} className={language==='english'?'nightingales_section_text_language_button nightingales_section_text_language_button--selected':'nightingales_section_text_language_button nightingales_section_text_language_button--notSelected'}>EN</button>
           </div>
           {language==='french' && 
             <p className='nightingales_section_text_paragraph' dangerouslySetInnerHTML={{ __html: nightingalesText }} />

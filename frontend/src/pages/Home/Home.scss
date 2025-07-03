@@ -59,8 +59,10 @@
             font-size: 140px;
             margin: auto;
             font-family: $titleFont;
+            width: 100%;
+            display: flex;
             &:hover {
-                color: $nightColor3;
+                filter: brightness(0.7)
             }
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 font-size: 100px;
@@ -70,6 +72,18 @@
                 padding: 20px;
                 font-size: clamp(40px, 10vw, 90px);
             }  
+
+            img {
+                width: 70%;
+                margin: auto;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    width: 85%;
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    width: 100%;
+                }  
+            }
         }
 
         &_networksList {

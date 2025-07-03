@@ -14,6 +14,7 @@ import deezerLogo from '../../assets/deezer.png'
 import deezerLogo2 from '../../assets/deezer2.png'
 import instagramLogo from '../../assets/instagram.png'
 import instagramLogo2 from '../../assets/instagram2.png'
+import titleImage from '../../assets/nightingales_1ROW_LQ.png'
 import video from '../../assets/videoLive.mp4'
 
 function Home () {
@@ -65,12 +66,19 @@ function Home () {
                     </video>
                 </div>
                 <h1 className='home_menu_artistName'>BENJAMIN GIBERT</h1>
-                <Link
+                {/* <Link
                     className='home_menu_albumTitle'
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
                 >
                     nightingales
+                </Link> */}
+                <Link
+                    className='home_menu_albumTitle'
+                    aria-label="Accéder à la page de Nightingales"
+                    to="/Nightingales"
+                >
+                    <img src={titleImage}/>
                 </Link>
                 <ul className='home_menu_networksList'>
                     {networks.map((ntw, index) => (
