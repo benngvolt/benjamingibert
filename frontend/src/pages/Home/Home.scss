@@ -61,6 +61,7 @@
             font-family: $titleFont;
             width: 100%;
             display: flex;
+            box-sizing: border-box;
             &:hover {
                 filter: brightness(0.7)
             }
