@@ -66,20 +66,16 @@ function Home () {
                     </video>
                 </div>
                 <h1 className='home_menu_artistName'>BENJAMIN GIBERT</h1>
+                <div className='home_menu_albumTitle'>
+                    <img src={titleImage}/>
+                </div>
                 {/* <Link
                     className='home_menu_albumTitle'
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
                 >
-                    nightingales
-                </Link> */}
-                <Link
-                    className='home_menu_albumTitle'
-                    aria-label="Accéder à la page de Nightingales"
-                    to="/Nightingales"
-                >
                     <img src={titleImage}/>
-                </Link>
+                </Link> */}
                 <ul className='home_menu_networksList'>
                     {networks.map((ntw, index) => (
                         <li className='home_menu_networksList_item' key={index}>
