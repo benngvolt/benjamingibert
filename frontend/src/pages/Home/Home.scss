@@ -62,9 +62,11 @@
             width: 100%;
             display: flex;
             box-sizing: border-box;
-            // &:hover {
-            //     filter: brightness(0.7)
-            // }
+            &:hover {
+                filter: invert(1)
+                drop-shadow(0 0 100px white)
+                // drop-shadow(0 0 100px white);
+            }
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 font-size: 100px;
             }

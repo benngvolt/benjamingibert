@@ -15,6 +15,7 @@ import live3 from '../../assets/live3.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import titleImage from '../../assets/nightingales_2ROW_LQ.png'
+import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
 
 function Nightingales () {
   const audioRefs = useRef([])
@@ -87,34 +88,34 @@ function Nightingales () {
       name: '01 Glassbirds II',
       description: glassbirdsIIText,
       descriptionEN: glassbirdsIIENText,
-      style: 'Electronica, IDM, Leftfield House, Techno',
+      style: 'Electronica, IDM, Leftfield House, Dance, Frutiger Aero, Experimental ',
       bpm: '130 bpm',
       scale: 'C Major',
-      references: 'Oneohtrix Point Never, Mount Kimbie, Aphex Twin, LFO, DJ Luck & MC Neat'
+      references: 'Oneohtrix Point Never, Aphex Twin, DJ Luck & MC Neat'
     },
     {
       name: '02 Noctambulism',
       description: noctambulismText,
       descriptionEN: noctambulismENText,
-      style: 'Electronica, IDM, Leftfield House, Techno',
+      style: 'Fieldrecording, Electronica, IDM, Synthesizer, Experimental',
       bpm: '120 bpm',
       scale: 'Ab Major',
-      references: 'Aphex Twin, Barbara Morgenstern, Kettel, Yosi Horikawa'
+      references: 'Aphex Twin, Tarwater, Kettel, Yosi Horikawa, '
     },
     {
       name: '03 Aspérité Liquide',
       description: asperiteliquideText,
       descriptionEN: asperiteliquideENText,
-      style: 'Electronica, IDM, Leftfield House, Techno',
+      style: 'Organic House, Leftfield House, Experimental',
       bpm: '123 bpm',
       scale: 'F Major',
-      references: 'Four Tet, Tristan Arp, Crystal Waters'
+      references: 'Four Tet, Tristan Arp, Crystal Waters, Oneohtrix Point Never'
     },
     {
       name: '04 Taste of Sap',
       description: tasteOfSapText,
       descriptionEN: tasteOfSapENText,
-      style: 'Electronica, Vocal Experimentation, Ambient',
+      style: 'Electronica, Vocal Experimentation, Experimental',
       bpm: '74 bpm',
       scale: 'D Major',
       references: 'Björk, Holly Herndon'
@@ -209,6 +210,9 @@ function Nightingales () {
         <div className='nightingales_section_text'>
           {/* <h2 className='nightingales_section_text_title'>nightingales</h2> */}
           <img className='nightingales_section_text_title' src={titleImage}/>
+          <div className='nightingales_section_text_networksContainer'>
+            <MusicNetworks/>
+          </div>
           <div className='nightingales_section_text_language'>
             <button onClick={() => setLanguage('french')} className={language==='french'?'nightingales_section_text_language_button nightingales_section_text_language_button--selected':'nightingales_section_text_language_button nightingales_section_text_language_button--notSelected'}>FR</button>
             <p className='nightingales_section_text_language_button'>|</p>
@@ -240,7 +244,7 @@ function Nightingales () {
                 <p className='nightingales_section_text_tracklist_line_index'>{track.index}</p>
                 <p className='nightingales_section_text_tracklist_line_trackname'>{track.name}</p>
                 <p className='nightingales_section_text_tracklist_line_tracklength'>{track.length}</p>
-                <div className='nightingales_section_text_tracklist_line_audio' dangerouslySetInnerHTML={{ __html: track.audio }} />
+                {/* <div className='nightingales_section_text_tracklist_line_audio' dangerouslySetInnerHTML={{ __html: track.audio }} /> */}
               </div>
             ))}
           </ul>
