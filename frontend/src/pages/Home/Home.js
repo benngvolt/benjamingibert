@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
-import titleImage from '../../assets/nightingales_1ROW_LQ.png'
+import titleNightingales from '../../assets/nightingales/night_title1.webp'
+import titleTaihua from '../../assets/taihua/taihua_title.webp'
+import titleGemmes from '../../assets/gemmes/gemmes_title.webp'
 import video from '../../assets/videoLive.mp4'
 
 function Home () {
@@ -22,11 +24,25 @@ function Home () {
                     <img src={titleImage}/>
                 </div> */}
                 <Link
-                    className='home_menu_albumTitle'
+                    className='home_menu_albumTitle home_menu_albumTitle--nightingales'
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
                 >
-                    <img src={titleImage}/>
+                    <img src={titleNightingales}/>
+                </Link>
+                <Link
+                    className='home_menu_albumTitle home_menu_albumTitle--taihua'
+                    aria-label="Accéder à la page de Taihua"
+                    to="/Taihua"
+                >
+                    <img src={titleTaihua}/>
+                </Link>
+                <Link
+                    className='home_menu_albumTitle home_menu_albumTitle--gemmes'
+                    aria-label="Accéder à la page de Gemmes"
+                    to="/Gemmes"
+                >
+                    <img src={titleGemmes}/>
                 </Link>
                 <MusicNetworks/>
             </section>

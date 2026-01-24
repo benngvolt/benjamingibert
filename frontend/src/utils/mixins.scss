@@ -2,23 +2,75 @@
 ----- VARIABLES -----
 -------------------*/
 
-$titleFont: 'Nova Mono', sans-serif;
-$mainFont: 'Raleway', sans-serif;
+@font-face {
+    font-family: "SpecialFont";
+    src: url("../../public/fonts/Mermaid1001.ttf") format("truetype");
+    /* Ajouter ici les autres formats de police (.woff2, .ttf, .eot, etc.) pour la compatibilité des navigateurs */
+  }
+
+  
 
 $mobileMaxWidth: 768px;
 $padMinWidth: 769px;
 $padMaxWidth: 991px;
 
-$fontSize1: 35px;
-$fontSize2: 30px;
-$fontSize3: 22px;
+$fontSize1: 96px;
+$fontSize2: 40px;
+$fontSize3: 24px;
 $fontSize4: 17px;
 $fontSize5: 15px;
+
+$font-scales: (
+  desktop: (
+    1: 96px,
+    2: 40px,
+    3: 24px,
+    4: 17px,
+    5: 15px
+  ),
+  tablet: (
+    1: 72px,
+    2: 32px,
+    3: 22px,
+    4: 16px,
+    5: 14px
+  ),
+  mobile: (
+    1: 48px,
+    2: 26px,
+    3: 20px,
+    4: 15px,
+    5: 14px
+  )
+);
+
+@mixin font-size($level) {
+  font-size: map-get(map-get($font-scales, desktop), $level);
+
+  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+    font-size: map-get(map-get($font-scales, tablet), $level);
+  }
+
+  @media only screen and (max-width:$mobileMaxWidth) {
+    font-size: map-get(map-get($font-scales, mobile), $level);
+  }
+}
 
 $nightColor1: rgb(35, 35, 35);
 $nightColor2: rgb(243, 243, 243);
 $nightColor3: rgb(255, 62, 171);
 $nightColor4: rgb(8, 9, 20);
+
+$gemmecolor1: #dbe8f2;
+$gemmecolor2: rgb(82, 89, 109);
+$gemmecolor3: rgb(202, 214, 246);
+
+$taihuacolor1: #75956e;
+$taihuacolor2: rgb(70, 66, 58);
+$taihuacolor3: rgb(255, 248, 194);
+$taihuacolor4:rgb(44, 44, 44);
+$taihuacolor5:rgb(66, 61, 57);
+$taihuacolor6:rgb(27, 34, 30);
 
 @mixin Column {
     display: flex;
@@ -62,3 +114,46 @@ $nightColor4: rgb(8, 9, 20);
         opacity: 1;
     }
 }
+
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+
+  @keyframes taihuaBgShift {
+    0% {
+      background-color: $taihuacolor4;
+    }
+    50% {
+      background-color: $taihuacolor5;
+    }
+    100% {
+      background-color: $taihuacolor6;
+    }
+  }
+
+  @keyframes taihuaGradientMove {
+    0% {
+      background-position:
+        10% 20%,
+        80% 30%,
+        40% 90%,
+        70% 70%;
+    }
+    50% {
+      background-position:
+        20% 25%,
+        70% 20%,
+        45% 80%,
+        60% 75%;
+    }
+    100% {
+      background-position:
+        10% 20%,
+        80% 30%,
+        40% 90%,
+        70% 70%;
+    }
+  }

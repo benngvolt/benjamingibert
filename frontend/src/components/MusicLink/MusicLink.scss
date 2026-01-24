@@ -1,0 +1,43 @@
+@import '../../utils/mixins';
+
+.musicLink {
+
+    margin: 45px auto;
+    width: 100%;
+    box-sizing: border-box;
+    @include Column;
+    justify-content: center;
+    z-index: 90;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        margin: 0px auto;
+    }
+    
+    a {
+        @include Row;
+        box-sizing: border-box;
+        color: white;
+        justify-content: center;
+        margin: auto;
+        width: 100%;
+        padding: 20px;
+        border: 1px white solid;
+        border-radius: 50px;
+        font-family: 'Inter';
+        gap: 12px;
+
+        svg {
+            
+            margin: auto 0;
+        }
+
+        &:hover {
+            background-color: white;
+            color: black;
+            border: none;
+        }
+    }
+}

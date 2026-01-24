@@ -8,6 +8,7 @@
     
     &_video {
         background-color: black;
+        
         position: fixed;
         top: 0;
         left: 0;
@@ -24,10 +25,18 @@
             transform: scale(1.1);
         }
     }
+    &_video::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #8660e0; /* violet */
+        mix-blend-mode: multiply; /* ou: overlay, color, screen... */
+        pointer-events: none;
+      }
 
     &_menu {
         width: 100%;
-        height: 20%;
+        // height: 20%;
         @include Column;
         justify-content: space-around;
         margin: auto;
@@ -41,32 +50,30 @@
         }
 
         &_artistName {
+            letter-spacing: 0.5em;
             color: white;
-            font-size: $fontSize1;
-            margin: auto;
-            font-family: $mainFont;
+            @include font-size(3);
+            margin: 90px auto;
+            font-family: 'Inter';
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                font-size: $fontSize2;
+                @include font-size(2);
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
-                font-size: $fontSize3;
+                @include font-size(3);
             }  
         }
 
         &_albumTitle {
+            
             color: white;
             font-size: 140px;
             margin: auto;
-            font-family: $titleFont;
             width: 100%;
             display: flex;
             box-sizing: border-box;
-            &:hover {
-                filter: invert(1)
-                drop-shadow(0 0 100px white)
-                // drop-shadow(0 0 100px white);
-            }
+            transition: transform 0.4s cubic-bezier(.36,.07,.19,.97);
+            
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 font-size: 100px;
             }
@@ -74,10 +81,19 @@
             @media only screen and (max-width:$mobileMaxWidth){
                 padding: 20px;
                 font-size: clamp(40px, 10vw, 90px);
-            }  
+            }
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    
+                    transform: scale(1.03) rotate(1deg) skew(1deg);
+                    // drop-shadow(0 0 100px white);
+                }
+            }
 
             img {
-                width: 70%;
+                filter: saturate(0);
+                width: 20%;
                 margin: auto;
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     width: 85%;
@@ -87,13 +103,17 @@
                     width: 100%;
                 }  
             }
+
+            &--gemmes {
+                margin-top: 35px;
+            }
         }
 
         &_networksList {
             @include Row;
             justify-content: center;
             gap: 1rem; // petit espace entre les logos
-            
+            margin: 45px auto;
 
             &_item {
                 position: relative;
@@ -130,14 +150,17 @@
                     .color {
                         opacity: 0;
                     }
-
-                    &:hover .white {
-                        opacity: 0;
+                    @media (hover: hover) and (pointer: fine) {
+                        &:hover .white {
+                            opacity: 0;
+                        }
+    
+                        &:hover .color {
+                            opacity: 1;
+                        }
                     }
 
-                    &:hover .color {
-                        opacity: 1;
-                    }
+                   
                 }
             }
         }

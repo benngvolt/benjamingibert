@@ -1,0 +1,47 @@
+@import '../../utils/mixins';
+
+.navBar {
+    @include font-size(3);
+    font-family: 'Inter';
+    z-index: 200;
+    width: 45px;
+    position: fixed;
+    right: 0;
+    top: 45px;
+    margin: auto;
+    @include Column;
+    row-gap: 15px;
+    justify-content: center;
+    background-color:black;
+
+    
+    &_link {
+        filter: saturate(0);
+        margin: auto;
+        display: flex;
+        justify-content: center;
+
+        &--taihua, &--gemmes {
+            img {
+                width: 45px;
+            }
+        }
+        &--night {
+            img {
+                width: 35px;
+            }
+        }
+
+        svg {
+            color: white;
+        }
+
+        svg:hover  {
+                color: greenyellow;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

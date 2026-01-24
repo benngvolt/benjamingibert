@@ -5,6 +5,8 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Nightingales from './pages/Nightingales/Nightingales';
+import Taihua from './pages/Taihua/Taihua';
+import Gemmes from './pages/Gemmes/Gemmes';
 // import AllProjects from './pages/AllProjects/AllProjects';
 // import Header from './components/Header/Header';
 // import SingleProject from './pages/SingleProject/SingleProject';
@@ -26,6 +28,8 @@ root.render(
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/nightingales" element={<Nightingales/>} />
+          <Route path="/taihua" element={<Taihua/>} />
+          <Route path="/gemmes" element={<Gemmes/>} />
         </Routes>
         {/* <Footer/> */}
     </Router>

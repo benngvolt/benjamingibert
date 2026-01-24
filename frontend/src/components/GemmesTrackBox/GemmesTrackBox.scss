@@ -1,0 +1,90 @@
+@import "../../utils/mixins";
+
+.gemmes_tracks {
+  @include Column;
+  row-gap: 45px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  aspect-ratio: 1.5/1;
+  overflow: hidden; // ✅ important pour cacher le dépassement du parallax
+
+  &--1 {
+    video {
+      filter: brightness(0.2) contrast(0.8);
+    }
+  }
+
+  &--2 {
+  }
+
+  &--3 {
+    video {
+      filter: brightness(0.4) contrast(2) sepia(1) hue-rotate(190deg);
+    }
+  }
+
+  &--4 {
+  }
+
+  &--5 {
+  }
+
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%; // ✅ au lieu de height:auto pour un vrai “background”
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  &_imgBackground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 120%; // ✅ plus grand que le container pour laisser de la marge au translateY
+    object-fit: cover; // ✅ évite la déformation
+    top: -10%; // ✅ recentre le surplus (120% => +10% en haut / bas)
+    z-index: 0;
+    will-change: transform; // ✅ perf
+    transform: translateY(0);
+  }
+
+  // ✅ optionnel mais recommandé : voile pour lisibilité du texte
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+  }
+
+  &_track {
+    width: 40%;
+    margin: auto;
+    @include Column;
+    position: relative;
+    z-index: 10; // ✅ au-dessus du voile et du background
+
+    &_imgTitle {
+      margin: 10% auto;
+      width: 150%;
+      filter: brightness(1);
+    }
+
+    &_title {
+      font-family: "SpecialFont";
+      @include font-size(2);
+      color: $gemmecolor3;
+    }
+
+    &_text {
+      font-family: "SpecialFont";
+      @include font-size(3);
+      color: $gemmecolor1;
+    }
+  }
+}

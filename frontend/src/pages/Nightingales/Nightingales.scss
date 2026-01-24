@@ -1,519 +1,169 @@
 @import '../../utils/mixins';
 
 .nightingales {
-    height: 100vh;
+    background-color: black;
     width: 100vw;
-    background-color:$nightColor1;
-    margin: auto;
-    @include Column;
-    animation: apparition 1s ease forwards;
-    overflow: scroll;
+   
 
-    &_backButton {
-        position: fixed;
-        font-family: $mainFont;
-        font-size: $fontSize4;
-        color: black;
-        background-color: white;
-        padding: 3px 50px;
-        top: 40px;
-        right: 0;
-        z-index: 10;
-    }
-    &_section {
+    &_mainDataContainer {
+        animation: apparition 3s ease forwards;
 
-        height: auto;
-        margin: auto;
-        @include Row;
-        column-gap: 40px;
-        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-            display: flex;
-            flex-direction: column-reverse;        
-        }
-        
-        @media only screen and (max-width:$mobileMaxWidth){
-            @include Column;
-                    
-        } 
-    
-        &_artwork {
-            width: 50%;
-            height: 100%;
-            object-fit: cover;
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                width: 100%;
-                
-            }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                width: 100%;
-                        
-            } 
-        }
-        &_text {
-            
-            width: 50%;
-            height: 100%;
-            @include Column;
-            justify-content: center;
-            padding-right: 40px;
-            box-sizing: border-box;
-            margin: auto;
-
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                width: 100%;
-                padding: 0 40px;
-                
-            }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                width: 100%;
-                padding: 0 20px;
-            } 
-
-            &_networksContainer {
-                margin: 50px 0;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                    
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    margin: 10px 0 40px 0;
-                } 
-            }
-
-            &_title {
-                color: $nightColor2;
-                width: 100%;
-                font-size: clamp(3rem, 5vw, 5rem);
-                margin: 40px auto;
-                font-family: $titleFont;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    font-size: clamp(4rem, 5vw, 5rem);
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    font-size: clamp(40px, 5vw, 5rem);       
-                } 
-            }
-
-            &_language {
-                @include Row;
-                margin: 0 auto 50px auto;
-                width: auto;
-               
-                &_button {
-                    background: none;
-                    border: none;
-                    font-family:$mainFont;
-                    color: $nightColor2;
-                    font-size: $fontSize4;
-                    &--selected {
-                        font-weight: bold;
-                    }
-                    &--notSelected {
-                        font-weight: normal;
-                    }
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
-
-            }
-
-            &_paragraph {
-                width: 100%;
-                height: 100%;
-                color: $nightColor2;
-                font-size: $fontSize4;
-                text-align: justify;
-                font-family: $mainFont;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    font-size: $fontSize5;       
-                } 
-            }
-
-            &_credits, &_tracklist {
-                width: 100%;
-                @include Column;
-                margin: 50px auto;
-                justify-content: center;
-                row-gap: 10px;
-                
-
-                &_line {
-                    @include Row;
-                    column-gap:20px;
-                    width: 100%;
-                    justify-content: center;          
-                    font-size: $fontSize4;
-                    font-family: $mainFont;
-                    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                    }
-                    
-                    @media only screen and (max-width:$mobileMaxWidth){
-                        font-size: $fontSize5; 
-                        @include Column;    
-                        margin-bottom: 10px;  
-                    } 
-                   
-                    &_container {
-                        @include Row;
-                    }
-
-                    &_role {
-                        color: $nightColor3;
-                        display: flex;
-                        width: 50%;
-                        font-weight: bolder;
-                        justify-content: flex-end;
-                        text-align: end;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center;
-                            text-align: center;
-                            width: 100%;
-                        } 
-                    }
-                    &_name {
-                        color: $nightColor2;
-                        font-weight: bolder;
-                        display: flex;
-                        width: 50%;
-                        justify-content: flex-start;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center;
-                            width: 100%;
-                        } 
-                    }
-                    &_icon {
-                        padding-left: 8px;
-                        display: flex;
-                        margin: auto 0;
-                        font-size: 12px;
-                        &:hover{
-                            color: $nightColor2;
-                        }
-                       
-                    }
-
-                    &_index {
-                        color: $nightColor3;
-                        display: flex;
-                        width: auto;
-                        justify-content: flex-end;
-                        font-weight: bolder;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center;   
-                        } 
-                    }
-                    &_trackname {
-                        color: $nightColor2;
-                        display: flex;
-                        width: 38%;
-                        justify-content: flex-start;
-                        font-weight: bold;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center; 
-                            width: 100%; 
-                        } 
-                        
-                    }
-                    &_tracklength {
-                        color: $nightColor3;
-                        display: flex;
-                        width: 8;
-                        justify-content: flex-start;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center; 
-                            width: 100%;  
-                        } 
-                        
-                    }
-
-                    &_audio {
-                        margin:auto;
-                        opacity: 0.8;
-                        height: 30px;
-                        width: 50%;
-                        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                        }
-                        
-                        @media only screen and (max-width:$mobileMaxWidth){
-                            justify-content: center; 
-                            width: auto;  
-                        } 
-                    }
-                }
-
-                
-            }
-            &_tracklist {
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    margin: 0 auto;
-                } 
-            }
-            
-        }
-    }
-
-    &_secondContainer {
+        margin-top: 45px;
+        width: 100%;
         @include Column;
-    }
+        font-family: 'Inter';
+        color: white;
 
-    &_imagesSection {
-        margin : 5px 0;
-        width: 100%;
-        &_grid {
-            display: grid;
-            grid-gap: 5px;
+        &_title {
+            margin: 0 auto;
+            width: 90%;
+            object-fit: contain;
+        }
+
+        &_starryskyContainer {
+            margin: auto;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            
+            &_starrysky {
+                justify-content: center;
+                width: 80%;
+                height: 80%;
+                margin: auto;
+            }
+        }
+
+        &_datas {
+            margin: 180px auto;
+            width: 30%;
+            text-align: justify;
+            @include Column;
+            row-gap: 90px;
+
+            ul li {
+                font-weight: bolder;
+                color: rgb(61, 103, 255);
+            }
+        }
+
+        &_artwork {
             width: 100%;
-            grid-template-columns: 1fr 1fr 1fr;
-
-            &_item {
-                width: 100%;
-                height: 100%;
-                position: relative;
-                &:hover {
-                    
-                    // .nightingales_imagesSection_grid_item_caption {
-                    //     display: flex;
-                    //     animation: apparition 0.5 ease forwards;
-                    // }
-                    .nightingales_imagesSection_grid_item_img {
-                        filter: brightness(1.2);
-                        cursor: pointer;
-                    }
-                }
-                &_img {
-                    aspect-ratio: 1;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-                &_caption {
-                    
-                    display:none;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    z-index:10;
-                    color: $nightColor2;
-                    font-size: $fontSize4;
-                    text-align: justify;
-                    font-family: $mainFont;
-                }
+        }
+        &_description {
+            font-family: 'SpecialFont';
+            width: 70%;
+            @include Column;
+            row-gap: 90px;
+            margin: 180px auto;
+            
+            &_1 {
+                font-size: $fontSize1;
+                text-align: center;
+            }
+            &_2 {
+                @include font-size(2);
+                text-align: justify;
+            }
+            &_3 {
+                @include font-size(3);
+                text-align: justify;
             }
         }
-    }
 
-    &_tracksInfos {
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        padding: 0 40px;
-        box-sizing: border-box;
-        margin: 80px auto;
-        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-            
-        }
-        
-        @media only screen and (max-width:$mobileMaxWidth){
-            padding: 0 20px;
-            margin: 30px auto;
-        }
-
-        &_list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 40px;
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                @include Column;
-            }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                @include Column;
-                
-            } 
-            &_item {
-                &_title {
-                    color: $nightColor2;
-                    // width: 100%;
-                    width: fit-content;
-                    font-size: clamp(1rem, 5vw, 3rem);
-                    margin: 40px 0;
-                    font-family: $mainFont;
-                    text-transform:uppercase;
-                    box-sizing: border-box;
-                    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                        
-                    }
-                    
-                    @media only screen and (max-width:$mobileMaxWidth){
-                        font-size: clamp(2rem, 5vw, 3rem);
-                        margin: 10px 0 20px 0;
-                    } 
-                }
-                &_description,  &_style, &_references, &_bpm, &_scale {
-                    width: 100%; 
-                    font-size: $fontSize4;
-                    font-family: $mainFont;
-                    margin-bottom: 10px;
-                    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                        
-                    }
-                    
-                    @media only screen and (max-width:$mobileMaxWidth){
-                        font-size: $fontSize5;
-                        
-                    } 
-                }
-                &_description, &_scale {
-                  
-                    text-align: justify;
-                   
-                }
-
-                &_style, &_references, &_bpm {
-                    text-align: left;
-                }
-
-                &_description {
-                    color: $nightColor2;
-                }
-
-                &_style {
-                    color: white;
-                    background-color: $nightColor3;
-                    font-weight: bolder;
-                    padding: 0 15px;
-                    box-sizing: border-box;
-                    
-                }
-
-                &_references {
-                    color: $nightColor3;
-                    font-weight: bolder;
-                }
-
-                &_bpm {
-                    color: $nightColor2;
-                }
-
-                &_scale {
-                    color: $nightColor2;
-                }
-                
-            }
-        }
-    }
-
-    &_bioSection {
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        padding: 0 40px;
-        box-sizing: border-box;
-        margin: 80px auto;
-        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-            
-        }
-        
-        @media only screen and (max-width:$mobileMaxWidth){
-            padding: 0 20px;
-            margin: 30px auto;
-        }
-
-        &_container {
+        &_samples {
             width: 50%;
             margin: auto;
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                width: 100%;
+        }
+    }
+
+    &_tracks {
+        &_container {
+            @include Row;
+            &_glassbirdsContainer {
+
             }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                width: 100%;
-            } 
-            &_title {
-                color: $nightColor2;
-                // width: 100%;
-                width: fit-content;
-                font-size: clamp(1rem, 5vw, 3rem);
-                margin: 40px 0;
-                font-family: $mainFont;
-                text-transform:uppercase;
-                box-sizing: border-box;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    font-size: clamp(2rem, 5vw, 3rem);
-                    margin: 10px 0 20px 0;
-                } 
+        
+            &_noctambulismContainer {
+        
             }
-            &_paragraph {
-                color: $nightColor2;
-                width: 100%; 
-                font-size: $fontSize4;
+        
+            &_asperiteContainer {
+        
+            }
+        
+            &_tasteContainer {
+        
+            }
+        
+            &_glassbirdsContainer, &_noctambulismContainer, &_asperiteContainer, &_tasteContainer {
+                width: 40%;
+                margin: 180px auto;
+                @include Column;
+                row-gap: 45px;
+                z-index: 10;
                 text-align: justify;
-                font-family: $mainFont;
-                margin-bottom: 10px;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
+                img {
+                    margin: auto;
+                    width: 50%;
+                    object-fit: contain;
                 }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    font-size: $fontSize5;
-                    
-                } 
+                p {
+                    margin: auto;
+                    font-family: 'SpecialFont';
+                    color: white;
+                    @include font-size(3);
+                }
             }
+        }
+        &_plantsImage {
+            z-index: 1;
+            width: 100%;
+        }
+    }
+   
+
+    &_tongueImage {
+        z-index: 1;
+        width: 100%;
+    }
+
+    &_photoCredit {
+        margin: 45px 0;
+        width: 100%;
+        font-family: 'SpecialFont';
+        color: white;
+        display: flex;
+        justify-content: center;
+        @include font-size(2);
+    }
+    
+
+    &_videos {
+        margin: 90px auto;
+        @include Row;
+        column-gap: 45px;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(13, 5, 68);
+
+        video {
+            width: 20%;
+            border-radius: 10px;
+        }
+    }
+
+    &_gallery {
+        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 1;
         }
     }
 }
-
-.imageGallery {
-    &_imageBox {
-        z-index: 1000;
-        background-color: rgba(0, 0 , 0 , 0.8);
-        width: 100vw;
-        top: 0;
-        position: fixed;
-        margin: auto;
-        height: 100vh;
-    }
-}
-
-em {
-    font-style: italic;
-  }
