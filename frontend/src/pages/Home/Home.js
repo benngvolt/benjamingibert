@@ -23,7 +23,7 @@ function Home () {
                 {/* <div className='home_menu_albumTitle'>
                     <img src={titleImage}/>
                 </div> */}
-                <Link
+                {/* <Link
                     className='home_menu_albumTitle home_menu_albumTitle--nightingales'
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
@@ -43,7 +43,7 @@ function Home () {
                     to="/Gemmes"
                 >
                     <img src={titleGemmes}/>
-                </Link>
+                </Link> */}
                 <MusicNetworks/>
             </section>
         </main>

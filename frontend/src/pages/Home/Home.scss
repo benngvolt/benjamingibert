@@ -8,7 +8,7 @@
     
     &_video {
         background-color: black;
-        
+        pointer-events: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -23,6 +23,7 @@
             object-fit: cover;
             filter: blur(6px);
             transform: scale(1.1);
+            pointer-events: none;
         }
     }
     &_video::after {
