@@ -259,34 +259,33 @@ function Taihua() {
         trackText={getTrackText(4)}
       />
       <QuoteBox
-        text={taihuaMiscTexts[1].miscText}
-        author={taihuaMiscTexts[1].author}
+        text={taihuaMiscTexts[0].miscText}
+        author={taihuaMiscTexts[0].author}
       />
       <section className='taihua_livePhotosContainer'>
           <img src={taihua_photo_portrait} />
       </section>
-      <div className='taihua_doubleTracksContainer'>
-        <TaihuaTrackBox
-          trackNumber={5}
-          imgTitle={taihua_sTitle}
-          trackTitle='shells'
-          trackText={getTrackText(5)}
-        />
+      
+      <TaihuaTrackBox
+        trackNumber={5}
+        imgTitle={taihua_sTitle}
+        trackTitle='shells'
+        trackText={getTrackText(5)}
+      />
 
-        <TwoImagesContainer
-          photo1={taihua_photo_shellphone1}
-          photo2={taihua_photo_foam2}
-          photoBackground={taihua_photo_dolphin}
-          backgroundColor={backgroundColor}
-        />
+      <TwoImagesContainer
+        photo1={taihua_photo_shellphone1}
+        photo2={taihua_photo_foam2}
+        photoBackground={taihua_photo_dolphin}
+        backgroundColor={backgroundColor}
+      />
 
-        <TaihuaTrackBox
-          trackNumber={6}
-          imgTitle={taihua_fjgTitle}
-          trackTitle='franz josef glacier'
-          trackText={getTrackText(6)}
-        />
-      </div>
+      <TaihuaTrackBox
+        trackNumber={6}
+        imgTitle={taihua_fjgTitle}
+        trackTitle='franz josef glacier'
+        trackText={getTrackText(6)}
+      />
       <section className='taihua_livePhotosContainer'>
           <video
             src={taihua_videoFjg}
@@ -296,6 +295,10 @@ function Taihua() {
             playsInline
           />
       </section>
+      <QuoteBox
+        text={taihuaMiscTexts[1].miscText}
+        author={taihuaMiscTexts[1].author}
+      />
       <QuoteBox
         text={taihuaMiscTexts[6].miscText}
         author={taihuaMiscTexts[6].author}

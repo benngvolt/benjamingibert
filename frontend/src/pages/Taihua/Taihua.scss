@@ -7,6 +7,7 @@
     position: relative;
     @include Column;
     row-gap: 90px;
+    padding-bottom: 90px;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;          
     }
@@ -20,6 +21,7 @@
         margin-top: 45px;
         width: 100%;
         @include Column;
+        row-gap: 45px;
         font-family: 'Inter';
         color: white;
         position: relative;
@@ -341,7 +343,7 @@
       radial-gradient(90vw 80vh at 75% 75%, #355638 0%, transparent 65%),
       #0b0d0f;
   
-    filter: blur(200px) saturate(80%) contrast(105%) brightness(0.5);
+    filter: blur(150px) saturate(89%) contrast(100%) brightness(0.7);
     animation: taihuaGradientMove 18s ease-in-out infinite;
     transform: translateZ(0); // GPU hint
 
