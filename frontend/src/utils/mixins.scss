@@ -56,21 +56,18 @@ $font-scales: (
   }
 }
 
-$nightColor1: rgb(35, 35, 35);
-$nightColor2: rgb(243, 243, 243);
-$nightColor3: rgb(255, 62, 171);
-$nightColor4: rgb(8, 9, 20);
+$nightColor1: rgb(152, 206, 234);
+$nightColor2: rgb(255, 62, 171);
 
-$gemmecolor1: #dbe8f2;
+$gemmecolor1: #323232;
 $gemmecolor2: rgb(82, 89, 109);
-$gemmecolor3: rgb(202, 214, 246);
 
-$taihuacolor1: #75956e;
+$taihuacolor1: #99ea43;
 $taihuacolor2: rgb(70, 66, 58);
-$taihuacolor3: rgb(255, 248, 194);
+$taihuacolor3: rgb(113, 176, 115);
 $taihuacolor4:rgb(44, 44, 44);
 $taihuacolor5:rgb(66, 61, 57);
-$taihuacolor6:rgb(27, 34, 30);
+$taihuacolor6:rgb(15, 19, 17);
 
 @mixin Column {
     display: flex;
@@ -121,18 +118,6 @@ $taihuacolor6:rgb(27, 34, 30);
     100% { background-position: 0% 50%; }
   }
 
-
-  @keyframes taihuaBgShift {
-    0% {
-      background-color: $taihuacolor4;
-    }
-    50% {
-      background-color: $taihuacolor5;
-    }
-    100% {
-      background-color: $taihuacolor6;
-    }
-  }
 
   @keyframes taihuaGradientMove {
     0% {

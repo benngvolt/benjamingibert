@@ -7,7 +7,7 @@ function clamp(v, min, max) {
   return Math.max(min, Math.min(max, v));
 }
 
-function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber }) {
+function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber, color }) {
   const containerRef = useRef(null);
   const imgRef = useRef(null);
 
@@ -73,9 +73,9 @@ function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber }) {
     <section className={`taihua_tracks taihua_tracks${trackNumber}`}>
         {/* <img className='taihua_tracks--s_backgroundPhoto' src={taihua_shellsPhoto}/> */}
         <div className='taihua_tracks_track'>
-            <img className='taihua_tracks_track_imgTitle' src={imgTitle}/>
+            <img className={`taihua_tracks_track_imgTitle taihua_tracks_track_imgTitle--${color}`} src={imgTitle}/>
             <div className='taihua_tracks_track_texts'>
-                <p className='taihua_tracks_track_texts_title'>{trackTitle}</p> 
+                <p className={`taihua_tracks_track_texts_title taihua_tracks_track_texts_title--${color}`}>{trackTitle}</p> 
                 <p className='taihua_tracks_track_texts_text' dangerouslySetInnerHTML={{ __html:trackText}} />
             </div>
         </div>   

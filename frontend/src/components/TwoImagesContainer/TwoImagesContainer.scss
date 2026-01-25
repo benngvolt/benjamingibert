@@ -37,6 +37,7 @@
         
         @media only screen and (max-width:$mobileMaxWidth){
             @include Column; 
+            background: none;
             
             padding: 0;
         }

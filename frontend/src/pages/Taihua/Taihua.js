@@ -109,6 +109,7 @@ function Taihua() {
         <QuoteBox
           text={taihuaMiscTexts[5][`miscText_${lang}`]}
           author={taihuaMiscTexts[5].author}
+          color='taihua'
         />
         <div className='taihua_mainDataContainer_descriptionContainer'>
           <img
@@ -144,7 +145,7 @@ function Taihua() {
           />
         </div>
       </section>
-      
+
       <section className='taihua_K7Container'>
         <PhotoGallery
           img1={taihua_K7recto}
@@ -166,6 +167,7 @@ function Taihua() {
         imgTitle={taihua_bTitle}
         trackTitle='barefoot'
         trackText={getTrackText(1)}
+        color='taihua'
       />
       <TwoImagesContainer
         photo1={taihua_photo_map}
@@ -175,12 +177,14 @@ function Taihua() {
       <QuoteBox
         text={taihuaMiscTexts[3][`miscText_${lang}`]}
         author={taihuaMiscTexts[3].author}
+        color='taihua'
       />
       <TrackBox
         trackNumber={2}
         imgTitle={taihua_ltcTitle}
         trackTitle='low tide cavern'
         trackText={getTrackText(2)}
+        color='taihua'
       />
       <PhotoGallery
         img1={taihua_photo_foam1}
@@ -192,16 +196,19 @@ function Taihua() {
       <QuoteBox
         text={taihuaMiscTexts[2][`miscText_${lang}`]}
         author={taihuaMiscTexts[2].author}
+        color='taihua'
       />
       <TrackBox
         trackNumber={3}
         imgTitle={taihua_nfTitle}
         trackTitle='native forests'
         trackText={getTrackText(3)}
+        color='taihua'
       />
       <QuoteBox
         text={taihuaMiscTexts[4][`miscText_${lang}`]}
         author={taihuaMiscTexts[4].author}
+        color='taihua'
       />
       <TwoImagesContainer
         photo1={taihua_photo_forest2}
@@ -214,10 +221,12 @@ function Taihua() {
         imgTitle={taihua_tgTitle}
         trackTitle='tuis garden'
         trackText={getTrackText(4)}
+        color='taihua'
       />
       <QuoteBox
         text={taihuaMiscTexts[0][`miscText_${lang}`]}
         author={taihuaMiscTexts[0].author}
+        color='taihua'
       />
       <OneMediaContainer
         mediaSrc={taihua_photo_portrait}
@@ -229,6 +238,7 @@ function Taihua() {
         imgTitle={taihua_sTitle}
         trackTitle='shells'
         trackText={getTrackText(5)}
+        color='taihua'
       />
 
       <TwoImagesContainer
@@ -243,6 +253,7 @@ function Taihua() {
         imgTitle={taihua_fjgTitle}
         trackTitle='franz josef glacier'
         trackText={getTrackText(6)}
+        color='taihua'
       />
       <OneMediaContainer
         mediaSrc={taihua_videoFjg}
@@ -251,10 +262,12 @@ function Taihua() {
       <QuoteBox
         text={taihuaMiscTexts[1][`miscText_${lang}`]}
         author={taihuaMiscTexts[1].author}
+        color='taihua'
       />
       <QuoteBox
         text={taihuaMiscTexts[6][`miscText_${lang}`]}
         author={taihuaMiscTexts[6].author}
+        color='taihua'
       />
     </main>
   )

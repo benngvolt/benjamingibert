@@ -75,7 +75,6 @@ function Gemmes() {
     return track?.[`trackText_${lang}`] ?? "";
   };
 
-  const backgroundColor = 'black'
 
   return (
     <main className='gemmes'>
@@ -114,8 +113,9 @@ function Gemmes() {
       <TrackBox
         trackNumber={1}
         imgTitle={gemmes_title_track1}
-        trackTitle='gemme I'
+        trackTitle='Gemme I'
         trackText={getTrackText(1)}
+        color='gemmes'
       />
       <TwoImagesContainer
         photo1={gemmes_video1}
@@ -125,8 +125,9 @@ function Gemmes() {
       <TrackBox
         trackNumber={2}
         imgTitle={gemmes_title_track2}
-        trackTitle='gemme II'
+        trackTitle='Gemme II'
         trackText={getTrackText(2)}
+        color='gemmes'
       />
       <TwoImagesContainer
         photo1={gemmes_photo_arduino}
@@ -137,8 +138,9 @@ function Gemmes() {
       <TrackBox
         trackNumber={3}
         imgTitle={gemmes_title_track3}
-        trackTitle='gemme III'
+        trackTitle='Gemme III'
         trackText={getTrackText(3)}
+        color='gemmes'
       />
       
       <OneMediaContainer
@@ -148,8 +150,9 @@ function Gemmes() {
       <TrackBox
         trackNumber={4}
         imgTitle={gemmes_title_track4}
-        trackTitle='gemme IV'
+        trackTitle='Gemme IV'
         trackText={getTrackText(4)}
+        color='gemmes'
       />
       <OneMediaContainer
           mediaSrc={gemmes_photo_arcade}
@@ -158,8 +161,9 @@ function Gemmes() {
       <TrackBox
         trackNumber={5}
         imgTitle={gemmes_title_track5}
-        trackTitle='gemme V'
+        trackTitle='Gemme V'
         trackText={getTrackText(5)}
+        color='gemmes'
       />
       <OneMediaContainer
           mediaSrc={gemmes_video_g4_1LQ}

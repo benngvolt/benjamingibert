@@ -79,6 +79,7 @@ function Nightingales () {
         imgTitle={night_G}
         trackTitle='Glassbirds II'
         trackText={getTrackText(1)}
+        color='night'
       />
       <section className='nightingales_videos'>
           <video
@@ -108,6 +109,7 @@ function Nightingales () {
         imgTitle={night_N}
         trackTitle='Noctambulism'
         trackText={getTrackText(2)}
+        color='night'
       />
     
       <OneMediaContainer
@@ -120,6 +122,7 @@ function Nightingales () {
         imgTitle={night_A}
         trackTitle='Aspérité Liquide'
         trackText={getTrackText(3)}
+        color='night'
       />
       <OneMediaContainer
         mediaSrc={night_tongue}
@@ -130,6 +133,7 @@ function Nightingales () {
         imgTitle={night_T}
         trackTitle='Taste Of Sap'
         trackText={getTrackText(4)}
+        color='night'
       />      
       <PhotoGallery
           img1={night2}

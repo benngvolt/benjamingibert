@@ -1,204 +1,239 @@
 @import '../../utils/mixins';
 
 .home {
-    height: 100vh;
-    width: 100vw;
-    margin: auto;
-    @include Column;
-    
-    &_video {
-        background-color: black;
-        pointer-events: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  @include Column;
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(6px);
-            transform: scale(1.1);
-            pointer-events: none;
-        }
+  &_video {
+    background-color: black;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(6px);
+      transform: scale(1.1);
+      pointer-events: none;
     }
-    &_video::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: #8660e0; /* violet */
-        mix-blend-mode: multiply; /* ou: overlay, color, screen... */
-        pointer-events: none;
+  }
+
+  &_video::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #8660e0;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  &_menu {
+    width: 100%;
+    height: auto;
+    @include Column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) { }
+
+    @media only screen and (max-width: $mobileMaxWidth) {
+      row-gap: 10px;
+      width: 70%;
+      margin: 22px auto;
+    }
+
+    &_artistName {
+      letter-spacing: 0.32em;
+      color: white;
+      @include font-size(3);
+      margin: 90px auto;
+      font-family: 'Inter';
+
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+        @include font-size(2);
+        margin: 45px auto;
       }
 
-    &_menu {
-        width: 100%;
-        // height: 20%;
-        @include Column;
-        justify-content: space-around;
-        margin: auto;
-        position: relative;
-        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-        }
-        
-        @media only screen and (max-width:$mobileMaxWidth){
-            row-gap:20px;
-        }
-
-        &_artistName {
-            letter-spacing: 0.32em;
-            color: white;
-            @include font-size(3);
-            margin: 90px auto;
-            font-family: 'Inter';
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                @include font-size(2);
-            }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                @include font-size(3);
-            }  
-        }
-
-        &_albumTitle {
-            
-            color: white;
-            font-size: 140px;
-            margin: auto;
-            width: 100%;
-            display: flex;
-            box-sizing: border-box;
-            transition: transform 0.4s cubic-bezier(.36,.07,.19,.97);
-            
-            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                font-size: 100px;
-            }
-            
-            @media only screen and (max-width:$mobileMaxWidth){
-                padding: 20px;
-                font-size: clamp(40px, 10vw, 90px);
-            }
-
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    
-                    transform: scale(1.03) rotate(1deg) skew(1deg);
-                    // drop-shadow(0 0 100px white);
-                }
-            }
-
-            img {
-                filter: saturate(0);
-                width: 20%;
-                margin: auto;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    width: 85%;
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    width: 100%;
-                }  
-            }
-
-            &--gemmes {
-                margin-top: 35px;
-            }
-        }
-
-        &_networksList {
-            @include Row;
-            justify-content: center;
-            gap: 1rem;
-           
-            
-            &_item {
-                position: relative;
-                width: 40px;
-                height: 40px;
-                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
-                }
-                
-                @media only screen and (max-width:$mobileMaxWidth){
-                    width: 30px;
-                    height: 30px;
-                }
-
-                &_link {
-                    display: block;
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-
-                    img {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: auto;
-                        transition: opacity 0.3s ease;
-                    }
-
-                    .white {
-                        opacity: 1;
-                    }
-
-                    .color {
-                        opacity: 0;
-                    }
-                    @media (hover: hover) and (pointer: fine) {
-                        &:hover .white {
-                            opacity: 0;
-                        }
-    
-                        &:hover .color {
-                            opacity: 1;
-                        }
-                    }
-
-                   
-                }
-            }
-        }
-
-        &_langChoice {
-            @include Row;
-            margin: auto;
-
-            button {
-                font-family: 'Inter';
-                
-                border-bottom: none;
-                border-left: none;
-                border-top: none;
-                background: none;
-                @include font-size(3);
-                padding: 5px 22px;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-            &_fr, &_en {
-                
-                border-right: white solid 1px; 
-            }
-            &_jp {
-                border-right: none;
-                
-            }
-
-            &_fr, &_en, &_jp {
-                color: white;
-                &--selected {
-                    color: rgb(102, 255, 0)
-                }
-            }
-        }
+      @media only screen and (max-width: $mobileMaxWidth) {
+        @include font-size(4);
+        margin: 22px auto;
+      }
     }
+
+    &_albumTitle {
+      color: white;
+      font-size: 140px;
+      margin: auto;
+      width: 100%;
+      display: flex;
+      box-sizing: border-box;
+      transition: transform 0.4s cubic-bezier(.36,.07,.19,.97);
+
+      // pointer visible immediately on desktop
+      cursor: pointer;
+
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+        font-size: 100px;
+      }
+
+      @media only screen and (max-width: $mobileMaxWidth) { }
+
+      // hover effects ONLY where hover really exists
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          transform: scale(1.03) rotate(1deg) skew(1deg);
+        }
+      }
+
+      img {
+        filter: saturate(0);
+        width: 20%;
+        margin: auto;
+
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+          width: 85%;
+        }
+
+        @media only screen and (max-width: $mobileMaxWidth) {
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+
+      &--gemmes {
+        margin-top: 35px;
+      }
+    }
+
+    &_networksList {
+      @include Row;
+      justify-content: center;
+      gap: 1rem;
+
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) { }
+
+      @media only screen and (max-width: $mobileMaxWidth) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      &_item {
+        position: relative;
+        width: 40px;
+        height: 40px;
+
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) { }
+
+        @media only screen and (max-width: $mobileMaxWidth) {
+          width: 30px;
+          height: 30px;
+        }
+
+        &_link {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          // pointer visible immediately on desktop
+          cursor: pointer;
+
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease;
+          }
+
+          .white {
+            opacity: 1;
+          }
+
+          .color {
+            opacity: 0;
+          }
+
+          // hover swap ONLY on devices that truly support hover
+          @media (hover: hover) and (pointer: fine) {
+            &:hover .white {
+              opacity: 0;
+            }
+
+            &:hover .color {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    &_langChoice {
+      @include Row;
+      margin: auto;
+
+      button {
+        font-family: 'Inter';
+        border-bottom: none;
+        border-left: none;
+        border-top: none;
+        background: none;
+        @include font-size(3);
+        padding: 5px 22px;
+
+        // pointer visible immediately on desktop
+        cursor: pointer;
+
+        // keep hover-only rules here if you add visual effects later
+        @media (hover: hover) and (pointer: fine) {
+          &:hover { }
+        }
+      }
+
+      &_fr,
+      &_en {
+        border-right: white solid 1px;
+      }
+
+      &_jp {
+        border-right: none;
+      }
+
+      &_fr,
+      &_en,
+      &_jp {
+        color: white;
+
+        &--selected {
+          color: rgb(102, 255, 0);
+        }
+      }
+    }
+  }
+
+  // Safety net: explicitly neutralize hover states on touch/coarse pointers
+  @media (hover: none), (pointer: coarse) {
+    .home_menu_albumTitle:hover {
+      transform: none;
+    }
+
+    .home_menu_networksList_item_link:hover .white {
+      opacity: 1;
+    }
+
+    .home_menu_networksList_item_link:hover .color {
+      opacity: 0;
+    }
+  }
 }
