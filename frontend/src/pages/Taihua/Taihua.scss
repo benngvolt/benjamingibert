@@ -5,10 +5,14 @@
     width: 100vw;
     isolation: isolate;
     position: relative;
-
-    &_doubleTracksContainer {
-        @include Column;
-        margin: 0;
+    @include Column;
+    row-gap: 90px;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        row-gap: 45px;          
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        row-gap: 45px;
     }
     
     &_mainDataContainer {
@@ -194,20 +198,19 @@
         @include Column;
         // row-gap: 5px;
         width: 100vw;
-        margin: 180px auto;
-        z-index: 90;
+        margin: 0 auto;
+        z-index: 100;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
-            margin: 22px auto;
+            margin: 0 auto;
         }
-        &_1photo {
-            width: 100%;
-            z-index: 90;
+        
             
             img {
+                z-index: 100;
                 width: 100%;
                 object-fit: cover;
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
@@ -218,7 +221,20 @@
                     aspect-ratio: 1;
                 }
             }
-        }
+
+            video {
+                z-index: 100;
+                width: 100%;
+                object-fit: cover;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    aspect-ratio: 1.5/1;
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    aspect-ratio: 1.5/1;
+                }
+            }
+        
         &_3photos {
             width: 100%;
             display: grid;
@@ -231,6 +247,7 @@
                 aspect-ratio: 1.5/1;
             }
         }
+
 
         &_links {
             @include Row;
@@ -253,8 +270,8 @@
     }
 
     &_K7Container {
-        width: 70%;
-        margin: 45px auto;
+        
+        margin: 0 auto;
         z-index: 90;
         &_rectoVerso {
             @include Row;
