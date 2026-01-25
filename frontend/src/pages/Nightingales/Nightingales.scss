@@ -3,21 +3,54 @@
 .nightingales {
     background-color: black;
     width: 100vw;
+    padding-top: 45px;
+    isolation: isolate;
+    position: relative;
+    @include Column;
+    row-gap: 90px;
+    padding-bottom: 90px;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        row-gap: 45px;          
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        row-gap: 45px;
+        padding-top: 22px;
+    }
    
 
     &_mainDataContainer {
         animation: apparition 3s ease forwards;
-
-        margin-top: 45px;
         width: 100%;
         @include Column;
+        row-gap: 90px;
         font-family: 'Inter';
         color: white;
+        position: relative;
+        @include font-size(5);
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            row-gap: 45px;
+        }
 
         &_title {
+            z-index: 10;
             margin: 0 auto;
             width: 90%;
             object-fit: contain;
+            display: flex;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                padding: 0 22px;
+                box-sizing: border-box;
+                width: 100%;
+            }
         }
 
         &_starryskyContainer {
@@ -35,123 +68,89 @@
             }
         }
 
-        &_datas {
-            margin: 180px auto;
-            width: 30%;
-            text-align: justify;
-            @include Column;
-            row-gap: 90px;
-
-            ul li {
-                font-weight: bolder;
-                color: rgb(61, 103, 255);
-            }
-        }
-
-        &_artwork {
-            width: 100%;
-        }
-        &_description {
-            font-family: 'SpecialFont';
-            width: 70%;
-            @include Column;
-            row-gap: 90px;
-            margin: 180px auto;
-            
-            &_1 {
-                font-size: $fontSize1;
-                text-align: center;
-            }
-            &_2 {
-                @include font-size(2);
-                text-align: justify;
-            }
-            &_3 {
-                @include font-size(3);
-                text-align: justify;
-            }
-        }
-
         &_samples {
             width: 50%;
             margin: auto;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                width: 70%;  
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                width: 80%;
+            }      
+        }
+
+        &_descriptionContainer {
+            @include Column;
+            column-gap: 90px;
+            row-gap: 90px;
+            width: 90%;
+            margin: 90px auto;
+            justify-content: center;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                margin: 22px auto;
+            }
         }
     }
 
-    &_tracks {
-        &_container {
+    &_tracksContainer {
+        
             @include Row;
-            &_glassbirdsContainer {
-
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
             }
-        
-            &_noctambulismContainer {
-        
-            }
-        
-            &_asperiteContainer {
-        
-            }
-        
-            &_tasteContainer {
-        
-            }
-        
-            &_glassbirdsContainer, &_noctambulismContainer, &_asperiteContainer, &_tasteContainer {
-                width: 40%;
-                margin: 180px auto;
+            
+            @media only screen and (max-width:$mobileMaxWidth){
                 @include Column;
-                row-gap: 45px;
-                z-index: 10;
-                text-align: justify;
-                img {
-                    margin: auto;
-                    width: 50%;
-                    object-fit: contain;
-                }
-                p {
-                    margin: auto;
-                    font-family: 'SpecialFont';
-                    color: white;
-                    @include font-size(3);
-                }
-            }
-        }
-        &_plantsImage {
-            z-index: 1;
-            width: 100%;
-        }
+            }       
+        
+       
     }
    
 
-    &_tongueImage {
-        z-index: 1;
-        width: 100%;
-    }
-
-    &_photoCredit {
-        margin: 45px 0;
-        width: 100%;
-        font-family: 'SpecialFont';
-        color: white;
-        display: flex;
-        justify-content: center;
-        @include font-size(2);
-    }
-    
-
     &_videos {
-        margin: 90px auto;
+        
         @include Row;
         column-gap: 45px;
         justify-content: center;
         width: 100%;
-        height: 100vh;
+        height: 80%;
         background-color: rgb(13, 5, 68);
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: auto;
+            column-gap: 5px;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            // @include Column;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: auto;
+            column-gap: 0;
+            background: none;
+            
+        }    
 
         video {
+            margin: 90px 0;
             width: 20%;
-            border-radius: 10px;
+            // border-radius: 10px;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                width: 80%;
+                margin: 90px auto;
+                
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                width: 100%;
+                margin: 22px 0;
+            }  
         }
     }
 

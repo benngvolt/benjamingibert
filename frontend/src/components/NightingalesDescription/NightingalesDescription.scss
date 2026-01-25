@@ -1,0 +1,34 @@
+@import '../../utils/mixins';
+
+.nightingales_mainDataContainer_descriptionContainer_descriptions {
+    
+    font-family: 'SpecialFont';
+    width: 70%;
+    margin: auto;
+
+    @include Column;
+
+    row-gap: 90px;
+    text-align: center;
+
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        width: 100%;
+        row-gap: 22px;
+    }
+
+    &_1 {
+        @include font-size(1);    
+    }
+
+    &_2 {
+        @include font-size(2);
+    }
+
+    &_3 {
+        @include font-size(3);
+    }
+}

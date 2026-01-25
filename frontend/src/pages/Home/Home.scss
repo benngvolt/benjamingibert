@@ -51,7 +51,7 @@
         }
 
         &_artistName {
-            letter-spacing: 0.5em;
+            letter-spacing: 0.32em;
             color: white;
             @include font-size(3);
             margin: 90px auto;
@@ -162,6 +162,41 @@
                     }
 
                    
+                }
+            }
+        }
+
+        &_langChoice {
+            @include Row;
+            margin: auto;
+
+            button {
+                font-family: 'Inter';
+                
+                border-bottom: none;
+                border-left: none;
+                border-top: none;
+                background: none;
+                @include font-size(3);
+                padding: 5px 22px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            &_fr, &_en {
+                
+                border-right: white solid 1px; 
+            }
+            &_jp {
+                border-right: none;
+                
+            }
+
+            &_fr, &_en, &_jp {
+                color: white;
+                &--selected {
+                    color: rgb(102, 255, 0)
                 }
             }
         }

@@ -13,7 +13,8 @@
     row-gap: 45px;
     justify-content: center;
     background-color:black;
-    
+    border-radius: 10px 0 0 10px;
+    padding: 12px 12px 12px 0;
     &_albums {
         @include Column;
         row-gap: 15px;
@@ -22,6 +23,7 @@
     &_link {
         filter: saturate(0);
         margin: auto;
+        
         display: flex;
         justify-content: center;
 
@@ -68,16 +70,12 @@
                 margin: auto;
                 background:none;
                 border: none;
-                color: white;
+                
                 
                 @include font-size(4);    
                 &:hover {
                     cursor: pointer;
-                    font-weight: 800;
-                }
-
-                &--selected {
-                    font-weight: bold;
+                    color: rgb(102, 255, 0);
                 }
             }
             &--closed {
@@ -87,6 +85,13 @@
             &--open {
                 display: flex;
                 flex-direction: column;
+            }
+
+            &_fr, &_en, &_jp {
+                color: white;
+                &--selected {
+                    color: rgb(102, 255, 0);
+                }
             }
         }
     }

@@ -50,16 +50,39 @@ function NavBar() {
                 <FontAwesomeIcon className='navBar_langList_icon' icon={faEarth}
                 onClick={() => setIsLangsListOpened(isLangsListOpened? false : true)} />
                 <div 
-                    className={isLangsListOpened === false ? 'navBar_langList_itemsList navBar_langList_itemsList--closed' : 'navBar_langList_itemsList navBar_langList_itemsList--open'}
-                    
+                    className={
+                        isLangsListOpened === false
+                        ? 'navBar_langList_itemsList navBar_langList_itemsList--closed'
+                        : 'navBar_langList_itemsList navBar_langList_itemsList--open'
+                    }
                     >
-                    <button className='navBar_langList_itemsList_fr' onClick={() => setLang('fr')}>
+                    <button
+                        className={lang !== "fr" ? 'navBar_langList_itemsList_fr' : 'navBar_langList_itemsList_fr--selected'}
+                        onClick={() => {
+                        setLang('fr')
+                        setIsLangsListOpened(false)
+                        }}
+                    >
                         FR
                     </button>
-                    <button className='navBar_langList_itemsList_en' onClick={() => setLang('en')}>
+
+                    <button
+                        className={lang !== "en" ? 'navBar_langList_itemsList_en' : 'navBar_langList_itemsList_en--selected'}
+                        onClick={() => {
+                        setLang('en')
+                        setIsLangsListOpened(false)
+                        }}
+                    >
                         EN
                     </button>
-                    <button className='navBar_langList_itemsList_en' onClick={() => setLang('jp')}>
+
+                    <button
+                        className={lang !== "jp" ? 'navBar_langList_itemsList_jp' : 'navBar_langList_itemsList_jp--selected'}
+                        onClick={() => {
+                        setLang('jp')
+                        setIsLangsListOpened(false)
+                        }}
+                    >
                         JP
                     </button>
                 </div>
