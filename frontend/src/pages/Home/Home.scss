@@ -113,19 +113,19 @@
         &_networksList {
             @include Row;
             justify-content: center;
-            gap: 1rem; // petit espace entre les logos
-            margin: 45px auto;
-
+            gap: 1rem;
+           
+            
             &_item {
                 position: relative;
-                width: 40px; // ajuste selon la taille de tes logos
+                width: 40px;
                 height: 40px;
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
                 }
                 
                 @media only screen and (max-width:$mobileMaxWidth){
-                    width: 30px; // ajuste selon la taille de tes logos
+                    width: 30px;
                     height: 30px;
                 }
 

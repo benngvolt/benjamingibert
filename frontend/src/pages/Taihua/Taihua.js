@@ -33,14 +33,16 @@ import taihua_photo_shellphone1 from '../../assets/taihua/taihua_photo_shellphon
 import taihua_photo_jardin from '../../assets/taihua/taihua_photo_jardin.webp'
 import taihua_photo_dessin from '../../assets/taihua/taihua_photo_dessin.webp'
 
-import GemmesTrackBox from '../../components/GemmesTrackBox/GemmesTrackBox'
 import NavBar from '../../components/NavBar/NavBar'
-import TaihuaTrackBox from '../../components/TaihuaTrackBox/TaihuaTrackBox'
+import TrackBox from '../../components/TrackBox/TrackBox'
 import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
 import MusicLink from '../../components/MusicLink/MusicLink'
 import QuoteBox from '../../components/QuoteBox/QuoteBox'
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
 import PhotoGallery from '../../components/PhotoGallery/PhotoGallery'
+import OneMediaContainer from '../../components/OneMediaContainer/OneMediaContainer'
+import TaihuaDatas from '../../components/TaihuaDatas/TaihuaDatas'
+import TaihuaDescription from '../../components/TaihuaDescription/TaihuaDescription'
 
 import taihua_barefootPhoto from '../../assets/taihua/taihua_barefootPhoto.webp'
 import taihua_lowtidecavernPhoto from '../../assets/taihua/taihua_lowtidecavernPhoto.webp'
@@ -59,75 +61,53 @@ import taihuaMiscTexts from '../../assets/taihua/taihuaMiscTexts.json'
 
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
+import { useApp } from "../../utils/AppContext";
+
 function Taihua() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  const { lang } = useApp();
+
   const getTrackText = (trackNumber) => {
-    return (
-      taihuaTracksTexts.find((track) => track.trackNumber === trackNumber)
-        ?.trackText ?? ''
-    )
-  }
+    const track = taihuaTracksTexts.find(
+      (track) => track.trackNumber === trackNumber
+    );
+  
+    return track?.[`trackText_${lang}`] ?? "";
+  };
 
   const backgroundColor = 'black'
 
   return (
     <main className='taihua'>
+      
       <NavBar />
-      <section className='taihua_mainDataContainer'>
-        <div className='taihua_mainDataContainer_firstContainer'>
-          <div className='taihua_bg'></div>
+
+      <div className='taihua_bg'></div>
+        <img
+          className='taihua_mainDataContainer_title'
+          src={taihua_title}
+        />
+        <div className='taihua_mainDataContainer_ecumeContainer'>
           <img
-            className='taihua_mainDataContainer_title'
-            src={taihua_title}
+            className='taihua_mainDataContainer_ecumeContainer_starrysky'
+            src={taihua_ecume}
           />
-          <div className='taihua_mainDataContainer_ecumeContainer'>
-            <img
-              className='taihua_mainDataContainer_ecumeContainer_starrysky'
-              src={taihua_ecume}
-            />
-          </div>
-          <div className='taihua_mainDataContainer_datas'>
-            <p>released November 04, 2019.</p>
-            <ul>
-              <li>01 barefoot</li>
-              <li>02 low tide cavern I</li>
-              <li>03 native forests</li>
-              <li>04 tūīs garden</li>
-              <li>05 glassbirds (feat.SVQO)</li>
-              <li>06 low tide cavern II</li>
-              <li>07 shells</li>
-              <li>08 low tide cavern III</li>
-              <li>09 franz josef glacier</li>
-              <li>10 gemme IV + tūīs garden (hurricane version)</li>
-            </ul>
-            <p>
-              Tracks 1, 2, 3, 4, 6, 7, 8, 9 composed, played and produced by
-              Benjamin Gibert, recorded in Muriwai (new zealand), 2019. Samples
-              of nature sounds by Benjamin Gibert. <br />
-              <br />
-              Track 9 composed by Benjamin Gibert & SVQO, produced by SVQO,
-              recorded in Lyon (France) and Porto Alegre (Brasil), 2013-2021.
-              <br />
-              Track 10 composed and produced by Benjamin Gibert, recorded in
-              Muriwai (New Zealand) and l'Abbaye Royale de Fontevraud & the
-              forest of Meygal (France), 2021.
-              <br />
-              <br />
-              Artwork by Thomas Vaillant & Benjamin Gibert
-              <br />
-              Recorded, mixed and mastered by Benjamin Gibert at Earthskin
-              Muriwai Residency, New Zealand
-              <br />
-            </p>
-            <MusicNetworks />
-          </div>
-        </div>
-        <img className='taihua_mainDataContainer_artwork' src={taihua_artwork} />
+      </div>
+
+      <section className='taihua_mainDataContainer'>
+        <TaihuaDatas 
+          lang={lang}
+        />
+        <MusicNetworks />
+        <OneMediaContainer
+          mediaSrc={taihua_artwork}
+          mediaType="image"
+        />
         <QuoteBox
-          text={taihuaMiscTexts[5].miscText}
+          text={taihuaMiscTexts[5][`miscText_${lang}`]}
           author={taihuaMiscTexts[5].author}
         />
         <div className='taihua_mainDataContainer_descriptionContainer'>
@@ -135,41 +115,17 @@ function Taihua() {
             className='taihua_mainDataContainer_descriptionContainer_objetTypoTitre'
             src={taihua_objetTypoTitre}
           />
-          <div className='taihua_mainDataContainer_descriptionContainer_descriptions'>
-            <p className='taihua_mainDataContainer_descriptionContainer_descriptions_1'>
-              Antechamber of the ocean.
-            </p>
-            <p className='taihua_mainDataContainer_descriptionContainer_descriptions_2'>
-              Taihua refers to the intertidal zone, area between the limits of
-              low and high-tide.
-            </p>
-            <p className='taihua_mainDataContainer_descriptionContainer_descriptions_3'>
-              We strode along many 'taihuas' in new Zealand, searching for sounds
-              and noises, shells, outlooks to native forests or distant islands.
-              <br />
-              <br />
-              We strolled by a mighty and often restless ocean. we surfed on
-              rising tide waves and ran barefoot in the wet ‘taihua’ of the
-              Muriwai beach. We witnessed dusk there, and we photographed pink
-              skies, the surface of the water as a mirror. We captured the echo
-              of caves we could only enter at low-tide. We examined sand covered
-              in shells that chimed like winds, and arranged them by note,
-              depending on their size.
-              <br />
-              <br />
-              Then, we went deeper in the land, along the streams, still
-              barefoot. We threw ourselves into native forests, surrounded by
-              chatty endemic birds.All pieces of ‘taihua’ are about hyper
-              locality. they hold sounds harvested on site, from the crazy
-              melodic phrases of the tui or the piwakawaka, to the upbeat
-              rhythmical patterns of the insects. Humans also have a role in
-              this story, they simply made sure they took off their shoes.
-            </p>
-          </div>
+          <TaihuaDescription
+            lang={lang}
+          />
         </div>
       </section>
+
       <section className='taihua_livePhotosContainer'>
-        <img src={taihua_photoLive3} />
+        <OneMediaContainer
+          mediaSrc={taihua_photoLive3}
+          mediaType="image"
+        />
         <div className='taihua_livePhotosContainer_links'>
           <MusicLink
             link='https://on.soundcloud.com/UzEZvxpycAxhJdrop9'
@@ -188,6 +144,7 @@ function Taihua() {
           />
         </div>
       </section>
+      
       <section className='taihua_K7Container'>
         <PhotoGallery
           img1={taihua_K7recto}
@@ -204,7 +161,7 @@ function Taihua() {
           />
         </div>
       </section>
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={1}
         imgTitle={taihua_bTitle}
         trackTitle='barefoot'
@@ -216,10 +173,10 @@ function Taihua() {
         photoBackground={taihua_photo_blackstone}
       />
       <QuoteBox
-        text={taihuaMiscTexts[3].miscText}
+        text={taihuaMiscTexts[3][`miscText_${lang}`]}
         author={taihuaMiscTexts[3].author}
       />
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={2}
         imgTitle={taihua_ltcTitle}
         trackTitle='low tide cavern'
@@ -233,17 +190,17 @@ function Taihua() {
         img5={taihua_photo_mainportrait}
       />
       <QuoteBox
-        text={taihuaMiscTexts[2].miscText}
+        text={taihuaMiscTexts[2][`miscText_${lang}`]}
         author={taihuaMiscTexts[2].author}
       />
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={3}
         imgTitle={taihua_nfTitle}
         trackTitle='native forests'
         trackText={getTrackText(3)}
       />
       <QuoteBox
-        text={taihuaMiscTexts[4].miscText}
+        text={taihuaMiscTexts[4][`miscText_${lang}`]}
         author={taihuaMiscTexts[4].author}
       />
       <TwoImagesContainer
@@ -252,21 +209,22 @@ function Taihua() {
         photoBackground={taihua_photo_forestdetail}
         backgroundColor={backgroundColor}
       />
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={4}
         imgTitle={taihua_tgTitle}
         trackTitle='tuis garden'
         trackText={getTrackText(4)}
       />
       <QuoteBox
-        text={taihuaMiscTexts[0].miscText}
+        text={taihuaMiscTexts[0][`miscText_${lang}`]}
         author={taihuaMiscTexts[0].author}
       />
-      <section className='taihua_livePhotosContainer'>
-          <img src={taihua_photo_portrait} />
-      </section>
+      <OneMediaContainer
+        mediaSrc={taihua_photo_portrait}
+        mediaType="image"
+      />
       
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={5}
         imgTitle={taihua_sTitle}
         trackTitle='shells'
@@ -276,31 +234,26 @@ function Taihua() {
       <TwoImagesContainer
         photo1={taihua_photo_shellphone1}
         photo2={taihua_photo_foam2}
-        photoBackground={taihua_photo_dolphin}
+        photoBackground={taihua_shellsPhoto}
         backgroundColor={backgroundColor}
       />
 
-      <TaihuaTrackBox
+      <TrackBox
         trackNumber={6}
         imgTitle={taihua_fjgTitle}
         trackTitle='franz josef glacier'
         trackText={getTrackText(6)}
       />
-      <section className='taihua_livePhotosContainer'>
-          <video
-            src={taihua_videoFjg}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-      </section>
+      <OneMediaContainer
+        mediaSrc={taihua_videoFjg}
+        mediaType="video"
+      />
       <QuoteBox
-        text={taihuaMiscTexts[1].miscText}
+        text={taihuaMiscTexts[1][`miscText_${lang}`]}
         author={taihuaMiscTexts[1].author}
       />
       <QuoteBox
-        text={taihuaMiscTexts[6].miscText}
+        text={taihuaMiscTexts[6][`miscText_${lang}`]}
         author={taihuaMiscTexts[6].author}
       />
     </main>

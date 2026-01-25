@@ -10,20 +10,24 @@
             @include Row;
             justify-content: center;
             gap: 1rem; // petit espace entre les logos
+            margin: 45px auto;
+            
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
-               
-                margin: 22px auto 45px auto;
-                
+
+                margin: 12px auto;
+
             }
 
             &_item {
+
                 position: relative;
                 width: 40px; // ajuste selon la taille de tes logos
                 height: 40px;
+
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
                 }

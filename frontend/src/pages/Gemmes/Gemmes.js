@@ -38,172 +38,133 @@ import gemmes_title_track4 from '../../assets/gemmes/gemmes_title_track4.webp'
 import gemmes_title_track5 from '../../assets/gemmes/gemmes_title_track5.webp'
 
 import gemmesTracksTexts from "../../assets/gemmes/gemmesTracksTexts.json";
+import taihua_photo_mainportrait from '../../assets/taihua/taihua_photo_mainportrait.webp'
+import taihua_photo_forest2 from '../../assets/taihua/taihua_photo_forest2.webp'
+import taihua_photo_forestdetail from '../../assets/taihua/taihua_photo_forestdetail.webp'
+import taihua_photo_shellphone1 from '../../assets/taihua/taihua_photo_shellphone1.webp'
+import taihua_photo_jardin from '../../assets/taihua/taihua_photo_jardin.webp'
+import taihua_photo_dessin from '../../assets/taihua/taihua_photo_dessin.webp'
 
 import NavBar from '../../components/NavBar/NavBar'
+import TrackBox from '../../components/TrackBox/TrackBox'
 import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
+import MusicLink from '../../components/MusicLink/MusicLink'
+import QuoteBox from '../../components/QuoteBox/QuoteBox'
+import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
+import PhotoGallery from '../../components/PhotoGallery/PhotoGallery'
+import OneMediaContainer from '../../components/OneMediaContainer/OneMediaContainer'
+import GemmesDatas from '../../components/GemmesDatas/GemmesDatas'
+import GemmesDescription from '../../components/GemmesDescription/GemmesDescription'
 
-import GemmesTrackBox from '../../components/GemmesTrackBox/GemmesTrackBox'
-import GemmesShaderGradient from '../../components/GemmesShaderGradient/GemmesShaderGradient'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
-function Gemmes () {
-  
+import { useApp } from "../../utils/AppContext";
+
+function Gemmes() {
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
+
+  const { lang } = useApp();
 
   const getTrackText = (trackNumber) => {
-    
-    return gemmesTracksTexts.find(
+    const track = gemmesTracksTexts.find(
       (track) => track.trackNumber === trackNumber
-    )?.trackText ?? "";
+    );
+  
+    return track?.[`trackText_${lang}`] ?? "";
   };
 
-  const backgroundColor='rgb(202, 214, 246)'
+  const backgroundColor = 'black'
 
   return (
     <main className='gemmes'>
       
-      <GemmesShaderGradient/>
-      <NavBar/>
+      <NavBar />
 
-      <section className='gemmes_mainDataContainer'>
-        <img className='gemmes_mainDataContainer_title' src={gemmes_title}/>
+      <div className='gemmes_bg'></div>
+        <img
+          className='gemmes_mainDataContainer_title'
+          src={gemmes_title}
+        />
         <div className='gemmes_mainDataContainer_snowflakesContainer'>
           <img className='gemmes_mainDataContainer_snowflakesContainer_snowflakes' src={gemmes_snowflakes}/>
         </div>
-        <div className='gemmes_mainDataContainer_datas'>
-          <p>
-            released February 25, 2019.
-          </p>
-          <ul>
-            <li>
-              01 gemme I
-            </li>
-            <li>
-              02 gemme II
-            </li>
-            <li>
-              03 gemme III
-            </li>
-            <li>
-              04 gemme IV
-            </li>
-            <li>
-              05 gemme V
-            </li>
-          </ul>
-          <p>
-            Tracks 1, 2, 3, 4, 5 composed, played and produced by Benjamin Gibert, recorded in L'Abbaye Royale de Fontevraud, 2018. Samples of nature sounds by Benjamin Gibert. <br/><br/>
-            Mixed and mastered by Benjamin Gibert, Lyon. Artwork by Benjamin Gibert.
-          </p>
+
+      <section className='gemmes_mainDataContainer'>
+        <GemmesDatas 
+          lang={lang}
+        />
+        <MusicNetworks />
+        <OneMediaContainer
+          mediaSrc={gemmes_artwork}
+          mediaType="image"
+        />
+        <div className='gemmes_mainDataContainer_descriptionContainer'>
+          <GemmesDescription
+            lang={lang}
+          />
         </div>
-        <img className='gemmes_mainDataContainer_artwork' src={gemmes_artwork}/>
-      </section >
-
-      <section className='gemmes_descriptionContainer'>
-        <p>
-        The first days were filled with excitement: everything felt possible. They were also tinged with a certain apprehension, as I had to produce something ambitious within a single month. Instinctively, I connected to what I was discovering while wandering through the forest and along the nearby riverbanks. I felt the need to gather material from the surrounding environment, as if music were a form of cooking, made from local ingredients—always different depending on experiences, encounters, and discoveries.
-        </p>
-        <p>
-        I don’t feel particularly connected to the tradition of Christmas. Instead, I wanted to compose around the winter solstice, or more precisely around the transition from autumn to winter. This transition is beautiful to observe in nature: the drop in temperature, the shifting birdsongs, that exact moment when the soft amber light gives way to November drizzle. I didn’t see any snow during those days, the region isn’t especially suited for it. But I spent time walking through the forest, watching the leaves change color, and starting to layer my clothes.<br/><br/>
-        The five pieces of Gemmes emerged from this gradual transformation.
-        </p>
       </section>
-      <div className='gemmes_arcadeImage'>
-        <img src={gemmes_photo_arcade}/>
-      </div>
-
-      <section className='gemmes_videos'> 
-          <video className='gemmes_videos_video'
-            src={gemmes_video1}
-            autoPlay
-            muted
-            loop
-            playsInline
-            reverse
-          />
-          <video className='gemmes_videos_video'
-            src={gemmes_video2}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-      </section>
-
-      <GemmesTrackBox
-        trackNumber={1}
-        imgSrc={gemmes_photo_chardons}
-        imgTitle={gemmes_title_track1}
-        trackTitle="first chills"
-        trackText={getTrackText(1)}
-      />
-
       <TwoImagesContainer
         photo1={gemmes_photo_fenetre}
         photo2={gemmes_photo_myself3}
         photoBackground={gemmes_photo_baies}
-        backgroundColor={backgroundColor}
       />
-
-      <GemmesTrackBox
+      <TrackBox
+        trackNumber={1}
+        imgTitle={gemmes_title_track1}
+        trackTitle='gemme I'
+        trackText={getTrackText(1)}
+      />
+      <TwoImagesContainer
+        photo1={gemmes_video1}
+        photo2={gemmes_video2}
+        photoBackground={gemmes_photo_ruche1}
+      />
+      <TrackBox
         trackNumber={2}
-        videoSrc={gemmes_video_g2}
         imgTitle={gemmes_title_track2}
-        trackTitle="cold water"
+        trackTitle='gemme II'
         trackText={getTrackText(2)}
       />
-
-      <GemmesTrackBox
-        trackNumber={3}
-        videoSrc={gemmes_video_g4_1LQ}
-        imgTitle={gemmes_title_track3}
-        trackTitle="days of strong wind"
-        trackText={getTrackText(3)}
-      />
-
       <TwoImagesContainer
         photo1={gemmes_photo_arduino}
         photo2={gemmes_photo_autoharp}
         photoBackground={gemmes_photo_facade}
-        backgroundColor={backgroundColor}
       />
-  
-      <GemmesTrackBox
-        trackNumber={4}
-        imgSrc={gemmes_photo_ciel}
-        imgTitle={gemmes_title_track4}
-        trackTitle="fairy lights in the dark"
+      
+      <TrackBox
+        trackNumber={3}
+        imgTitle={gemmes_title_track3}
+        trackTitle='gemme III'
         trackText={getTrackText(3)}
       />
-
-      <section className='gemmes_videosG4'>
-          <video className='gemmes_videosG4_video'
-            type="video/mp4"
-            src={gemmes_video_g4_3LQ}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-          <video className='gemmes_videosG4_video'
-            type="video/mp4"
-            src={gemmes_video_g4_2LQ}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-      </section>
-
-      <GemmesTrackBox
+      
+      <OneMediaContainer
+          mediaSrc={gemmes_video_g4_2LQ}
+          mediaType="video"
+      />
+      <TrackBox
+        trackNumber={4}
+        imgTitle={gemmes_title_track4}
+        trackTitle='gemme IV'
+        trackText={getTrackText(4)}
+      />
+      <OneMediaContainer
+          mediaSrc={gemmes_photo_arcade}
+          mediaType="image"
+      />
+      <TrackBox
         trackNumber={5}
-        imgSrc={gemmes_photo_toit}
         imgTitle={gemmes_title_track5}
-        trackTitle="fireplaces"
+        trackTitle='gemme V'
         trackText={getTrackText(5)}
       />
-
+      <OneMediaContainer
+          mediaSrc={gemmes_video_g4_1LQ}
+          mediaType="video"
+      />
     </main>
   )
 }

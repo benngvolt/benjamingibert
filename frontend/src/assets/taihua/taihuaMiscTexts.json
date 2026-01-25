@@ -1,40 +1,51 @@
 [
-    {
-      "category": "press",
-      "miscText": "With Tui’s Garden, ambient and folktronica slowly morph into a mesmerizing IDM trance.",
-      "author":"Indiemusic"
-    },
-    {
-        "category": "press",
-        "miscText": "With Taihua, Benjamin Gibert brings together IDM, field recording and folktronica, crafting a work that is both beautiful and demanding, where technical inventiveness is placed at the service of a deep and sincere rootedness in nature.",
-        "author":"Indiemusic"
-      },
-      {
-        "category":"interview",
-        "miscText":"Finding one’s rightful place and weaving affinities with the environment through creation... that, to me, is ecology.",
-        "author":""
-
-      },
-      {
-        "category":"interview",
-        "miscText":"We were asked to take off our shoes as soon as we arrived. We did everything barefoot — hiking, grocery shopping, visiting our neighbors, exploring. That experience deeply influenced the creation of the album. It’s a very simple thing, but it stayed with me throughout, almost obsessively, because it’s not something I’m used to. I decided to open the record with a barefoot track, like an entry ritual without shoes.",
-        "author":""
-
-      },
-      {
-        "category":"interview",
-        "miscText":"I set myself the rule of collecting and working with the most endemic sounds possible in the places I passed through, listening with a traveler’s ear, in a constant state of wonder.",
-        "author":""
-
-      },
-      {
-        "category":"interview",
-        "miscText":"Taihua unfolds as an immersive narrative, following a traveler who slowly dissolves into the landscape they cross. The intention was to invite the listener to surrender to the journey, to explore without control, to adjust, and to remain within a state of openness rather than mastery. For the artwork, I imagined this barefoot wanderer caught in sea foam, first splashed, then engulfed, gradually losing their boundaries as they blend into the surrounding environment.",
-        "author":""
-      },
-      {
-        "category":"interview",
-        "miscText":"I think that, deep down, this wanderer has become a silky wave, spending its life lapping at the coastal forest.",
-        "author":""
-      }
-  ]
+  {
+    "category": "press",
+    "miscText_en": "With Tui’s Garden, ambient and folktronica slowly morph into a mesmerizing IDM trance.",
+    "miscText_fr": "Avec Tui’s Garden, l’ambient et la folktronica se transforment lentement en une transe IDM envoûtante.",
+    "miscText_jp": "『Tui’s Garden』では、アンビエントとフォークトロニカがゆっくりと変化し、魅惑的なIDMトランスへと溶け込んでいく。",
+    "author": "Indiemusic"
+  },
+  {
+    "category": "press",
+    "miscText_en": "With Taihua, Benjamin Gibert brings together IDM, field recording and folktronica, crafting a work that is both beautiful and demanding, where technical inventiveness is placed at the service of a deep and sincere rootedness in nature.",
+    "miscText_fr": "Avec Taihua, Benjamin Gibert réunit IDM, field recording et folktronica pour façonner une œuvre à la fois belle et exigeante, où l’inventivité technique se met au service d’un ancrage profond et sincère dans la nature.",
+    "miscText_jp": "『Taihua』でベンジャミン・ジベールは、IDM、フィールドレコーディング、フォークトロニカを結びつけ、美しくも手応えのある作品を生み出している。技術的な創意は、自然への深く誠実な根ざし方のために捧げられている。",
+    "author": "Indiemusic"
+  },
+  {
+    "category": "interview",
+    "miscText_en": "Finding one’s rightful place and weaving affinities with the environment through creation... that, to me, is ecology.",
+    "miscText_fr": "Trouver sa juste place et tisser, par la création, des affinités avec l’environnement. Pour moi, c’est cela l’écologie.",
+    "miscText_jp": "自分のあるべき場所を見つけ、創作を通して環境との親和性を編み上げていく。それが私にとってのエコロジーだ。",
+    "author": ""
+  },
+  {
+    "category": "interview",
+    "miscText_en": "We were asked to take off our shoes as soon as we arrived. We did everything barefoot. Hiking, grocery shopping, visiting our neighbors, exploring. That experience deeply influenced the creation of the album. It’s a very simple thing, but it stayed with me throughout, almost obsessively, because it’s not something I’m used to. I decided to open the record with a barefoot track, like an entry ritual without shoes.",
+    "miscText_fr": "On nous a demandé d’enlever nos chaussures dès notre arrivée. Nous avons tout fait pieds nus. Randonnées, courses, visites aux voisins, exploration. Cette expérience a profondément influencé la création de l’album. C’est quelque chose de très simple, mais qui m’a accompagné tout du long, presque de manière obsessionnelle, parce que je n’y suis pas habitué. J’ai décidé d’ouvrir le disque avec une piste pieds nus, comme un rituel d’entrée sans chaussures.",
+    "miscText_jp": "到着してすぐ、靴を脱ぐように言われた。ハイキングも買い物も、近所の人に会いに行くのも、探索も、すべて裸足で行った。この体験はアルバム制作に深く影響した。とても単純なことだが、慣れていないせいか、ほとんど強迫的なほど、ずっと心に残っていた。だからレコードの冒頭は、裸足のトラックにして、靴を脱いで入っていくような入場儀礼にした。",
+    "author": ""
+  },
+  {
+    "category": "interview",
+    "miscText_en": "I set myself the rule of collecting and working with the most endemic sounds possible in the places I passed through, listening with a traveler’s ear, in a constant state of wonder.",
+    "miscText_fr": "Je me suis fixé la règle de collecter et de travailler avec les sons les plus endémiques possible dans les lieux que je traversais, en écoutant avec une oreille de voyageur, dans un état d’émerveillement constant.",
+    "miscText_jp": "通り過ぎた土地ごとに、できる限りその場所に固有の音を集め、扱うことを自分に課した。旅人の耳で聴き続け、常に驚きの中に身を置いていた。",
+    "author": ""
+  },
+  {
+    "category": "interview",
+    "miscText_en": "Taihua unfolds as an immersive narrative, following a traveler who slowly dissolves into the landscape they cross. The intention was to invite the listener to surrender to the journey, to explore without control, to adjust, and to remain within a state of openness rather than mastery. For the artwork, I imagined this barefoot wanderer caught in sea foam, first splashed, then engulfed, gradually losing their boundaries as they blend into the surrounding environment.",
+    "miscText_fr": "Taihua se déploie comme un récit immersif, suivant un voyageur qui se dissout lentement dans les paysages qu’il traverse. L’intention était d’inviter l’auditeur à s’abandonner au voyage, à explorer sans chercher le contrôle, à s’ajuster, et à rester dans un état d’ouverture plutôt que de maîtrise. Pour l’artwork, j’ai imaginé ce marcheur pieds nus pris dans l’écume, d’abord éclaboussé, puis englouti, perdant progressivement ses contours à mesure qu’il se fond dans l’environnement.",
+    "miscText_jp": "『Taihua』は、旅人が横切る風景へと少しずつ溶け込んでいく様を追う、没入的な物語として展開していく。聴き手には旅に身を委ね、コントロールしようとせずに探索し、状況に合わせ、支配ではなく開かれた状態にとどまってほしかった。アートワークでは、裸足の放浪者が海の泡に包まれ、最初はしぶきを受け、やがて飲み込まれ、周囲と溶け合うにつれて輪郭を失っていく姿を思い描いた。",
+    "author": ""
+  },
+  {
+    "category": "interview",
+    "miscText_en": "I think that, deep down, this wanderer has become a silky wave, spending its life lapping at the coastal forest.",
+    "miscText_fr": "Je crois qu’au fond, ce voyageur est devenu une vague soyeuse, passant sa vie à venir effleurer la forêt côtière.",
+    "miscText_jp": "きっとこの旅人は、深いところで絹のような波となり、沿岸の森に寄せては返す生を送っているのだと思う。",
+    "author": ""
+  }
+]

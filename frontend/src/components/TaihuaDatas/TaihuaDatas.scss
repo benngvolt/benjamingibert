@@ -1,0 +1,40 @@
+
+@import '../../utils/mixins';
+
+.taihua_mainDataContainer {
+   
+    &_firstContainer {
+
+        margin: 0 auto;
+        width: 100vw;
+        position: relative;
+        
+    }
+
+    &_datas {
+        z-index: 10;
+        margin: 180px auto 0 auto;
+        width: 40%;
+        text-align: center;
+        @include Column;
+        row-gap: 90px;
+        
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            width: 100%;
+            margin: 90px auto 0 auto;
+            row-gap: 22px;
+            padding: 0 22px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        ul li {
+            font-weight: bolder;
+            color: $taihuacolor1;
+        }
+    }
+}

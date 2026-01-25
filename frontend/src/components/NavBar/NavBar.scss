@@ -10,11 +10,15 @@
     top: 45px;
     margin: auto;
     @include Column;
-    row-gap: 15px;
+    row-gap: 45px;
     justify-content: center;
     background-color:black;
-
     
+    &_albums {
+        @include Column;
+        row-gap: 15px;
+    }
+
     &_link {
         filter: saturate(0);
         margin: auto;
@@ -44,4 +48,48 @@
             cursor: pointer;
         }
     }
+
+    &_langList {
+        margin: 0 auto 22px auto;
+        &:hover {
+            cursor: pointer;
+            font-weight: 800;
+        }
+        &_icon {
+            width: 100%;
+            margin: auto;
+            color: white;
+        }
+        &_itemsList {
+            margin: 12px auto;
+            row-gap: 12px;
+            button {
+                width: 100%;
+                margin: auto;
+                background:none;
+                border: none;
+                color: white;
+                
+                @include font-size(4);    
+                &:hover {
+                    cursor: pointer;
+                    font-weight: 800;
+                }
+
+                &--selected {
+                    font-weight: bold;
+                }
+            }
+            &--closed {
+                display: none;
+            }
+
+            &--open {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    
 }

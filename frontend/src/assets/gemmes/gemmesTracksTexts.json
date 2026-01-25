@@ -1,23 +1,32 @@
 [
-    {
-      "trackNumber": 1,
-      "trackText": "The first Gemme is the moment when autumn shifts toward a wintry mood. In early November, the exhibition takes place at the very heart of the season: golden sunlight on the abbey walls, the kitchen roof standing out against a sky scattered with pink and orange clouds, leaves already red and yellow in the surrounding landscape. The body slips into a half-sleep."
-    },
-    {
-      "trackNumber": 2,
-      "trackText": "The second Gemme is marked by intense humidity, the cool dampness I encountered repeatedly during my stay at the abbey. It could be titled “cold water”: the arrival of drizzle, cold showers broken by a few brief clear spells. The tuffeau stone walls tend to absorb the moisture easily, and the abbey takes on a deeper yellow hue."
-    },
-    {
-      "trackNumber": 3,
-      "trackText": "The third Gemme celebrates days of strong wind. It involved placing the microphone high up, to hear how the leaves of different tree species shivered when confronted with gusts. Life also becomes much more inward."
-    },
-    {
-      "trackNumber": 4,
-      "trackText": "The fourth Gemme speaks of growing darkness and the arrival of lights: the human appropriation of the night, preparations for the festivities, the illumination of the cloister, and the artworks scattered throughout the abbey. Nighttime hours become increasingly dominant, life is lived under artificial light. Celebration becomes a way to compensate."
-    },
-    {
-      "trackNumber": 5,
-      "trackText": "The fifth Gemme reaches the solstice. It turns inward: the fireplace, warmth, and the crackling of flames. The hearth in its truest sense—anchors reinforced, thick walls, and the feeling of being sheltered from the cold."
-    }
-  ]
-  
+  {
+    "trackNumber": 1,
+    "trackText_en": "The first Gemme is the moment when autumn shifts toward a wintry mood. In early November, the exhibition takes place at the very heart of the season: golden sunlight on the abbey walls, the kitchen roof standing out against a sky scattered with pink and orange clouds, leaves already red and yellow in the surrounding landscape. The body slips into a half-sleep.",
+    "trackText_fr": "La première Gemme correspond au moment où l’automne bascule vers une atmosphère hivernale. Début novembre, l’exposition se déroule au cœur même de la saison : une lumière dorée sur les murs de l’abbaye, le toit de la cuisine se détachant sur un ciel parsemé de nuages roses et orangés, des feuilles déjà rouges et jaunes dans le paysage alentour. Le corps glisse dans un demi-sommeil.",
+    "trackText_jp": "最初のGemmeは、秋が冬の気配へと傾いていく瞬間である。11月初旬、展示は季節のただ中で行われる。修道院の壁を照らす金色の光、ピンクやオレンジの雲が散らばる空に際立つ厨房の屋根、周囲の風景にはすでに赤や黄色に色づいた葉。身体は次第に半ば眠りへと沈んでいく。"
+  },
+  {
+    "trackNumber": 2,
+    "trackText_en": "The second Gemme is marked by intense humidity, the cool dampness I encountered repeatedly during my stay at the abbey. It could be titled “cold water”: the arrival of drizzle, cold showers broken by a few brief clear spells. The tuffeau stone walls tend to absorb the moisture easily, and the abbey takes on a deeper yellow hue.",
+    "trackText_fr": "La deuxième Gemme est marquée par une forte humidité, cette fraîche moiteur que j’ai rencontrée à plusieurs reprises durant mon séjour à l’abbaye. Elle pourrait s’intituler « eau froide » : l’arrivée du crachin, des averses froides ponctuées de rares éclaircies. Les murs en pierre de tuffeau absorbent facilement l’humidité, et l’abbaye prend une teinte jaune plus profonde.",
+    "trackText_jp": "第二のGemmeは、強い湿気によって特徴づけられている。修道院での滞在中、何度も感じた冷たい湿り気だ。「冷たい水」と名付けることもできるだろう。霧雨の到来、冷たい雨、そしてわずかな晴れ間。テュフォー石の壁は湿気を吸い込みやすく、修道院はより深い黄色を帯びていく。"
+  },
+  {
+    "trackNumber": 3,
+    "trackText_en": "The third Gemme celebrates days of strong wind. It involved placing the microphone high up, to hear how the leaves of different tree species shivered when confronted with gusts. Life also becomes much more inward.",
+    "trackText_fr": "La troisième Gemme célèbre les journées de vent fort. Elle a impliqué de placer le microphone en hauteur afin d’entendre comment les feuilles de différentes essences d’arbres frémissaient face aux rafales. La vie devient alors beaucoup plus intérieure.",
+    "trackText_jp": "第三のGemmeは、強風の日々を祝福する。マイクロフォンを高い位置に設置し、突風にさらされたとき、異なる樹種の葉がどのように震えるのかを聴いた。生活もまた、より内向きなものへと変わっていく。"
+  },
+  {
+    "trackNumber": 4,
+    "trackText_en": "The fourth Gemme speaks of growing darkness and the arrival of lights: the human appropriation of the night, preparations for the festivities, the illumination of the cloister, and the artworks scattered throughout the abbey. Nighttime hours become increasingly dominant, life is lived under artificial light. Celebration becomes a way to compensate.",
+    "trackText_fr": "La quatrième Gemme évoque l’obscurité croissante et l’arrivée des lumières : l’appropriation humaine de la nuit, les préparatifs des fêtes, l’éclairage du cloître et des œuvres disséminées dans l’abbaye. Les heures nocturnes deviennent de plus en plus dominantes, la vie se déroule sous lumière artificielle. La célébration devient un moyen de compensation.",
+    "trackText_jp": "第四のGemmeは、深まりゆく闇と光の到来について語る。夜を人間が占有していくこと、祝祭の準備、回廊や修道院内に点在する作品の照明。夜の時間が次第に支配的になり、生活は人工の光の下で営まれる。祝うことは、その代償としての行為となる。"
+  },
+  {
+    "trackNumber": 5,
+    "trackText_en": "The fifth Gemme reaches the solstice. It turns inward: the fireplace, warmth, and the crackling of flames. The hearth in its truest sense—anchors reinforced, thick walls, and the feeling of being sheltered from the cold.",
+    "trackText_fr": "La cinquième Gemme atteint le solstice. Elle se replie vers l’intérieur : la cheminée, la chaleur, le crépitement des flammes. Le foyer au sens le plus juste — des ancrages renforcés, des murs épais, et le sentiment d’être protégé du froid.",
+    "trackText_jp": "第五のGemmeは冬至へと至る。内側へと向かい、暖炉の火、ぬくもり、炎のはぜる音が立ち上がる。最も本質的な意味での「炉」——強化された基盤、厚い壁、そして寒さから守られているという感覚。"
+  }
+]

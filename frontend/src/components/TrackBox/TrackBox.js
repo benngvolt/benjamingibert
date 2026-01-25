@@ -1,16 +1,15 @@
 
-import "./TaihuaTrackBox.scss";
+import "./TrackBox.scss";
 import React, { useEffect, useRef } from "react";
+import { useApp } from "../../utils/AppContext";
 
 function clamp(v, min, max) {
   return Math.max(min, Math.min(max, v));
 }
 
-function TaihuaTrackBox({ videoSrc, trackText, imgSrc, trackTitle, imgTitle, trackNumber }) {
+function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber }) {
   const containerRef = useRef(null);
   const imgRef = useRef(null);
-
-  console.log(trackText)
 
   useEffect(() => {
     if (!imgSrc) return;
@@ -84,4 +83,4 @@ function TaihuaTrackBox({ videoSrc, trackText, imgSrc, trackTitle, imgTitle, tra
   );
 }
 
-export default TaihuaTrackBox;
+export default TrackBox;

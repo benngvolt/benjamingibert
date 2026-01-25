@@ -1,0 +1,67 @@
+@import '../../utils/mixins';
+
+.taihua_livePhotosContainer {
+    @include Column;
+    width: 100vw;
+    margin: 0 auto;
+    z-index: 100;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        margin: 0 auto;
+    }
+    
+        
+        img {
+            z-index: 100;
+            width: 100%;
+            object-fit: cover;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                aspect-ratio: 1;
+            }
+        }
+
+        video {
+            z-index: 100;
+            width: 100%;
+            object-fit: cover;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                aspect-ratio: 1.5/1;
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                aspect-ratio: 1.5/1;
+            }
+        }
+
+    &_links {
+        @include Row;
+        gap: 45px;
+        width: 80%;
+        margin: auto;
+        z-index: 10;
+        justify-content: space-between;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            @include Column;
+            gap: 12px;
+            margin: 45px auto;
+            height: auto;
+            width: 90%;
+        }
+
+        a {
+            justify-content: flex-start;
+            @include font-size(5);
+        }
+    }
+}
