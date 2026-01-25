@@ -113,7 +113,7 @@ function Gemmes() {
       <TrackBox
         trackNumber={1}
         imgTitle={gemmes_title_track1}
-        trackTitle='Gemme I'
+        
         trackText={getTrackText(1)}
         color='gemmes'
       />
@@ -125,7 +125,7 @@ function Gemmes() {
       <TrackBox
         trackNumber={2}
         imgTitle={gemmes_title_track2}
-        trackTitle='Gemme II'
+        
         trackText={getTrackText(2)}
         color='gemmes'
       />
@@ -138,7 +138,7 @@ function Gemmes() {
       <TrackBox
         trackNumber={3}
         imgTitle={gemmes_title_track3}
-        trackTitle='Gemme III'
+        
         trackText={getTrackText(3)}
         color='gemmes'
       />
@@ -150,7 +150,7 @@ function Gemmes() {
       <TrackBox
         trackNumber={4}
         imgTitle={gemmes_title_track4}
-        trackTitle='Gemme IV'
+        
         trackText={getTrackText(4)}
         color='gemmes'
       />
@@ -161,7 +161,6 @@ function Gemmes() {
       <TrackBox
         trackNumber={5}
         imgTitle={gemmes_title_track5}
-        trackTitle='Gemme V'
         trackText={getTrackText(5)}
         color='gemmes'
       />

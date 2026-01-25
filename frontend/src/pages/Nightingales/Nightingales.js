@@ -86,22 +86,37 @@ function Nightingales () {
             src={glassbirdsVideo}
             autoPlay
             muted
+            defaultMuted
             loop
             playsInline
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload noplaybackrate noremoteplayback"
           />
           <video
             src={artworkVideo}
             autoPlay
             muted
+            defaultMuted
             loop
             playsInline
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload noplaybackrate noremoteplayback"
           />
           <video
             src={landesVideo}
             autoPlay
             muted
+            defaultMuted
             loop
             playsInline
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload noplaybackrate noremoteplayback"
           />
       </section>
       <TrackBox

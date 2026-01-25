@@ -16,15 +16,13 @@ function Home () {
     return (
         <main className='home'>
             <section className='home_menu'>
-                <div class="home_video">
-                    <video autoPlay muted loop>
+                <div className="home_video">
+                    <video autoPlay muted loop playsInline preload>
                         <source src={video} type="video/mp4"/>
                     </video>
                 </div>
                 <h1 className='home_menu_artistName'>BENJAMIN GIBERT</h1>
-                {/* <div className='home_menu_albumTitle'>
-                    <img src={titleImage}/>
-                </div> */}
+              
                 <Link
                     className='home_menu_albumTitle home_menu_albumTitle--nightingales'
                     aria-label="Accéder à la page de Nightingales"
