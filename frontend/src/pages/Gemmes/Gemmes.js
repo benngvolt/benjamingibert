@@ -121,9 +121,17 @@ function Gemmes() {
       <TrackBox
         trackNumber={1}
         imgTitle={gemmes_title_track1}
-        
+        trackTitle={
+          lang === "fr"
+            ? "Demi-sommeil"
+            : lang === "en"
+            ? "Half Sleep"
+            : lang === "jp"
+            ? "半眠"
+            : ""
+        }
         trackText={getTrackText(1)}
-        color='gemmes'
+        color="gemmes"
       />
       <TwoImagesContainer
         photo1={gemmes_video1}
@@ -133,9 +141,17 @@ function Gemmes() {
       <TrackBox
         trackNumber={2}
         imgTitle={gemmes_title_track2}
-        
+        trackTitle={
+          lang === "fr"
+            ? "Pluie froide"
+            : lang === "en"
+            ? "Cold Rain"
+            : lang === "jp"
+            ? "冷たい雨"
+            : ""
+        }
         trackText={getTrackText(2)}
-        color='gemmes'
+        color="gemmes"
       />
       <TwoImagesContainer
         photo1={gemmes_photo_arduino}
@@ -146,9 +162,17 @@ function Gemmes() {
       <TrackBox
         trackNumber={3}
         imgTitle={gemmes_title_track3}
-        
+        trackTitle={
+          lang === "fr"
+            ? "Vent du Nord"
+            : lang === "en"
+            ? "Northern Wind"
+            : lang === "jp"
+            ? "北風"
+            : ""
+        }
         trackText={getTrackText(3)}
-        color='gemmes'
+        color="gemmes"
       />
       
       <OneMediaContainer
@@ -158,9 +182,17 @@ function Gemmes() {
       <TrackBox
         trackNumber={4}
         imgTitle={gemmes_title_track4}
-        
+        trackTitle={
+          lang === "fr"
+            ? "Lumières nocturnes"
+            : lang === "en"
+            ? "Nocturnal Lights"
+            : lang === "jp"
+            ? "夜の灯り"
+            : ""
+        }
         trackText={getTrackText(4)}
-        color='gemmes'
+        color="gemmes"
       />
       <OneMediaContainer
           mediaSrc={gemmes_photo_arcade}
@@ -169,8 +201,17 @@ function Gemmes() {
       <TrackBox
         trackNumber={5}
         imgTitle={gemmes_title_track5}
+        trackTitle={
+          lang === "fr"
+            ? "Cheminées"
+            : lang === "en"
+            ? "Fireplaces"
+            : lang === "jp"
+            ? "暖炉"
+            : ""
+        }
         trackText={getTrackText(5)}
-        color='gemmes'
+        color="gemmes"
       />
       <OneMediaContainer
           mediaSrc={gemmes_video_g4_1LQ}
