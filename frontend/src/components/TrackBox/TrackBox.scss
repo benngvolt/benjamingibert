@@ -11,7 +11,7 @@
   overflow: hidden; // ✅ important pour cacher le dépassement du parallax
 
   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
+        
   }
   
   @media only screen and (max-width:$mobileMaxWidth){
@@ -26,7 +26,6 @@
     justify-content: center;
     position: relative;
     z-index: 10;
-    
 
     &_imgTitle {
       margin: 1% auto;
@@ -47,7 +46,7 @@
       &--taihua {
         width: 50%;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+          width: 80%;  
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
@@ -71,11 +70,11 @@
       &--night {
         width: 20%;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+          width: 30%;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
-            width: 50%;
+            width: 40%;
             
             
         }
@@ -91,14 +90,13 @@
         padding: 22px;
         gap: 22px;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+          width: 80%;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
             width: 100%;
             padding: 0 22px;
             box-sizing: border-box;
-            
         }
         
         
@@ -115,7 +113,7 @@
             color: $taihuacolor1;
           }
           &--night {
-            color: $nightColor1;
+            color: $nightColor2;
           }
         }
 
