@@ -74,6 +74,7 @@ function NavBar() {
                             onClick={() => {
                             setLang('fr')
                             setIsLangsListOpened(false)
+                            setIsNavbarOpened(false)
                             }}
                         >
                             FR
@@ -84,6 +85,7 @@ function NavBar() {
                             onClick={() => {
                             setLang('en')
                             setIsLangsListOpened(false)
+                            setIsNavbarOpened(false)
                             }}
                         >
                             EN
@@ -94,6 +96,7 @@ function NavBar() {
                             onClick={() => {
                             setLang('jp')
                             setIsLangsListOpened(false)
+                            setIsNavbarOpened(false)
                             }}
                         >
                             JP

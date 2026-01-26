@@ -17,11 +17,12 @@ import night6 from '../../assets/nightingales/night6.webp'
 import night_tongue from '../../assets/nightingales/night_tongue.webp'
 import night_samples from '../../assets/nightingales/night_samples.webp'
 import night_plants from '../../assets/nightingales/night_plants.webp'
+import night_plants2 from '../../assets/nightingales/night_plants_3.webp'
 import glassbirdsVideo from '../../assets/nightingales/night_glassbirdsvideo.mp4'
 import landesVideo from '../../assets/nightingales/night_landes.mp4'
 import artworkVideo from '../../assets/nightingales/night_artworkvideo.mp4'
 import nightingalesTracksTexts from "../../assets/nightingales/nightingalesTracksTexts.json";
-
+import night_selfphoto from '../../assets/nightingales/night_selfphoto.webp'
 
 import TrackBox from '../../components/TrackBox/TrackBox'
 import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
@@ -127,6 +128,11 @@ function Nightingales () {
             controlsList="nodownload noplaybackrate noremoteplayback"
           />
       </section>
+      <TwoImagesContainer
+        photo1={night_selfphoto}
+        photo2={night_plants2}
+        // photoBackground={night3}
+      />
       <TrackBox
         trackNumber={2}
         imgTitle={night_N}
@@ -136,9 +142,10 @@ function Nightingales () {
       />
     
       <OneMediaContainer
-          mediaSrc={night_plants}
-          mediaType="image"
-        />
+        mediaSrc={night_plants}
+        mediaType="image"
+      />
+      
     
       <TrackBox
         trackNumber={3}
@@ -160,7 +167,7 @@ function Nightingales () {
       />      
       <PhotoGallery
           img1={night2}
-          img2={night3}
+          img2={night1}
           img3={night4}
           img4={night5}
           img5={night6}

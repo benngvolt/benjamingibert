@@ -9,6 +9,8 @@
     @include Column;
     row-gap: 90px;
     padding-bottom: 90px;
+    animation: apparition 1s ease forwards;
+
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;   
         padding-top: 90px;       
