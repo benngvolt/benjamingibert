@@ -64,7 +64,15 @@ function Nightingales () {
         <NightingalesDatas
           lang={lang}
         />
-        <MusicNetworks />
+        <MusicNetworks
+            bandcamp="https://benjamingibert.bandcamp.com/album/nightingales"
+            spotify="https://open.spotify.com/intl-fr/album/13fj6QY0INOvp0YbSbC86V"
+            soundcloud="https://soundcloud.com/benjamin-gibert/sets/nightingales"
+            apple="https://music.apple.com/fr/album/nightingales-ep/1835002126"
+            deezer="https://www.deezer.com/fr/album/808444401"
+            instagram="https://www.instagram.com/bgibertmusic/"
+            color=""
+        />
         <OneMediaContainer
           mediaSrc={night_artwork}
           mediaType="image"

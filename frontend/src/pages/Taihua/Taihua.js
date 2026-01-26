@@ -101,7 +101,16 @@ function Taihua() {
         <TaihuaDatas 
           lang={lang}
         />
-        <MusicNetworks />
+        <MusicNetworks
+            bandcamp="https://benjamingibert.bandcamp.com/album/taihua"
+            spotify="https://open.spotify.com/intl-fr/album/6ZJviIbXhX7oWwPy2TCaiH"
+            soundcloud="https://soundcloud.com/benjamin-gibert/sets/taihua"
+            apple="https://music.apple.com/fr/album/taihua/1491619557"
+            deezer="https://www.deezer.com/fr/album/123080572"
+            instagram="https://www.instagram.com/bgibertmusic/"
+            color=""
+        />
+        
         <OneMediaContainer
           mediaSrc={taihua_artwork}
           mediaType="image"

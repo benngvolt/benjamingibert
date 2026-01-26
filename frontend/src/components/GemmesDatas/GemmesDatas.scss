@@ -18,6 +18,7 @@
         text-align: center;
         @include Column;
         row-gap: 90px;
+        color: $gemmecolor1;
         
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 
@@ -34,7 +35,7 @@
 
         ul li {
             font-weight: bolder;
-            color: $gemmecolor1;
+            color: $gemmecolor3;
         }
     }
 }

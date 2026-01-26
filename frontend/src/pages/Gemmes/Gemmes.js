@@ -13,7 +13,7 @@ import gemmes_video_g4_1LQ from '../../assets/gemmes/gemmes_video_g4_1LQ.mp4'
 import gemmes_video_g4_2LQ from '../../assets/gemmes/gemmes_video_g4_2LQ.mp4'
 import gemmes_video_g4_3LQ from '../../assets/gemmes/gemmes_video_g4_3LQ.mp4'
 
-
+import gemmes_window from '../../assets/gemmes/gemmes_window.webp'
 import gemmes_photo_arduino from '../../assets/gemmes/gemmes_photo_arduino.webp'
 import gemmes_photo_autoharp from '../../assets/gemmes/gemmes_photo_autoharp.webp'
 import gemmes_photo_baies from '../../assets/gemmes/gemmes_photo_baies.webp'
@@ -94,9 +94,17 @@ function Gemmes() {
         <GemmesDatas 
           lang={lang}
         />
-        <MusicNetworks />
+        <MusicNetworks
+                    bandcamp="https://benjamingibert.bandcamp.com/album/gemmes"
+                    spotify="https://open.spotify.com/intl-fr/album/5sCrdaKMtz4SbzHGT8osDc"
+                    soundcloud="https://soundcloud.com/benjamin-gibert/sets/gemmes"
+                    apple="https://music.apple.com/fr/album/gemmes-ep/1491626463"
+                    deezer="https://www.deezer.com/fr/album/123097352"
+                    instagram="https://www.instagram.com/bgibertmusic/"
+                    color="black"
+                />
         <OneMediaContainer
-          mediaSrc={gemmes_artwork}
+          mediaSrc={gemmes_window}
           mediaType="image"
         />
         <div className='gemmes_mainDataContainer_descriptionContainer'>

@@ -76,7 +76,7 @@ function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber, color 
             <img className={`taihua_tracks_track_imgTitle taihua_tracks_track_imgTitle--${color}`} src={imgTitle}/>
             <div className='taihua_tracks_track_texts'>
                 <p className={`taihua_tracks_track_texts_title taihua_tracks_track_texts_title--${color}`}>{trackTitle}</p> 
-                <p className='taihua_tracks_track_texts_text' dangerouslySetInnerHTML={{ __html:trackText}} />
+                <p className={`taihua_tracks_track_texts_text taihua_tracks_track_texts_text--${color}`} dangerouslySetInnerHTML={{ __html:trackText}} />
             </div>
         </div>   
     </section>

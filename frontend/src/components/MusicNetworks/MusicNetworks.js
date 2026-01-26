@@ -15,40 +15,40 @@ import deezerLogo2 from '../../assets/deezer2.png'
 import instagramLogo from '../../assets/instagram.png'
 import instagramLogo2 from '../../assets/instagram2.png'
 
-function MusicNetworks () {
+function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram, color} ) {
     const networks = [
         {
-            url: "https://benjamingibert.bandcamp.com/",
+            url: bandcamp,
             logo: bandcampLogo,
             logoAlter: bandcampLogo2,
             name: "page Bandcamp de Benjamin Gibert"
         },
         {
-            url: "https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX",
+            url: spotify,
             logo: spotifyLogo,
             logoAlter: spotifyLogo2,
             name: "page Spotify de Benjamin Gibert"
         },
         {
-            url: "https://soundcloud.com/benjamin-gibert",
+            url: soundcloud,
             logo: soundcloudLogo,
             logoAlter: soundcloudLogo2,
             name: "page Soundcloud de Benjamin Gibert"
         },
         {
-            url: "https://music.apple.com/fr/artist/benjamin-gibert/1491146372",
+            url: apple,
             logo: appleLogo,
             logoAlter: appleLogo2,
             name: "page Apple Music de Benjamin Gibert"
         },
         {
-            url: "https://www.deezer.com/fr/artist/5685820",
+            url: deezer,
             logo: deezerLogo,
             logoAlter: deezerLogo2,
             name: "page Deezer de Benjamin Gibert"
         },
         {
-            url: "https://www.instagram.com/bgibertmusic/",
+            url: instagram,
             logo: instagramLogo,
             logoAlter: instagramLogo2,
             name: "page Instagram de Benjamin Gibert"
@@ -60,7 +60,7 @@ function MusicNetworks () {
             {networks.map((ntw, index) => (
                 <li className='home_menu_networksList_item' key={index}>
                     <a
-                        className='home_menu_networksList_item_link'
+                        className={`home_menu_networksList_item_link ${color ? `home_menu_networksList_item_link--${color}` : ''}`}
                         href={ntw.url}
                         target="_blank"
                         rel="noreferrer"
