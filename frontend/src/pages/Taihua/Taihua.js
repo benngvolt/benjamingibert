@@ -29,6 +29,8 @@ import taihua_photo_mainportrait from '../../assets/taihua/taihua_photo_mainport
 import taihua_photo_forest2 from '../../assets/taihua/taihua_photo_forest2.webp'
 import taihua_photo_forestdetail from '../../assets/taihua/taihua_photo_forestdetail.webp'
 import taihua_photo_shellphone1 from '../../assets/taihua/taihua_photo_shellphone1.webp'
+import taihua_photo_shellphone2 from '../../assets/taihua/taihua_photo_shellphone2.webp'
+import taihua_photo_shellphone3 from '../../assets/taihua/taihua_photo_shellphone3.webp'
 import taihua_photo_jardin from '../../assets/taihua/taihua_photo_jardin.webp'
 import taihua_photo_dessin from '../../assets/taihua/taihua_photo_dessin.webp'
 
@@ -43,6 +45,8 @@ import OneMediaContainer from '../../components/OneMediaContainer/OneMediaContai
 import TaihuaDatas from '../../components/TaihuaDatas/TaihuaDatas'
 import TaihuaDescription from '../../components/TaihuaDescription/TaihuaDescription'
 
+
+
 import taihua_barefootPhoto from '../../assets/taihua/taihua_barefootPhoto.webp'
 import taihua_shellsPhoto from '../../assets/taihua/taihua_shellsPhoto.webp'
 import taihua_videoFjg from '../../assets/taihua/taihua_videoFjg.mp4'
@@ -51,6 +55,9 @@ import taihua_photoLive1 from '../../assets/taihua/taihua_photoLive1.webp'
 import taihua_photoLive2 from '../../assets/taihua/taihua_photoLive2.webp'
 import taihua_photoLive3 from '../../assets/taihua/taihua_photoLive3.webp'
 import taihua_photoLive4 from '../../assets/taihua/taihua_photoLive4.webp'
+import taihua_photoLive5 from '../../assets/taihua/taihua_photoLive5.webp'
+
+import taihua_background2 from '../../assets/taihua/taihua_background2.webp'
 
 import taihuaTracksTexts from '../../assets/taihua/taihuaTracksTexts.json'
 import taihuaMiscTexts from '../../assets/taihua/taihuaMiscTexts.json'
@@ -218,18 +225,23 @@ function Taihua() {
         trackText={getTrackText(2)}
         color='taihua'
       />
-      <PhotoGallery
+      <TwoImagesContainer
+        photo1={taihua_photoLive2}
+        photo2={taihua_photoLive5}
+        photoBackground={taihua_photo_foam1}
+      />
+      {/* <PhotoGallery
         img1={taihua_photo_foam1}
         img2={taihua_barefootPhoto}
         img3={taihua_photo_jardin}
         img4={taihua_photo_dessin}
         img5={taihua_photo_mainportrait}
-      />
-      <QuoteBox
+      /> */}
+      {/* <QuoteBox
         text={taihuaMiscTexts[2][`miscText_${lang}`]}
         author={taihuaMiscTexts[2].author}
         color='taihua'
-      />
+      /> */}
       <TrackBox
         trackNumber={3}
         imgTitle={taihua_nfTitle}
@@ -246,7 +258,6 @@ function Taihua() {
         photo1={taihua_photo_forest2}
         photo2={taihua_photo_forest1}
         photoBackground={taihua_photo_forestdetail}
-        backgroundColor={backgroundColor}
       />
       <TrackBox
         trackNumber={4}
@@ -275,9 +286,8 @@ function Taihua() {
 
       <TwoImagesContainer
         photo1={taihua_photo_shellphone1}
-        photo2={taihua_photo_foam2}
-        photoBackground={taihua_shellsPhoto}
-        backgroundColor={backgroundColor}
+        photo2={taihua_photo_shellphone3}
+        photoBackground={taihua_background2}
       />
 
       <TrackBox

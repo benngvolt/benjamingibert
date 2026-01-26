@@ -122,9 +122,9 @@ function Gemmes() {
         imgTitle={gemmes_title_track1}
         trackTitle={
           lang === "fr"
-            ? "Demi-sommeil"
+            ? "demi sommeil"
             : lang === "en"
-            ? "Half Sleep"
+            ? "half sleep"
             : lang === "jp"
             ? "半眠"
             : ""
@@ -142,9 +142,9 @@ function Gemmes() {
         imgTitle={gemmes_title_track2}
         trackTitle={
           lang === "fr"
-            ? "Pluie froide"
+            ? "pluie froide"
             : lang === "en"
-            ? "Cold Rain"
+            ? "cold rain"
             : lang === "jp"
             ? "冷たい雨"
             : ""
@@ -163,9 +163,9 @@ function Gemmes() {
         imgTitle={gemmes_title_track3}
         trackTitle={
           lang === "fr"
-            ? "Vent du Nord"
+            ? "vent du nord"
             : lang === "en"
-            ? "Northern Wind"
+            ? "northern wind"
             : lang === "jp"
             ? "北風"
             : ""
@@ -183,9 +183,9 @@ function Gemmes() {
         imgTitle={gemmes_title_track4}
         trackTitle={
           lang === "fr"
-            ? "Lumières nocturnes"
+            ? "lumières nocturnes"
             : lang === "en"
-            ? "Nocturnal Lights"
+            ? "nocturnal lights"
             : lang === "jp"
             ? "夜の灯り"
             : ""
@@ -202,9 +202,9 @@ function Gemmes() {
         imgTitle={gemmes_title_track5}
         trackTitle={
           lang === "fr"
-            ? "Cheminées"
+            ? "cheminées"
             : lang === "en"
-            ? "Fireplaces"
+            ? "fireplaces"
             : lang === "jp"
             ? "暖炉"
             : ""

@@ -86,7 +86,7 @@ function Nightingales () {
       <TrackBox
         trackNumber={1}
         imgTitle={night_G}
-        trackTitle='Glassbirds II'
+        trackTitle='glassbirds II'
         trackText={getTrackText(1)}
         color='night'
       />
@@ -136,7 +136,7 @@ function Nightingales () {
       <TrackBox
         trackNumber={2}
         imgTitle={night_N}
-        trackTitle='Noctambulism'
+        trackTitle='noctambulism'
         trackText={getTrackText(2)}
         color='night'
       />
@@ -150,7 +150,7 @@ function Nightingales () {
       <TrackBox
         trackNumber={3}
         imgTitle={night_A}
-        trackTitle='Aspérité Liquide'
+        trackTitle='aspérité liquide'
         trackText={getTrackText(3)}
         color='night'
       />
@@ -161,7 +161,7 @@ function Nightingales () {
       <TrackBox
         trackNumber={4}
         imgTitle={night_T}
-        trackTitle='Taste Of Sap'
+        trackTitle='taste of sap'
         trackText={getTrackText(4)}
         color='night'
       />      
