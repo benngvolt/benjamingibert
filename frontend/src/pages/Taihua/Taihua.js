@@ -18,7 +18,6 @@ import taihua_ltcTitle from '../../assets/taihua/taihua_ltcTitle.webp'
 import taihua_tgTitle from '../../assets/taihua/taihua_tgTitle.webp'
 import taihua_fjgTitle from '../../assets/taihua/taihua_fjgTitle.webp'
 import taihua_photo_blackstone from '../../assets/taihua/taihua_photo_blackstone.webp'
-import taihua_photo_dolphin from '../../assets/taihua/taihua_photo_dolphin.webp'
 import taihua_photo_car from '../../assets/taihua/taihua_photo_car.webp'
 import taihua_photo_foam1 from '../../assets/taihua/taihua_photo_foam1.webp'
 import taihua_photo_foam2 from '../../assets/taihua/taihua_photo_foam2.webp'
@@ -45,9 +44,6 @@ import TaihuaDatas from '../../components/TaihuaDatas/TaihuaDatas'
 import TaihuaDescription from '../../components/TaihuaDescription/TaihuaDescription'
 
 import taihua_barefootPhoto from '../../assets/taihua/taihua_barefootPhoto.webp'
-import taihua_lowtidecavernPhoto from '../../assets/taihua/taihua_lowtidecavernPhoto.webp'
-import taihua_nativeforestsPhoto from '../../assets/taihua/taihua_nativeforestsPhoto.webp'
-import taihua_tuisgardenPhoto from '../../assets/taihua/taihua_tuisgardenPhoto.webp'
 import taihua_shellsPhoto from '../../assets/taihua/taihua_shellsPhoto.webp'
 import taihua_videoFjg from '../../assets/taihua/taihua_videoFjg.mp4'
 
@@ -137,21 +133,42 @@ function Taihua() {
           mediaType="image"
         />
         <div className='taihua_livePhotosContainer_links'>
-          <MusicLink
-            link='https://on.soundcloud.com/UzEZvxpycAxhJdrop9'
-            icon={faPlay}
-            name='live at Résidence Alto, Août 2022'
-          />
-          <MusicLink
-            link='https://podcasts.apple.com/be/podcast/sonore-double-format-11-aurus-benjamin-gibert/id1568154247?i=1000522227522&l=fr-FR'
-            icon={faPlay}
-            name='interview Podcast Sonore'
-          />
-          <MusicLink
-            link='https://www.indiemusic.fr/benjamin-gibert-taihua/'
-            icon={faPlay}
-            name='IndieMusic'
-          />
+        <MusicLink
+          link='https://on.soundcloud.com/UzEZvxpycAxhJdrop9'
+          icon={faPlay}
+          name={
+            lang === 'fr'
+              ? 'Live à la Résidence Alto, août 2022'
+              : lang === 'en'
+              ? 'Live at Résidence Alto, August 2022'
+              : '2022年8月 レジデンス・アルトでのライブ'
+          }
+        />
+
+        <MusicLink
+          link='https://podcasts.apple.com/be/podcast/sonore-double-format-11-aurus-benjamin-gibert/id1568154247?i=1000522227522&l=fr-FR'
+          icon={faPlay}
+          name={
+            lang === 'fr'
+              ? 'Interview - Podcast Sonore'
+              : lang === 'en'
+              ? 'Interview - Sonore Podcast'
+              : 'インタビュー - Sonore ポッドキャスト'
+          }
+        />
+
+        <MusicLink
+          link='https://www.indiemusic.fr/benjamin-gibert-taihua/'
+          icon={faPlay}
+          name={
+            lang === 'fr'
+              ? 'Article - IndieMusic'
+              : lang === 'en'
+              ? 'Article - IndieMusic'
+              : '記事 - IndieMusic'
+          }
+        />
+
         </div>
       </section>
 
@@ -164,11 +181,17 @@ function Taihua() {
           img5={taihua_K7_4}
         />
         <div className='taihua_K7Container_button'>
-          <MusicLink
-            link='https://benjamingibert.bandcamp.com/album/taihua'
-            icon={faPlay}
-            name='BUY'
-          />
+        <MusicLink
+          link='https://benjamingibert.bandcamp.com/album/taihua'
+          icon={faPlay}
+          name={
+            lang === 'fr'
+              ? 'Taihua - Édition K7'
+              : lang === 'en'
+              ? 'Taihua - Cassette Edition'
+              : 'Taihua - カセット版'
+          }
+        />
         </div>
       </section>
       <TrackBox

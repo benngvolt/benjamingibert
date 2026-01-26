@@ -7,7 +7,6 @@ import gemmes_snowflakes from '../../assets/gemmes/gemmes_snowflakes.svg'
 import gemmes_video1 from '../../assets/gemmes/gemmes_video1.mp4'
 import gemmes_video2 from '../../assets/gemmes/gemmes_video2.mp4'
 import gemmes_video3 from '../../assets/gemmes/gemmes_video3.mp4'
-import gemmes_video_g2 from '../../assets/gemmes/gemmes_video_g2.mp4'
 
 import gemmes_video_g4_1LQ from '../../assets/gemmes/gemmes_video_g4_1LQ.mp4'
 import gemmes_video_g4_2LQ from '../../assets/gemmes/gemmes_video_g4_2LQ.mp4'

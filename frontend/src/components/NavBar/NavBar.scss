@@ -15,11 +15,38 @@
     background-color:black;
     border-radius: 10px 0 0 10px;
     padding: 12px 12px 12px 0;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        @include Column;  
+        width: 100%;     
+        top: 0;
+        justify-content: space-between; 
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        @include Column;  
+        width: 100%;     
+        top: 0;
+        justify-content: space-between; 
+    }
 
     
     &_albums {
         @include Column;
         row-gap: 15px;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            
+            justify-content: center; 
+            
+            margin: auto;
+            
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            margin: auto;
+            
+            justify-content: center; 
+            
+        }
        
         
     }
@@ -30,6 +57,13 @@
         
         display: flex;
         justify-content: center;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            width: 10%;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            
+        }
 
         &--taihua, &--gemmes {
             img {
@@ -57,18 +91,45 @@
 
     &_langList {
         margin: 0 auto 22px auto;
+        
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            margin: 0 auto;
+            @include Column;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            margin: 0 auto;
+            @include Column;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
         &:hover {
             cursor: pointer;
             font-weight: 800;
         }
+
         &_icon {
             width: 100%;
             margin: auto;
             color: white;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                height: 30px;
+                
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                height: 25px;
+                
+            }
         }
         &_itemsList {
             margin: 12px auto;
             row-gap: 12px;
+           
+
             button {
                 width: 100%;
                 margin: auto;
@@ -89,6 +150,16 @@
             &--open {
                 display: flex;
                 flex-direction: column;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    margin-top: 22px;
+                    @include Row;
+                    
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    margin-top: 22px;
+                    @include Row;
+                }
             }
 
             &_fr, &_en, &_jp {
@@ -99,6 +170,47 @@
             }
         }
     }
+    &_burger {
+        display: none;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            background: none;
+            border: none;
+            color: white;
+            
+            @include Row;
+            
+            
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            background: none;
+            border: none;
+            color: white;
+            
+            @include Row;
+        }
 
-    
+    }
+
+    &_nav--open {
+        @include Column;
+        row-gap: 45px;
+        justify-content: center;
+    }
+    &_nav--closed {
+        @include Column;
+        row-gap: 45px;
+        justify-content: center;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            display: none;
+            
+            
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            display: none;
+        }
+        
+        
+    }
 }
