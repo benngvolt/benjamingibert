@@ -8,8 +8,6 @@ import titleTaihua from '../../assets/taihua/taihua_title.webp'
 import titleGemmes from '../../assets/gemmes/gemmes_title.webp'
 import video from '../../assets/videoLive.mp4'
 import { useApp } from "../../utils/AppContext";
-import { preloadTaihua, preloadGemmes, preloadNightingales } from "../../utils/routePreload";
-
 
 function Home () {
     
@@ -29,7 +27,6 @@ function Home () {
                     className='home_menu_albumTitle home_menu_albumTitle--nightingales'
                     aria-label="Accéder à la page de Nightingales"
                     to="/Nightingales"
-                    onMouseEnter={preloadNightingales}
                 >
                     <img src={titleNightingales}/>
                 </Link>
@@ -37,7 +34,6 @@ function Home () {
                     className='home_menu_albumTitle home_menu_albumTitle--taihua'
                     aria-label="Accéder à la page de Taihua"
                     to="/Taihua"
-                    onMouseEnter={preloadTaihua}
                 >
                     <img src={titleTaihua}/>
                 </Link>
@@ -45,7 +41,6 @@ function Home () {
                     className='home_menu_albumTitle home_menu_albumTitle--gemmes'
                     aria-label="Accéder à la page de Gemmes"
                     to="/Gemmes"
-                    onMouseEnter={preloadGemmes}
                 >
                     <img src={titleGemmes}/>
                 </Link>

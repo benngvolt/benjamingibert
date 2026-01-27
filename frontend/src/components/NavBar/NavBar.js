@@ -9,7 +9,6 @@ import gemmes_icon from '../../assets/gemmes/gemmes_icon.webp'
 import night_icon from '../../assets/nightingales/night_icon.webp'
 import { useApp } from "../../utils/AppContext";
 
-import { preloadTaihua, preloadGemmes, preloadNightingales } from "../../utils/routePreload";
  
 function NavBar() {
 
@@ -43,7 +42,6 @@ function NavBar() {
                             className='navBar_link navBar_link--night'
                             aria-label="Accéder à la page de Nightingales'"
                             to="/nightingales"
-                            onMouseEnter={preloadNightingales}
                         >
                             <img src={night_icon}/>
                     </Link>
@@ -51,7 +49,6 @@ function NavBar() {
                             className='navBar_link navBar_link--taihua'
                             aria-label="Accéder à la page de Taihua'"
                             to="/taihua"
-                            onMouseEnter={preloadTaihua}
                         >
                             <img src={taihua_icon}/>
                     </Link>
@@ -59,7 +56,6 @@ function NavBar() {
                             className='navBar_link navBar_link--gemmes'
                             aria-label="Accéder à la page de Gemmes'"
                             to="/gemmes"
-                            onMouseEnter={preloadGemmes}
                         >
                             <img src={gemmes_icon}/>
                     </Link>
