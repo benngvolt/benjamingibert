@@ -27,7 +27,7 @@ function TaihuaDatas({ lang }) {
               Benjamin Gibert, recorded in Muriwai (new zealand), 2019. Samples
               of nature sounds by Benjamin Gibert. <br />
               <br />
-              Track 9 composed by Benjamin Gibert & SVQO, produced by SVQO,
+              Track 5 composed by Benjamin Gibert & SVQO, produced by SVQO,
               recorded in Lyon (France) and Porto Alegre (Brasil), 2013-2021.
               <br />
               Track 10 composed and produced by Benjamin Gibert, recorded in
