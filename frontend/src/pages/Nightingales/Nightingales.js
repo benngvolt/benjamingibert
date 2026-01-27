@@ -91,43 +91,41 @@ function Nightingales () {
         color='night'
       />
       <section className='nightingales_videos'>
-          <video
-            src={glassbirdsVideo}
-            autoPlay
-            muted
-            defaultMuted
-            loop
-            playsInline
-            preload="auto"
-            controls={false}
-            disablePictureInPicture
-            controlsList="nodownload noplaybackrate noremoteplayback"
-          />
-          <video
-            src={artworkVideo}
-            autoPlay
-            muted
-            defaultMuted
-            loop
-            playsInline
-            preload="auto"
-            controls={false}
-            disablePictureInPicture
-            controlsList="nodownload noplaybackrate noremoteplayback"
-          />
-          <video
-            src={landesVideo}
-            autoPlay
-            muted
-            defaultMuted
-            loop
-            playsInline
-            preload="auto"
-            controls={false}
-            disablePictureInPicture
-            controlsList="nodownload noplaybackrate noremoteplayback"
-          />
+        <video
+          src={glassbirdsVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate noremoteplayback"
+        />
+        <video
+          src={artworkVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate noremoteplayback"
+        />
+        <video
+          src={landesVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate noremoteplayback"
+        />
       </section>
+
       <TwoImagesContainer
         photo1={night_selfphoto}
         photo2={night_plants2}

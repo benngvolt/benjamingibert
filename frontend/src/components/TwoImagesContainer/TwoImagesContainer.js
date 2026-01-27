@@ -2,7 +2,6 @@ import "./TwoImagesContainer.scss";
 import React from "react";
 
 function TwoImagesContainer({ photo1, photo2, photoBackground }) {
-
   const isVideo = (src) => {
     if (!src) return false;
     return /\.(mp4|webm|ogg|mov)$/i.test(src);
@@ -18,6 +17,8 @@ function TwoImagesContainer({ photo1, photo2, photoBackground }) {
         loop
         muted
         playsInline
+        preload="metadata"
+        controls={false}
         className="galleryContainer_media"
       />
     ) : (
@@ -25,20 +26,17 @@ function TwoImagesContainer({ photo1, photo2, photoBackground }) {
         src={src}
         alt=""
         loading="lazy"
+        decoding="async"
         className="galleryContainer_media"
       />
     );
   };
 
   return (
-    <section className='galleryContainer'>
+    <section className="galleryContainer">
       <div
-        className='galleryContainer_gallery'
-        style={
-          photoBackground
-            ? { backgroundImage: `url(${photoBackground})` }
-            : {}
-        }
+        className="galleryContainer_gallery"
+        style={photoBackground ? { backgroundImage: `url(${photoBackground})` } : {}}
       >
         {renderMedia(photo1)}
         {renderMedia(photo2)}
@@ -48,4 +46,3 @@ function TwoImagesContainer({ photo1, photo2, photoBackground }) {
 }
 
 export default TwoImagesContainer;
-
