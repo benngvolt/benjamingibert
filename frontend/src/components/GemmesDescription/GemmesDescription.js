@@ -6,11 +6,11 @@ function GemmesDescription({ lang }) {
     <div>
       {lang === "en" && (
         <div className="gemmes_mainDataContainer_descriptionContainer_descriptions">
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_1">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_1">
             Entering winter
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_2">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_2">
             Gemmes is a rite of passage, a portal between the last glows of autumn
             and the first frosts of winter. This transition is beautiful to watch
             in nature, at that precise moment when amber light gives way to
@@ -19,7 +19,7 @@ function GemmesDescription({ lang }) {
             birds, gradually layering more and more clothing.
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_3">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_3">
             Gemmes was born from a residency at the Royal Abbey of Fontevraud for a
             little over a month, following a deeply chaotic emotional and romantic
             period. Life in the abbey and the cloister became a second skin,
@@ -44,11 +44,11 @@ function GemmesDescription({ lang }) {
 
       {lang === "fr" && (
         <div className="gemmes_mainDataContainer_descriptionContainer_descriptions">
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_1">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_1">
             Entrée dans l'hiver
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_2">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_2">
             Gemmes est un rituel de passage, un portail entre les dernières lueurs
             de l’automne et les premiers frimas de l’hiver. Cette transition est
             magnifique à observer dans la nature, à cet instant précis où la
@@ -58,7 +58,7 @@ function GemmesDescription({ lang }) {
             à peu les épaisseurs de vêtements.
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_3">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_3">
             Gemmes est né d&apos;une résidence à l’Abbaye Royale de Fontevraud pendant
             un peu plus d’un mois, dans le prolongement d’une période sentimentale
             et émotionnelle très chaotique. La vie dans l’abbaye et le cloître est
@@ -84,11 +84,11 @@ function GemmesDescription({ lang }) {
 
       {lang === "jp" && (
         <div className="gemmes_mainDataContainer_descriptionContainer_descriptions">
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_1">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_1">
             冬への入り口
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_2">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_2">
             Gemmesは通過儀礼であり、秋の最後の光と冬の最初の霜のあいだに開く
             ポータルでもある。この移ろいは自然の中で観察すると本当に美しい。
             琥珀色の光が、十二月の霧雨へと譲る、その正確な瞬間。フォントヴローの森を
@@ -96,7 +96,7 @@ function GemmesDescription({ lang }) {
             服の重ね着を少しずつ増やしていった。
           </p>
 
-          <p className="taihua_mainDataContainer_descriptionContainer_descriptions_3">
+          <p className="gemmes_mainDataContainer_descriptionContainer_descriptions_3">
             Gemmesは、フォントヴローの王立修道院で一ヶ月余り行われたレジデンスから生まれた。
             それは非常に混沌とした感情や恋愛の時期の延長線上にあった。修道院と回廊での生活は、
             守ってくれる第二の皮膚のようになり、外界との関わりから離れた避難所となった。
