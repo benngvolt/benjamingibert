@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
-import titleNightingales from '../../assets/nightingales/night_title1.webp'
+import titleNightingales from '../../assets/nightingales/night_title.webp'
 import titleTaihua from '../../assets/taihua/taihua_title.webp'
 import titleGemmes from '../../assets/gemmes/gemmes_title.webp'
 import video from '../../assets/videoLive.mp4'
