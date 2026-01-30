@@ -4,7 +4,7 @@ import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
 
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext";
 
 // Lazy-loaded pages (code splitting)
@@ -33,3 +33,4 @@ root.render(
 );
 
 reportWebVitals();
+

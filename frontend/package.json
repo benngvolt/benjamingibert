@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/three": "^0.182.0"
+    "@types/three": "^0.182.0",
+    "sitemap": "^9.0.0"
   }
 }
