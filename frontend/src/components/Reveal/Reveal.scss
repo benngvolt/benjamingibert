@@ -1,0 +1,38 @@
+// ✅ Réglages en dur (tu touches ici une seule fois)
+$blur-from: 18px;
+$y-from: 12px;
+
+$opacity-dur: 520ms;
+$filter-dur: 760ms;
+$transform-dur: 520ms;
+
+$ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+.reveal {
+
+  opacity: 0;
+  filter: blur($blur-from);
+  transform: translateY($y-from);
+
+  transition:
+    opacity $opacity-dur $ease,
+    filter $filter-dur $ease,
+    transform $transform-dur $ease;
+
+  will-change: opacity, filter, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

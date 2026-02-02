@@ -2,6 +2,7 @@
 import "./TrackBox.scss";
 import React, { useEffect, useRef } from "react";
 import { useApp } from "../../utils/AppContext";
+import { Reveal } from "../Reveal/Reveal";
 
 function clamp(v, min, max) {
   return Math.max(min, Math.min(max, v));
@@ -73,11 +74,17 @@ function TrackBox({ trackText, imgSrc, trackTitle, imgTitle, trackNumber, color 
     <section className={`taihua_tracks taihua_tracks${trackNumber}`}>
         {/* <img className='taihua_tracks--s_backgroundPhoto' src={taihua_shellsPhoto}/> */}
         <div className='taihua_tracks_track'>
-            <img className={`taihua_tracks_track_imgTitle taihua_tracks_track_imgTitle--${color}`} src={imgTitle}/>
-            <div className='taihua_tracks_track_texts'>
-                <p className={`taihua_tracks_track_texts_title taihua_tracks_track_texts_title--${color}`}>{trackTitle}</p> 
-                <p className={`taihua_tracks_track_texts_text taihua_tracks_track_texts_text--${color}`} dangerouslySetInnerHTML={{ __html:trackText}} />
-            </div>
+              <img className={`taihua_tracks_track_imgTitle taihua_tracks_track_imgTitle--${color}`} src={imgTitle}/>
+            
+              <div className='taihua_tracks_track_texts'>
+                <Reveal>
+                  <p className={`taihua_tracks_track_texts_title taihua_tracks_track_texts_title--${color}`}>{trackTitle}</p> 
+                </Reveal>
+                <Reveal>
+                  <p className={`taihua_tracks_track_texts_text taihua_tracks_track_texts_text--${color}`} dangerouslySetInnerHTML={{ __html:trackText}} />
+                  </Reveal>
+              </div>
+            
         </div>   
     </section>
   );

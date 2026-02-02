@@ -35,6 +35,7 @@ import NightingalesDatas from '../../components/NightingalesDatas/NightingalesDa
 import NightingalesDescription from '../../components/NightingalesDescription/NightingalesDescription'
 import NavBar from '../../components/NavBar/NavBar'
 
+
 import { useApp } from "../../utils/AppContext";
 
 function Nightingales () {
@@ -62,6 +63,7 @@ function Nightingales () {
         <div className='nightingales_mainDataContainer_starryskyContainer'>
           <img className='nightingales_mainDataContainer_starryskyContainer_starrysky' src={night_starrysky}/>
         </div>
+        
         <NightingalesDatas
           lang={lang}
         />
