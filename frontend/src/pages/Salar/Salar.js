@@ -134,7 +134,7 @@ function Salar() {
       <TrackBox
         trackNumber={4}
         trackTitle='revolcadero'
-        trackText={getTrackText(1)}
+        trackText={getTrackText(4)}
         color='salar'
       />
       <QuoteBox
@@ -149,7 +149,7 @@ function Salar() {
       <TrackBox
         trackNumber={5}
         trackTitle='chañar'
-        trackText={getTrackText(2)}
+        trackText={getTrackText(5)}
         color='salar'
       />
       <QuoteBox
@@ -164,7 +164,7 @@ function Salar() {
       <TrackBox
         trackNumber={6}
         trackTitle='alti plano'
-        trackText={getTrackText(3)}
+        trackText={getTrackText(6)}
         color='salar'
       />
       <QuoteBox
@@ -179,7 +179,7 @@ function Salar() {
       <TrackBox
         trackNumber={7}
         trackTitle='stellar'
-        trackText={getTrackText(3)}
+        trackText={getTrackText(7)}
         color='salar'
       />
       {/* <TwoImagesContainer
