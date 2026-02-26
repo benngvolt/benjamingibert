@@ -15,6 +15,7 @@
     }
 
     &_text {
+        white-space: pre-line;
         text-align: center;
         font-family: 'SpecialFont';
         
@@ -30,6 +31,9 @@
         }
         &--night {
             color: $nightColor2;
+        }
+        &--salar {
+            color: $salarcolor1;
         }
     }
 

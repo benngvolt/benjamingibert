@@ -80,6 +80,20 @@
         }
         
       }
+
+      &--salar {
+        width: 20%;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+          width: 30%;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            width: 40%;
+            
+            
+        }
+        
+      }
       
     }
 
@@ -115,6 +129,9 @@
           &--night {
             color: $nightColor2;
           }
+          &--salar {
+            color: $salarcolor1;
+          }
         }
 
         
@@ -131,6 +148,9 @@
             color: white;
           }
           &--night {
+            color: white;
+          }
+          &--salar {
             color: white;
           }
         }

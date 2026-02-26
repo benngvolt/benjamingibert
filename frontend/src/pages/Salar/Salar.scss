@@ -1,0 +1,200 @@
+@import '../../utils/mixins';
+
+.salar {
+    
+    width: 100vw;
+    padding-top: 45px;
+    isolation: isolate;
+    position: relative;
+    @include Column;
+    row-gap: 90px;
+    padding-bottom: 90px;
+    animation: apparition 1s ease forwards;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        row-gap: 45px;  
+        padding-top: 90px;               
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        row-gap: 45px;
+        padding-top: 67px;
+    }
+    
+    &_mainDataContainer {
+        animation: apparition 3s ease forwards;
+        width: 100%;
+        @include Column;
+        row-gap: 90px;
+        font-family: 'Inter';
+        color: white;
+        position: relative;
+        @include font-size(5);
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            row-gap: 45px;
+        }
+       
+        &_gradientContainer {
+            height: 100%;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        &_title {
+            z-index: 10;
+            margin: 0 auto;
+            width: 90%;
+            object-fit: contain;
+            display: flex;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                padding: 0 22px;
+                box-sizing: border-box;
+                width: 100%;
+            }
+        }
+
+        
+
+        &_artwork {
+            width: 100%;
+            margin-bottom: 90px;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
+        }
+        &_descriptionContainer {
+            @include Column;
+            column-gap: 90px;
+            row-gap: 90px;
+            width: 90%;
+            margin: 90px auto;
+            justify-content: center;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                margin: 22px auto;
+            }
+
+            
+            &_objetTypoTitre {
+                object-fit: contain;
+                width: 40%;
+                margin: auto;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    width: 85%;
+                    margin: 0 auto;
+                }
+                
+            }
+        }
+        
+
+        
+    }
+
+    &_K7Container {
+        
+        margin: 0 auto;
+        z-index: 90;
+        &_rectoVerso {
+            @include Row;
+            width: 100%;
+            z-index: 90;
+
+            img {
+            z-index: 90;
+               width:50%;
+               height: auto;
+            }
+        }
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            width: 100%;
+        }
+
+        &_gallery {
+            z-index: 90;
+            margin-top: 5px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-content: space-between;
+            column-gap: 5px;
+            box-sizing: border-box;
+
+            img {
+                z-index: 90;
+                width: 100%;
+
+            }
+        }
+        &_button {
+            position: relative;
+            z-index: 90;
+            margin: auto;
+            width: 33%;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                width: 70%;
+                margin: 22px auto;
+            }
+            
+        }
+    }
+}
+
+
+  
+  .salar_bg {
+    position: fixed;
+    inset: -20%; // déborde pour éviter les bords visibles
+    z-index: -1;
+    pointer-events: none;
+    height: 100%;
+    background:
+      radial-gradient(90vw 60vh at 15% 20%, #c5c1b3 0%, transparent 60%),
+      radial-gradient(75vw 65vh at 80% 25%, #eab497 0%, transparent 60%),
+      radial-gradient(70vw 70vh at 40% 85%, #ffe390 0%, transparent 65%),
+      radial-gradient(90vw 80vh at 75% 75%, #a69b88 0%, transparent 65%),
+      #0b0d0f;
+  
+    filter: blur(150px) saturate(89%) contrast(100%) brightness(0.7);
+    animation: taihuaGradientMove 18s ease-in-out infinite;
+    transform: translateZ(0); // GPU hint
+
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        width: 100vw;
+        height: 100vh;
+    }
+  }

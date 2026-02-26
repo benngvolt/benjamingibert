@@ -8,18 +8,22 @@
 
         &_networksList {
             @include Row;
-            justify-content: center;
+            justify-content: space-between;
             gap: 1rem; // petit espace entre les logos
             margin: 45px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
             
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
-
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
                 margin: 12px auto;
-
+                gap: 30px;
+                width: auto;
             }
 
             &_item {
@@ -33,8 +37,9 @@
                 }
                 
                 @media only screen and (max-width:$mobileMaxWidth){
-                    width: 30px; // ajuste selon la taille de tes logos
-                    height: 30px;
+                    width: 40px; // ajuste selon la taille de tes logos
+                    height: 40px;
+                    margin: auto;
                 }
 
                 &_link {

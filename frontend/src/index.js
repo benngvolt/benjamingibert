@@ -12,6 +12,8 @@ const Home = lazy(() => import("./pages/Home/Home"));
 const Nightingales = lazy(() => import("./pages/Nightingales/Nightingales"));
 const Taihua = lazy(() => import("./pages/Taihua/Taihua"));
 const Gemmes = lazy(() => import("./pages/Gemmes/Gemmes"));
+const About = lazy(() => import("./pages/About/About"));
+const Salar = lazy(() => import("./pages/Salar/Salar"));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,6 +27,8 @@ root.render(
             <Route path="/nightingales" element={<Nightingales />} />
             <Route path="/taihua" element={<Taihua />} />
             <Route path="/gemmes" element={<Gemmes />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/34L4R" element={<Salar />} />
           </Routes>
         </Suspense>
       </Router>

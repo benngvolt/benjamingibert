@@ -2,9 +2,16 @@
 
 .home {
   height: 100%;
-  width: 100vw;
+  width: 400px;
   margin: auto;
   @include Column;
+  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+    width: 300px;
+   }
+  
+  @media only screen and (max-width: $mobileMaxWidth) {
+    width: 65%;
+  }
   
 
   &_video {
@@ -48,22 +55,23 @@
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
       row-gap: 10px;
-      width: 50%;
+      width: 100%;
       margin: 22px auto;
      }
     
     @media only screen and (max-width: $mobileMaxWidth) {
       row-gap: 10px;
-      width: 70%;
+      width: 100%;
       margin: 22px auto;
     }
 
     &_artistName {
-      letter-spacing: 0.32em;
+      letter-spacing: 0.2em;
       color: white;
       @include font-size(3);
       margin: 90px auto;
       font-family: 'Inter';
+      width: auto;
 
       @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
         @include font-size(3);
@@ -103,15 +111,15 @@
 
       img {
         filter: saturate(0);
-        width: 20%;
+        width: 100%;
         margin: auto;
 
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-          width: 85%;
+          width: 100%;
         }
 
         @media only screen and (max-width: $mobileMaxWidth) {
-          width: 80%;
+          width: 100%;
           margin: 0 auto;
         }
       }
@@ -123,8 +131,9 @@
 
     &_networksList {
       @include Row;
-      justify-content: center;
+      justify-content: space-between;
       gap: 1rem;
+      width: 100%;
 
       @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) { 
         display: grid;
@@ -193,6 +202,13 @@
     &_langChoice {
       @include Row;
       margin: 0 auto 90px auto;
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+          
+      }
+
+     @media only screen and (max-width: $mobileMaxWidth) {
+        margin-top: 22px;
+     }
 
       button {
         font-family: 'Inter';
@@ -200,6 +216,7 @@
         border-left: none;
         border-top: none;
         background: none;
+        
         @include font-size(3);
         padding: 5px 22px;
 
@@ -210,6 +227,8 @@
         @media (hover: hover) and (pointer: fine) {
           &:hover { }
         }
+
+        
       }
 
       &_fr,

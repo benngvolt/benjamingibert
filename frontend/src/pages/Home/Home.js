@@ -53,6 +53,20 @@ function Home () {
                     instagram="https://www.instagram.com/bgibertmusic/"
                     color=""
                 />
+                {/* <Link
+                    className='home_menu_subtitle'
+                    aria-label="Accéder à la page LIVE MUSIC"
+                    to="/LiveMusic"
+                >
+                   <h2>LIVE MUSIC</h2>
+                </Link>
+                <Link
+                    className='home_menu_subtitle'
+                    aria-label="Accéder à la page A propos"
+                    to="/About"
+                >
+                   <h2>ABOUT</h2>
+                </Link> */}
                 <div className="home_menu_langChoice">
                     <button className={lang==='fr'? 'home_menu_langChoice_fr home_menu_langChoice_fr--selected':'home_menu_langChoice_fr'} onClick={() => setLang('fr')}>
                         FR
