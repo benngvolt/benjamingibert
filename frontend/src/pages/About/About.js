@@ -1,26 +1,22 @@
 import './About.scss'
-import { Link } from 'react-router-dom'
-import React, { useRef, useState, useEffect } from 'react'
-
 import NavBar from '../../components/NavBar/NavBar'
-
-
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-
-import { useApp } from "../../utils/AppContext";
+import { useApp } from "../../utils/AppContext"
+import aboutBio from '../../assets/aboutBio/aboutBio'
 
 function About() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
- 
-
+  const { lang } = useApp()
+  const currentLang = ['fr', 'en', 'jp'].includes(lang) ? lang : 'fr'
+  const bio = aboutBio[currentLang]
+  console.log(bio)
 
   return (
     <main className='about'>
-      
-      
+      <NavBar />
+      <article
+        className="about__bio"
+        dangerouslySetInnerHTML={{ __html: bio }}
+      >
+      </article>
     </main>
   )
 }

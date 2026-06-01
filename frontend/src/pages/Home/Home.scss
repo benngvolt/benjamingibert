@@ -100,7 +100,8 @@
         font-size: 100px;
       }
 
-      @media only screen and (max-width: $mobileMaxWidth) { }
+      @media only screen and (max-width: $mobileMaxWidth) { 
+      }
 
       // hover effects ONLY where hover really exists
       @media (hover: hover) and (pointer: fine) {
@@ -126,6 +127,31 @@
 
       &--gemmes {
         margin-top: 35px;
+      }
+    }
+
+    &_about {
+      font-family: 'Inter';
+      color: white;
+      font-size: 22px;
+      margin: auto;
+      width: 100%;
+      display: flex;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+        font-size: 100px;
+      }
+
+      @media only screen and (max-width: $mobileMaxWidth) { }
+
+      // hover effects ONLY where hover really exists
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: white;
+          color: black;
+        }
       }
     }
 

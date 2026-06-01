@@ -44,6 +44,13 @@ function Home () {
                 >
                     <img src={titleGemmes}/>
                 </Link>
+                <Link
+                    className='home_menu_albumTitle home_menu_about'
+                    aria-label="Accéder à la À propos"
+                    to="/about"
+                >
+                    <h2>ABOUT</h2>
+                </Link>
                 <MusicNetworks
                     bandcamp="https://benjamingibert.bandcamp.com/"
                     spotify="https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX"
