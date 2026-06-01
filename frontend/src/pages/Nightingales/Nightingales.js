@@ -1,5 +1,7 @@
 import './Nightingales.scss'
 import { Link } from 'react-router-dom'
+import { Helmet } from "react-helmet-async";
+
 import React, { useRef, useState, useEffect } from 'react'
 import night_artwork from '../../assets/nightingales/night_artwork.webp'
 import night_title from '../../assets/nightingales/night_title.webp'
@@ -55,8 +57,15 @@ function Nightingales () {
   };
 
   return (
+    
     <main className='nightingales'>
-      
+      <Helmet>
+        <title>Nightingales — Benjamin Gibert</title>
+        <link
+          rel="canonical"
+          href="https://benjamingibert.com/nightingales"
+        />
+      </Helmet>
       <NavBar/>
       <section className='nightingales_mainDataContainer'>
         <img className='nightingales_mainDataContainer_title' src={night_title}/>
@@ -173,6 +182,7 @@ function Nightingales () {
           img5={night6}
       />
     </main>
+    
   )
 }
 

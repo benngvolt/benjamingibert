@@ -1,6 +1,8 @@
 import './Taihua.scss'
 import { Link } from 'react-router-dom'
 import React, { useRef, useState, useEffect } from 'react'
+import { Helmet } from "react-helmet-async";
+
 import taihua_artwork from '../../assets/taihua/taihua_artwork.webp'
 import taihua_title from '../../assets/taihua/taihua_title.webp'
 import taihua_ecume from '../../assets/taihua/taihua_ecume.svg'
@@ -68,7 +70,15 @@ function Taihua() {
   const backgroundColor = 'black'
 
   return (
+    
     <main className='taihua'>
+    <Helmet>
+        <title>Taihua — Benjamin Gibert</title>
+        <link
+          rel="canonical"
+          href="https://benjamingibert.com/taihua"
+        />
+      </Helmet>
       
       <NavBar />
 
@@ -296,6 +306,7 @@ function Taihua() {
         color='taihua'
       />
     </main>
+   
   )
 }
 

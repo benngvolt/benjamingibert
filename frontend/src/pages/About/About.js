@@ -1,6 +1,8 @@
 import './About.scss'
 import NavBar from '../../components/NavBar/NavBar'
 import { useApp } from "../../utils/AppContext"
+import { Helmet } from "react-helmet-async";
+
 import aboutBio from '../../assets/aboutBio/aboutBio'
 
 function About() {
@@ -10,6 +12,7 @@ function About() {
   console.log(bio)
 
   return (
+    <Helmet>
     <main className='about'>
       <NavBar />
       <article
@@ -18,6 +21,7 @@ function About() {
       >
       </article>
     </main>
+    </Helmet>
   )
 }
 

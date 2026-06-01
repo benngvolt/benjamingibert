@@ -1,6 +1,8 @@
 import './Home.scss'
 import { Link } from 'react-router-dom'
 import React from 'react'
+import { Helmet } from "react-helmet-async";
+
 
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
 import titleNightingales from '../../assets/nightingales/night_title.webp'
@@ -9,12 +11,21 @@ import titleGemmes from '../../assets/gemmes/gemmes_title.webp'
 import video from '../../assets/videoLive.mp4'
 import { useApp } from "../../utils/AppContext";
 
+
 function Home () {
     
     const { lang, setLang } = useApp();
 
     return (
+        
         <main className='home'>
+            <Helmet>
+            <title>Benjamin Gibert</title>
+            <link
+            rel="canonical"
+            href="https://benjamingibert.com/"
+            />
+      </Helmet>
             <section className='home_menu'>
                 <div className="home_video">
                     <video autoPlay muted loop playsInline preload>
@@ -44,13 +55,13 @@ function Home () {
                 >
                     <img src={titleGemmes}/>
                 </Link>
-                <Link
+                {/* <Link
                     className='home_menu_albumTitle home_menu_about'
                     aria-label="Accéder à la À propos"
                     to="/about"
                 >
                     <h2>ABOUT</h2>
-                </Link>
+                </Link> */}
                 <MusicNetworks
                     bandcamp="https://benjamingibert.bandcamp.com/"
                     spotify="https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX"
@@ -87,6 +98,7 @@ function Home () {
                 </div>
             </section>
         </main>
+        
     )
 }
 

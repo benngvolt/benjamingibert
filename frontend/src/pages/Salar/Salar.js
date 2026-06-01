@@ -4,6 +4,9 @@ import React, { useRef, useState, useEffect } from 'react'
 import salar_artwork from '../../assets/salar/salar_artwork.webp'
 import salar_title from '../../assets/salar/salar_title.webp'
 
+import { Helmet } from "react-helmet-async";
+
+
 import salar_amanecer from '../../assets/salar/salar_amanecer.webp'
 import salar_saltscar from '../../assets/salar/salar_saltscar.webp'
 import salar_textureofshards from '../../assets/salar/salar_textureofshards.webp'
@@ -47,6 +50,7 @@ function Salar() {
   const backgroundColor = '#a69b88'
 
   return (
+    <Helmet>
     <main className='salar'>
       
       <NavBar />
@@ -274,6 +278,7 @@ function Salar() {
         color='taihua'
       /> */}
     </main>
+    </Helmet>
   )
 }
 

@@ -1,6 +1,9 @@
 import './Gemmes.scss'
 import { Link } from 'react-router-dom'
 import React, { useRef, useState, useEffect } from 'react'
+
+import { Helmet } from "react-helmet-async";
+
 import gemmes_title from '../../assets/gemmes/gemmes_title.webp'
 import gemmes_snowflakes from '../../assets/gemmes/gemmes_snowflakes.svg'
 import gemmes_video1 from '../../assets/gemmes/gemmes_video1.mp4'
@@ -54,8 +57,15 @@ function Gemmes() {
 
 
   return (
+    
     <main className='gemmes'>
-      
+      <Helmet>
+        <title>Gemmes — Benjamin Gibert</title>
+        <link
+          rel="canonical"
+          href="https://benjamingibert.com/gemmes"
+        />
+      </Helmet>
       <NavBar />
 
       <div className='gemmes_bg'></div>
@@ -195,6 +205,7 @@ function Gemmes() {
           mediaType="video"
       />
     </main>
+
   )
 }
 
