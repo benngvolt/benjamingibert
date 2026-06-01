@@ -1,12 +1,12 @@
 import "./OneMediaContainer.scss";
 import React from "react";
-import { Reveal } from "../Reveal/Reveal";
+// import { Reveal } from "../Reveal/Reveal";
 
 function OneMediaContainer({ mediaSrc, mediaType }) {
   return (
     <section className="taihua_livePhotosContainer">
       {mediaType === "video" && (
-        <Reveal>
+        // <Reveal>
           <video
             src={mediaSrc}
             autoPlay
@@ -16,18 +16,18 @@ function OneMediaContainer({ mediaSrc, mediaType }) {
             preload="metadata"
             controls={false}
           />
-        </Reveal>
+        // </Reveal>
       )}
 
       {mediaType === "image" && (
-        <Reveal>
+        // <Reveal>
           <img
             src={mediaSrc}
             alt=""
             loading="lazy"
             decoding="async"
           />
-        </Reveal>
+        // </Reveal>
       )}
     </section>
   );

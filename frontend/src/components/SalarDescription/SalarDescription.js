@@ -1,6 +1,6 @@
 import "./SalarDescription.scss";
 import React from "react";
-import { Reveal } from "../Reveal/Reveal";
+// import { Reveal } from "../Reveal/Reveal";
 
 const copy = {
   fr: {
@@ -117,23 +117,23 @@ function SalarDescription({ lang }) {
 
   return (
     <div className="salar_mainDataContainer_descriptionContainer_descriptions">
-      <Reveal>
+      {/* <Reveal> */}
         <p className="salar_mainDataContainer_descriptionContainer_descriptions_1">
           {content.title}
         </p>
-      </Reveal>
+      {/* </Reveal>
 
-      <Reveal>
+      <Reveal> */}
         <p className="salar_mainDataContainer_descriptionContainer_descriptions_2">
           {content.subtitle}
         </p>
-      </Reveal>
+      {/* </Reveal>
 
-      <Reveal>
+      <Reveal> */}
         <p className="salar_mainDataContainer_descriptionContainer_descriptions_3">
           {content.body}
         </p>
-      </Reveal>
+      {/* </Reveal> */}
     </div>
   );
 }

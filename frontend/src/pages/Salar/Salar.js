@@ -60,12 +60,6 @@ function Salar() {
           className='salar_mainDataContainer_title'
           src={salar_title}
         /> 
-        {/* <div className='salar_mainDataContainer_ecumeContainer'>
-          <img
-            className='salar_mainDataContainer_ecumeContainer_starrysky'
-            src={taihua_ecume}
-          /> 
-      </div> */}
 
       <section className='salar_mainDataContainer'>
         <SalarDatas 
@@ -186,97 +180,6 @@ function Salar() {
         trackText={getTrackText(7)}
         color='salar'
       />
-      {/* <TwoImagesContainer
-        photo1={taihua_photo_map}
-        photo2={taihua_photo_car}
-        photoBackground={taihua_photo_blackstone}
-      />
-      <QuoteBox
-        text={taihuaMiscTexts[3][`miscText_${lang}`]}
-        author={taihuaMiscTexts[3].author}
-        color='taihua'
-      />
-      <TrackBox
-        trackNumber={2}
-        imgTitle={taihua_ltcTitle}
-        trackTitle='low tide cavern'
-        trackText={getTrackText(2)}
-        color='taihua'
-      />
-      <TwoImagesContainer
-        photo1={taihua_photoLive2}
-        photo2={taihua_photoLive5}
-        photoBackground={taihua_photo_foam1}
-      />
-      <TrackBox
-        trackNumber={3}
-        imgTitle={taihua_nfTitle}
-        trackTitle='native forests'
-        trackText={getTrackText(3)}
-        color='taihua'
-      />
-      <QuoteBox
-        text={taihuaMiscTexts[4][`miscText_${lang}`]}
-        author={taihuaMiscTexts[4].author}
-        color='taihua'
-      />
-      <TwoImagesContainer
-        photo1={taihua_photo_forest2}
-        photo2={taihua_photo_forest1}
-        photoBackground={taihua_photo_forestdetail}
-      />
-      <TrackBox
-        trackNumber={4}
-        imgTitle={taihua_tgTitle}
-        trackTitle='tuis garden'
-        trackText={getTrackText(4)}
-        color='taihua'
-      />
-      <QuoteBox
-        text={taihuaMiscTexts[0][`miscText_${lang}`]}
-        author={taihuaMiscTexts[0].author}
-        color='taihua'
-      />
-      <OneMediaContainer
-        mediaSrc={taihua_photo_portrait}
-        mediaType="image"
-      />
-      
-      <TrackBox
-        trackNumber={5}
-        imgTitle={taihua_sTitle}
-        trackTitle='shells'
-        trackText={getTrackText(5)}
-        color='taihua'
-      />
-
-      <TwoImagesContainer
-        photo1={taihua_photo_shellphone1}
-        photo2={taihua_photo_shellphone3}
-        photoBackground={taihua_background2}
-      />
-
-      <TrackBox
-        trackNumber={6}
-        imgTitle={taihua_fjgTitle}
-        trackTitle='franz josef glacier'
-        trackText={getTrackText(6)}
-        color='taihua'
-      />
-      <OneMediaContainer
-        mediaSrc={taihua_videoFjg}
-        mediaType="video"
-      />
-      <QuoteBox
-        text={taihuaMiscTexts[1][`miscText_${lang}`]}
-        author={taihuaMiscTexts[1].author}
-        color='taihua'
-      />
-      <QuoteBox
-        text={taihuaMiscTexts[6][`miscText_${lang}`]}
-        author={taihuaMiscTexts[6].author}
-        color='taihua'
-      /> */}
     </main>
     
   )
