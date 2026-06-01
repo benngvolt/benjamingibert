@@ -50,7 +50,7 @@ function Salar() {
   const backgroundColor = '#a69b88'
 
   return (
-    <Helmet>
+    
     <main className='salar'>
       
       <NavBar />
@@ -278,7 +278,7 @@ function Salar() {
         color='taihua'
       /> */}
     </main>
-    </Helmet>
+    
   )
 }
 
