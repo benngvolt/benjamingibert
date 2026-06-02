@@ -1,6 +1,6 @@
 import "./SalarDatas.scss";
 import React from "react";
-// import { Reveal } from "../Reveal/Reveal";
+import { Reveal } from "../Reveal/Reveal";
 
 function SalarDatas({ lang }) {
   return (
@@ -8,7 +8,7 @@ function SalarDatas({ lang }) {
       {lang === "en" && (
         <div className="salar_mainDataContainer_datas">
 
-          {/* <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 amanecer</li>
               <li>02 saltscar</li>
@@ -22,7 +22,7 @@ function SalarDatas({ lang }) {
               <li>10 cachiyuyo (demo in process)</li>
               <li>11 tamarrugo (demo in process)</li>
             </ul>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
@@ -30,7 +30,7 @@ function SalarDatas({ lang }) {
         <div className="salar_mainDataContainer_datas">
 
 
-          {/* <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 amanecer</li>
               <li>02 saltscar</li>
@@ -44,14 +44,14 @@ function SalarDatas({ lang }) {
               <li>10 cachiyuyo (demo in process)</li>
               <li>11 tamarrugo (demo in process)</li>
             </ul>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
       {lang === "jp" && (
         <div className="salar_mainDataContainer_datas">
           
-          {/* <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 amanecer</li>
               <li>02 saltscar</li>
@@ -65,7 +65,7 @@ function SalarDatas({ lang }) {
               <li>10 cachiyuyo (demo in process)</li>
               <li>11 tamarrugo (demo in process)</li>
             </ul>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
     </div>

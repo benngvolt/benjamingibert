@@ -28,7 +28,6 @@
         @include Row;
         justify-content: center;
         grid-gap: 3px;
-        background-blend-mode: hard-light;
         background-position: center;
         background-repeat: no-repeat;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){

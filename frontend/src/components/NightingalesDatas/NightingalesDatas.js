@@ -1,26 +1,26 @@
 import "./NightingalesDatas.scss";
 import React from "react";
-// import { Reveal } from "../Reveal/Reveal";
+import { Reveal } from "../Reveal/Reveal";
 
 function NightingalesDatas({ lang }) {
   return (
     <div className="nightingales_mainDataContainer_firstContainer">
       {lang === "en" && (
         <div className="nightingales_mainDataContainer_datas">
-          {/* <Reveal> */}
+          <Reveal>
             <p>released August 22, 2025.</p>
-          {/* </Reveal> */}
+          </Reveal>
 
-          {/* <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 glassbirds II</li>
               <li>02 noctambulism</li>
               <li>03 aspérité liquide</li>
               <li>04 taste of sap</li>
             </ul>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p>
               Tracks 1, 2, 3, 4 composed, played and produced by Benjamin Gibert,
               recorded in Toulouse, 2025. Samples of nature sounds by Benjamin
@@ -32,26 +32,26 @@ function NightingalesDatas({ lang }) {
               Langellier www.florianlangellier.com Artwork by Florian Langellier &
               Benjamin Gibert.
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
       {lang === "fr" && (
         <div className="nightingales_mainDataContainer_datas">
-          {/* <Reveal> */}
+          <Reveal>
             <p>sorti le 22 août 2025.</p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 glassbirds II</li>
               <li>02 noctambulism</li>
               <li>03 aspérité liquide</li>
               <li>04 taste of sap</li>
             </ul>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p>
               Titres 1, 2, 3, 4 composés, interprétés et produits par Benjamin
               Gibert, enregistrés à Toulouse en 2025. Échantillons de sons
@@ -63,26 +63,26 @@ function NightingalesDatas({ lang }) {
               Langellier www.florianlangellier.com Artwork par Florian Langellier
               & Benjamin Gibert.
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
       {lang === "jp" && (
         <div className="nightingales_mainDataContainer_datas">
-          {/* <Reveal> */}
+          <Reveal>
             <p>2025年8月22日リリース。</p>
-          {/* </Reveal> */}
+          </Reveal>
 
-          {/* <Reveal> */}
+          <Reveal>
             <ul>
               <li>01 glassbirds II</li>
               <li>02 noctambulism</li>
               <li>03 aspérité liquide</li>
               <li>04 taste of sap</li>
             </ul>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p>
               トラック1〜4はすべて Benjamin Gibert によって作曲・演奏・
               プロデュースされ、2025年にトゥールーズで録音された。
@@ -95,7 +95,7 @@ function NightingalesDatas({ lang }) {
               www.florianlangellier.com アートワーク：Florian Langellier
               & Benjamin Gibert。
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
     </div>

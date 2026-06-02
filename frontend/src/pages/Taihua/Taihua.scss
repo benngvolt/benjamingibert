@@ -19,6 +19,11 @@
         row-gap: 45px;
         padding-top: 67px;
     }
+
+    section {
+        content-visibility: auto;
+        contain-intrinsic-size: 900px;
+    }
     
     &_mainDataContainer {
         animation: apparition 3s ease forwards;
@@ -201,20 +206,15 @@
   
   .taihua_bg {
     position: fixed;
-    inset: -20%; // déborde pour éviter les bords visibles
+    inset: 0;
     z-index: -1;
     pointer-events: none;
-    height: 100%;
     background:
-      radial-gradient(90vw 60vh at 15% 20%, #efffd9 0%, transparent 60%),
-      radial-gradient(75vw 65vh at 80% 25%, #1a2327 0%, transparent 60%),
-      radial-gradient(70vw 70vh at 40% 85%, #151411 0%, transparent 65%),
-      radial-gradient(90vw 80vh at 75% 75%, #355638 0%, transparent 65%),
-      #0b0d0f;
-  
-    filter: blur(150px) saturate(89%) contrast(100%) brightness(0.7);
-    animation: taihuaGradientMove 18s ease-in-out infinite;
-    transform: translateZ(0); // GPU hint
+        radial-gradient(90vw 60vh at 15% 20%, #8e9c7a 0%, transparent 60%),
+        radial-gradient(75vw 65vh at 80% 25%, #1a2327 0%, transparent 60%),
+        radial-gradient(70vw 70vh at 40% 85%, #151411 0%, transparent 65%),
+        radial-gradient(90vw 80vh at 75% 75%, #355638 0%, transparent 65%),
+        #0b0d0f;
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
@@ -225,5 +225,7 @@
         height: 100vh;
     }
   }
+
+  
   
  

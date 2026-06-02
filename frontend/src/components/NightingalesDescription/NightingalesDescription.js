@@ -1,19 +1,19 @@
 import "./NightingalesDescription.scss";
 import React from "react";
-// import { Reveal } from "../Reveal/Reveal";
+import { Reveal } from "../Reveal/Reveal";
 
 function NightingalesDescription({ lang }) {
   return (
     <div className="nightingales_mainDataContainer_descriptionContainer">
       {lang === "en" && (
         <div className="nightingales_mainDataContainer_descriptionContainer_descriptions">
-          {/* <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_1">
               Cosmic sap
             </p>
-          {/* </Reveal> */}
+          </Reveal>
 
-          {/* <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_2">
               Nightingales is a musical fiction in four tracks, a secret rave
               born between the trees. It unfolds as an imaginary ecosystem made
@@ -22,9 +22,9 @@ function NightingalesDescription({ lang }) {
               The nightingale, emblematic bird of the EP, is known for its
               nocturnal song. It becomes here the symbol of a liminal space.
             </p>
-          {/* </Reveal> */}
+          </Reveal>
 
-          {/* <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_3">
               I cultivate a fascination for everything that happens naturally,
               for what is accidental and escapes me, whether in the environment
@@ -45,19 +45,19 @@ function NightingalesDescription({ lang }) {
               emergence of the human voice, without words or language, in the
               form of phonemes and improvised fragments.
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
       {lang === "fr" && (
         <div className="nightingales_mainDataContainer_descriptionContainer_descriptions">
-          {/* <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_1">
               Sève cosmique
             </p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_2">
               Nightingales est une fiction musicale en quatre titres, une rave
               secrète née entre les arbres. C’est un écosystème imaginaire fait
@@ -67,9 +67,9 @@ function NightingalesDescription({ lang }) {
               connu pour son chant nocturne. Il devient ici le symbole d’un
               espace liminal.
             </p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_3">
               Je cultive une fascination pour tout ce qui advient naturellement,
               pour ce qui est accidentel et m’échappe, que ce soit dans
@@ -91,19 +91,19 @@ function NightingalesDescription({ lang }) {
               de la voix humaine, sans mots ni langage, sous forme de phonèmes
               et de fragments improvisés.
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
 
       {lang === "jp" && (
         <div className="nightingales_mainDataContainer_descriptionContainer_descriptions">
-          {/* <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_1">
               宇宙の樹液
             </p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_2">
               Nightingalesは4曲から成る音楽的フィクションであり、
               木々のあいだに生まれた秘密のレイヴである。
@@ -113,9 +113,9 @@ function NightingalesDescription({ lang }) {
               EPの象徴的存在であるナイチンゲールは夜に歌う鳥として
               知られ、ここではリミナルな空間の象徴となる。
             </p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p className="nightingales_mainDataContainer_descriptionContainer_descriptions_3">
               私は、自然に生じるもの、偶発的で制御できないものに
               強く惹かれている。それが環境の中であれ、自身の内面で
@@ -136,7 +136,7 @@ function NightingalesDescription({ lang }) {
               EPの特徴のひとつは、人間の声が言葉や言語を持たず、
               音素や即興的な断片として徐々に現れてくる点にある。
             </p>
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       )}
     </div>

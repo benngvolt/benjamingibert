@@ -1,6 +1,6 @@
 import "./TrackBox.scss";
 import React from "react";
-// import { Reveal } from "../Reveal/Reveal";
+import { Reveal } from "../Reveal/Reveal";
 
 function TrackBox({ trackText, trackTitle, imgTitle, trackNumber, color }) {
   return (
@@ -15,18 +15,18 @@ function TrackBox({ trackText, trackTitle, imgTitle, trackNumber, color }) {
         />
 
         <div className="taihua_tracks_track_texts">
-          {/* <Reveal> */}
+          <Reveal>
             <p className={`taihua_tracks_track_texts_title taihua_tracks_track_texts_title--${color}`}>
               {trackTitle}
             </p>
-          {/* </Reveal>
+          </Reveal>
 
-          <Reveal> */}
+          <Reveal>
             <p
               className={`taihua_tracks_track_texts_text taihua_tracks_track_texts_text--${color}`}
               dangerouslySetInnerHTML={{ __html: trackText }}
             />
-          {/* </Reveal> */}
+          </Reveal>
         </div>
       </div>
     </section>

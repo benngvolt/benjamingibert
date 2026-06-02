@@ -9,23 +9,15 @@ $transform-dur: 520ms;
 $ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 
 .reveal {
-
   opacity: 0;
-  filter: blur($blur-from);
-  transform: translateY($y-from);
-
-  transition:
-    opacity $opacity-dur $ease,
-    filter $filter-dur $ease,
-    transform $transform-dur $ease;
-
-  will-change: opacity, filter, transform;
+  transform: translateY(16px);
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  filter: blur(0px);
-  transform: translateY(0px);
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
