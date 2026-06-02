@@ -64,7 +64,7 @@
       color: white;
       @include font-size(3);
       margin: 90px auto;
-      font-family: 'Inter';
+      font-family: 'Montserrat';
       width: auto;
 
       @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
@@ -125,7 +125,7 @@
     }
 
     &_about {
-      font-family: 'Inter';
+      font-family: 'Montserrat';
       color: white;
       font-size: 22px;
       margin: auto;
@@ -231,7 +231,7 @@
      }
 
       button {
-        font-family: 'Inter';
+        font-family: 'Montserrat';
         border-bottom: none;
         border-left: none;
         border-top: none;
