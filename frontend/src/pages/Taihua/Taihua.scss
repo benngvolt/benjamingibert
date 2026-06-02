@@ -78,7 +78,9 @@
             height: 100vh;
             display: flex;
             opacity: 0.6;
-            filter: blur(2px);
+            // filter: blur(2px);
+            filter: none;
+            
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
             }
@@ -86,7 +88,7 @@
             @media only screen and (max-width:$mobileMaxWidth){
                 top: 0;
                 opacity: 0.7;
-                filter: blur(1.5px);
+                // filter: blur(1.5px);
             }
             &_starrysky {
                 z-index: 10;

@@ -69,7 +69,8 @@
                 width: 80%;
                 height: 100%;
                 margin: auto;
-                filter: blur(1px);
+                // filter: blur(1px);
+                filter: none;
                 opacity: 0.5;
                 object-fit: cover;
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){

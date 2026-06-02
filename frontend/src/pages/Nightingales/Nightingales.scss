@@ -56,11 +56,10 @@
         }
 
         &_starryskyContainer {
-            margin: auto;
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            pointer-events: none;
             
             &_starrysky {
                 justify-content: center;
