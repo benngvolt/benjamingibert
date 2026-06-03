@@ -178,10 +178,10 @@
     z-index: -1;
     pointer-events: none;
     background:
-    radial-gradient(90vw 60vh at 15% 20%, #c5c1b3 0%, transparent 60%),
-    radial-gradient(75vw 65vh at 80% 25%, #745b4e 0%, transparent 60%),
-    radial-gradient(70vw 70vh at 40% 85%, #8d8468 0%, transparent 65%),
-    radial-gradient(90vw 80vh at 75% 75%, #a69b88 0%, transparent 65%),
+    radial-gradient(90vw 60vh at 15% 20%, #5c666f 0%, transparent 60%),
+    radial-gradient(75vw 65vh at 80% 25%, #857256 0%, transparent 60%),
+    radial-gradient(70vw 70vh at 40% 85%, #564b3e 0%, transparent 65%),
+    radial-gradient(90vw 80vh at 75% 75%, #675235 0%, transparent 65%),
     #0b0d0f;                
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
