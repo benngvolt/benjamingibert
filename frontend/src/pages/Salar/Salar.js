@@ -47,7 +47,7 @@ function Salar() {
     return track?.[`trackText_${lang}`] ?? "";
   };
 
-  const backgroundColor = '#a69b88'
+  // const backgroundColor = '#a69b88'
 
   return (
     
@@ -56,10 +56,12 @@ function Salar() {
       <NavBar />
 
       <div className='salar_bg'></div>
+      <div className='salar_bgImage'>
         <img
           className='salar_mainDataContainer_title'
           src={salar_title}
         /> 
+      
 
       <section className='salar_mainDataContainer'>
         <SalarDatas 
@@ -85,6 +87,7 @@ function Salar() {
           />
         </div>
       </section>
+      </div>
       <OneMediaContainer
         mediaSrc={salar_amanecer}
         mediaType="image"

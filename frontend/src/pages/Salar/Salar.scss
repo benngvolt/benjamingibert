@@ -3,7 +3,7 @@
 .salar {
     
     width: 100vw;
-    padding-top: 45px;
+    // padding-top: 45px;
     isolation: isolate;
     position: relative;
     @include Column;
@@ -12,12 +12,28 @@
     animation: apparition 1s ease forwards;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;  
-        padding-top: 90px;               
+                    
     }
     
     @media only screen and (max-width:$mobileMaxWidth){
         row-gap: 45px;
-        padding-top: 67px;
+        
+    }
+    
+    &_bgImage {
+            padding-top: 45px;
+            background: linear-gradient(to top, #d4b592 0%, #000000 100%);
+            
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+                padding-top: 90px;               
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                
+                padding-top: 67px;
+            }
+        
     }
     
     &_mainDataContainer {
@@ -52,6 +68,7 @@
             width: 90%;
             object-fit: contain;
             display: flex;
+            
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
             }
@@ -177,12 +194,14 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background:
-    radial-gradient(90vw 60vh at 15% 20%, #5c666f 0%, transparent 60%),
-    radial-gradient(75vw 65vh at 80% 25%, #857256 0%, transparent 60%),
-    radial-gradient(70vw 70vh at 40% 85%, #564b3e 0%, transparent 65%),
-    radial-gradient(90vw 80vh at 75% 75%, #675235 0%, transparent 65%),
-    #0b0d0f;                
+    // background:
+    // radial-gradient(90vw 60vh at 15% 20%, #5c666f 0%, transparent 60%),
+    // radial-gradient(75vw 65vh at 80% 25%, #857256 0%, transparent 60%),
+    // radial-gradient(70vw 70vh at 40% 85%, #564b3e 0%, transparent 65%),
+    // radial-gradient(90vw 80vh at 75% 75%, #675235 0%, transparent 65%),
+    // #0b0d0f;  
+    
+    background-color: #d4b592;
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
