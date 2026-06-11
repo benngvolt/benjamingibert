@@ -7,9 +7,10 @@
     isolation: isolate;
     position: relative;
     @include Column;
-    row-gap: 90px;
+    row-gap: 45px;
     padding-bottom: 90px;
     animation: apparition 1s ease forwards;
+    background:#7e7162;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;  
                     
@@ -21,17 +22,17 @@
     }
     
     &_bgImage {
-            padding-top: 45px;
-            background: linear-gradient(to top, #d4b592 0%, #000000 100%);
-            
+            // padding-top: 45px;
+            background: linear-gradient(to top, #7e7162 0%, #000000 100%);
+            width: auto;
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 
-                padding-top: 90px;               
+                            
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
                 
-                padding-top: 67px;
+                
             }
         
     }
@@ -39,6 +40,7 @@
     &_mainDataContainer {
         animation: apparition 3s ease forwards;
         width: 100%;
+        
         @include Column;
         row-gap: 90px;
         font-family: 'Montserrat';

@@ -1,0 +1,78 @@
+@import "../../utils/mixins";
+
+.bio {
+  @include Column;
+  row-gap: 45px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  // aspect-ratio: 1.5/1;
+  overflow: hidden; // ✅ important pour cacher le dépassement du parallax
+
+  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        
+  }
+  
+  @media only screen and (max-width:$mobileMaxWidth){
+    margin: 0 auto;
+  }
+
+
+
+  &_paragraph {
+    width: 90%;
+    margin: auto;
+    @include Column;
+    // column-gap: 45px;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+
+    &_title {
+      width: 60%;
+      margin: 1% auto;
+      font-family: "SpecialFont";
+      @include font-size(1);
+      color: $salarcolor1;
+
+      object-fit: contain;
+      filter: brightness(1);
+
+      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+      }
+      
+      @media only screen and (max-width:$mobileMaxWidth){
+          width: 80%;
+          margin: 22px auto;
+      }
+
+    }
+
+    &_texts {
+        // @include Column;
+        width: 60%;
+        margin: auto;
+        padding: 22px;
+        font-family: 'Montserrat';
+        @include font-size(4);
+        gap: 22px;
+        text-align: justify;
+        color: white;
+        strong {
+          display: block;
+          margin-top: 45px;
+        }
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+          width: 80%;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            width: 100%;
+            padding: 0 22px;
+            box-sizing: border-box;
+      }
+    }
+  }
+}

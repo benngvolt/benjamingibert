@@ -7,39 +7,67 @@
        
 
         &_networksList {
-            @include Row;
+            
             justify-content: space-between;
             gap: 1rem; // petit espace entre les logos
-            margin: 45px auto;
+            
             width: auto;
             padding: 0 10px;
             box-sizing: border-box;
+            &--row {
+
+                margin: 45px auto;
+                @include Row;
+            }
+
+            &--column {
+
+                margin: 45px auto;
+                @include Column;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    @include Row;
+                    margin: 0 auto;
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    @include Row;
+                    margin: 0 auto;
+                }
+            }
             
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
-                display: grid;
+                
                 grid-template-columns: 1fr 1fr 1fr;
                 margin: 12px auto;
-                gap: 30px;
+                
                 width: auto;
             }
 
             &_item {
 
                 position: relative;
-                width: 40px; // ajuste selon la taille de tes logos
-                height: 40px;
+
+                &--small {
+                    width: 30px; // ajuste selon la taille de tes logos
+                    height: 30px;
+
+                }
+                &--large {
+                    width: 40px; // ajuste selon la taille de tes logos
+                    height: 40px;
+                }
 
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     
                 }
                 
                 @media only screen and (max-width:$mobileMaxWidth){
-                    width: 40px; // ajuste selon la taille de tes logos
-                    height: 40px;
+                    // width: 40px; // ajuste selon la taille de tes logos
+                    // height: 40px;
                     margin: auto;
                 }
 

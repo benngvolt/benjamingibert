@@ -15,7 +15,7 @@ import deezerLogo2 from '../../assets/deezer2.png'
 import instagramLogo from '../../assets/instagram.png'
 import instagramLogo2 from '../../assets/instagram2.png'
 
-function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram, color} ) {
+function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram, color, direction} ) {
     const networks = [
         {
             url: bandcamp,
@@ -56,9 +56,9 @@ function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram
     ]
 
     return (
-        <ul className='home_menu_networksList'>
+        <ul className={direction==="column"?'home_menu_networksList home_menu_networksList--column':'home_menu_networksList home_menu_networksList--row'}>
             {networks.map((ntw, index) => (
-                <li className='home_menu_networksList_item' key={index}>
+                <li className={direction==="column"?'home_menu_networksList_item home_menu_networksList_item--small':'home_menu_networksList_item home_menu_networksList_item--large'} key={index}>
                     <a
                         className={`home_menu_networksList_item_link ${color ? `home_menu_networksList_item_link--${color}` : ''}`}
                         href={ntw.url}

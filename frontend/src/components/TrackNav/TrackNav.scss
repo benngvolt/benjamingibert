@@ -1,0 +1,94 @@
+@import '../../utils/mixins';
+
+.trackNav {
+
+    width: 200px;
+    padding: 22px 12px;
+    @include font-size(4);
+    font-family: 'Montserrat';
+    z-index: 200;
+    row-gap: 22px;
+    justify-content: flex-start;
+    background-color:black;
+    border-radius: 0 10px 10px 0;
+    position: fixed;
+    bottom: 45px;
+    left: 0;
+    @include Column;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+        padding: 12px;
+        box-sizing: border-box;
+        @include Column;  
+        width: 100%;
+        margin: auto;
+        position: relative;   
+        top: 40%;
+        left: 0;
+        justify-content: space-between; 
+        border-radius: 0px;
+        align-items: center;
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        padding: 12px;
+        box-sizing: border-box;
+        @include Column;  
+        width: 100%;
+        margin: auto;
+        position: relative;   
+        top: 40%;
+        left: 0;
+        justify-content: space-between; 
+        border-radius: 0px;
+        align-items: center;
+    }
+
+
+    &_nav {
+        @include Column;
+
+        &_arrow {
+            margin-bottom: 22px;
+            color: white;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                display: none;
+            }
+            
+            @media only screen and (max-width:$mobileMaxWidth){
+                display: none;
+            }
+
+        }
+        &_link {
+            color: white;
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    &_trackList {
+
+        &_item {
+
+            &_link {
+                color: white;
+                
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        cursor: pointer;
+                        font-weight: bold;
+                }
+            }
+            }
+        }
+    }
+}

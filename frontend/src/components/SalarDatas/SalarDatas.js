@@ -5,6 +5,7 @@ import { Reveal } from "../Reveal/Reveal";
 function SalarDatas({ lang }) {
   return (
     <div className="salar_mainDataContainer_firstContainer">
+    
       {lang === "en" && (
         <div className="salar_mainDataContainer_datas">
 

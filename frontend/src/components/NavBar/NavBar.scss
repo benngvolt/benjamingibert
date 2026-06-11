@@ -1,6 +1,33 @@
 @import '../../utils/mixins';
 
 .navBar {
+    
+    &_navContainer {
+        position: fixed;
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            position: fixed;
+            box-sizing: border-box;
+            @include Column;  
+            width: 100%;     
+            top: 0;
+            left: 0;
+            justify-content: space-between; 
+            border-radius: 0px;
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            position: fixed;
+            @include Column;  
+            width: 100%;     
+            top: 0;
+            left: 0;
+            padding: 12px;
+            box-sizing: border-box;
+            justify-content: space-between; 
+            border-radius: 0px;
+        }
+    }
+
     @include font-size(3);
     font-family: 'Montserrat';
     z-index: 200;
@@ -19,7 +46,8 @@
         padding: 12px;
         box-sizing: border-box;
         @include Column;  
-        width: 100%;     
+        width: 100%;
+        position: fixed;   
         top: 0;
         left: 0;
         justify-content: space-between; 
@@ -31,6 +59,7 @@
         width: 100%;     
         top: 0;
         left: 0;
+        position: fixed;   
         padding: 12px;
         box-sizing: border-box;
         justify-content: space-between; 
@@ -44,14 +73,14 @@
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             
             justify-content: center; 
-            
+            @include Row;
             margin: auto;
             
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
             margin: auto;
-            
+            @include Row;
             justify-content: center; 
             
         }
@@ -67,6 +96,7 @@
         justify-content: center;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             width: 10%;
+            
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
@@ -91,10 +121,11 @@
         svg:hover  {
                 color: greenyellow;
         }
-
+        @media (hover: hover) and (pointer: fine) {
         &:hover {
             cursor: pointer;
         }
+    }
     }
 
     &_langList {
@@ -102,22 +133,24 @@
         
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             margin: 0 auto;
-            @include Column;
+            @include Row;
             justify-content: center;
+            
             margin-bottom: 15px;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
             margin: 0 auto;
-            @include Column;
+            @include Row;
             justify-content: center;
             margin-bottom: 15px;
         }
-
+        @media (hover: hover) and (pointer: fine) {
         &:hover {
             cursor: pointer;
             font-weight: 800;
         }
+    }
 
         &_icon {
             width: 100%;
@@ -145,10 +178,12 @@
                 border: none;
                 
                 
-                @include font-size(4);    
-                &:hover {
-                    cursor: pointer;
-                    color: rgb(102, 255, 0);
+                @include font-size(4);  
+                @media (hover: hover) and (pointer: fine) {  
+                    &:hover {
+                        cursor: pointer;
+                        color: rgb(255, 255, 255);
+                    }
                 }
             }
             &--closed {
@@ -159,21 +194,26 @@
                 display: flex;
                 flex-direction: column;
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    margin-top: 22px;
+                    // margin-top: 22px;
+                    margin-left: 22px;
                     @include Row;
                     
                 }
                 
                 @media only screen and (max-width:$mobileMaxWidth){
-                    margin-top: 22px;
+                    // margin-top: 22px;
+                    margin-left: 22px;
                     @include Row;
                 }
             }
 
             &_fr, &_en, &_jp {
-                color: white;
+                color: rgb(120, 120, 120);
+                
                 &--selected {
-                    color: rgb(102, 255, 0);
+                    // color: rgb(102, 255, 0);
+                    font-weight: 900;
+                    color: white;
                 }
             }
         }
@@ -196,6 +236,12 @@
             color: white;
             
             @include Row;
+        }
+        @media (hover: hover) and (pointer: fine) {  
+            &:hover {
+                cursor: pointer;
+                
+            }
         }
 
     }

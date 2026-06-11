@@ -3,10 +3,11 @@
 .taihua_livePhotosContainer {
     @include Column;
     width: 100vw;
+    
     margin: 0 auto;
     z-index: 100;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+              
     }
     
     @media only screen and (max-width:$mobileMaxWidth){
@@ -17,12 +18,15 @@
         img {
             z-index: 100;
             width: 100%;
+            height: 100vh;
             object-fit: cover;
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+                height: auto;
+                aspect-ratio: 1;
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
+                height: auto;
                 aspect-ratio: 1;
             }
         }

@@ -4,7 +4,7 @@ import { Reveal } from "../Reveal/Reveal";
 
 function TrackBox({ trackText, trackTitle, imgTitle, trackNumber, color }) {
   return (
-    <section className={`taihua_tracks taihua_tracks${trackNumber}`}>
+    <section className={`taihua_tracks taihua_tracks${trackNumber}`} id={trackTitle}>
       <div className="taihua_tracks_track">
         <img
           className={`taihua_tracks_track_imgTitle taihua_tracks_track_imgTitle--${color}`}

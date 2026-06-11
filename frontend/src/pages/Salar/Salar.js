@@ -27,8 +27,9 @@ import SalarDatas from '../../components/SalarDatas/SalarDatas'
 import SalarDescription from '../../components/SalarDescription/SalarDescription'
 import salarTracksTexts from '../../assets/salar/salarTracksTexts.json'
 import salarMiscTexts from '../../assets/salar/salarMiscTexts.json'
+import BioBox from '../../components/BioBox/BioBox'
+import LiveBox from '../../components/LiveBox/LiveBox'
 
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 import { useApp } from "../../utils/AppContext";
 
@@ -52,19 +53,17 @@ function Salar() {
   return (
     
     <main className='salar'>
-      
-      <NavBar />
-
-      <div className='salar_bg'></div>
+    
       <div className='salar_bgImage'>
-        <img
+        {/* <img
           className='salar_mainDataContainer_title'
           src={salar_title}
-        /> 
+        />  */}
+      
       
 
       <section className='salar_mainDataContainer'>
-        <SalarDatas 
+        {/* <SalarDatas 
           lang={lang}
         />
         <MusicNetworks
@@ -75,7 +74,9 @@ function Salar() {
             deezer="https://www.deezer.com/fr/album/123080572"
             instagram="https://www.instagram.com/bgibertmusic/"
             // color=""
-        />
+        /> */}
+
+        
         
         <OneMediaContainer
           mediaSrc={salar_artwork}
@@ -182,6 +183,17 @@ function Salar() {
         trackTitle='stellar'
         trackText={getTrackText(7)}
         color='salar'
+      />
+      <BioBox
+        lang={lang}
+      />
+      <LiveBox
+        lang={lang}
+      />
+      <NavBar 
+        album= "salar"
+        tracks={["amanecer","saltscar", "texture of shards", "revolcadero", "chañar", "alti plano", "stellar"]}
+        language={lang}
       />
     </main>
     
