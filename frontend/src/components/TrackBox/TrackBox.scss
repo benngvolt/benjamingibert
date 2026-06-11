@@ -7,15 +7,17 @@
   margin: 0 auto;
   position: relative;
   display: flex;
+
   // aspect-ratio: 1.5/1;
   overflow: hidden; // ✅ important pour cacher le dépassement du parallax
 
   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-        
+    padding-top: 22px;
   }
   
   @media only screen and (max-width:$mobileMaxWidth){
     margin: 0 auto;
+    padding-top: 22px;
   }
 
   &_track {
