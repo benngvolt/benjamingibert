@@ -3,7 +3,9 @@
 .navBar {
     
     &_navContainer {
+        max-height: 100vh;
         position: fixed;
+
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             position: fixed;
             box-sizing: border-box;
@@ -91,7 +93,6 @@
     &_link {
         filter: saturate(0);
         margin: auto;
-        
         display: flex;
         justify-content: center;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
@@ -136,14 +137,16 @@
             @include Row;
             justify-content: center;
             
-            margin-bottom: 15px;
+            margin: auto;
+            height: 50px;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
             margin: 0 auto;
             @include Row;
             justify-content: center;
-            margin-bottom: 15px;
+            margin: auto;
+            height: 50px;
         }
         @media (hover: hover) and (pointer: fine) {
         &:hover {
@@ -253,7 +256,7 @@
     }
     &_nav--closed {
         @include Column;
-        row-gap: 45px;
+        row-gap: 22px;
         justify-content: center;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             display: none;

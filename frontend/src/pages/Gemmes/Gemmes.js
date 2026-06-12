@@ -81,7 +81,7 @@ function Gemmes() {
         <GemmesDatas 
           lang={lang}
         />
-        <MusicNetworks
+        {/* <MusicNetworks
                     bandcamp="https://benjamingibert.bandcamp.com/album/gemmes"
                     spotify="https://open.spotify.com/intl-fr/album/5sCrdaKMtz4SbzHGT8osDc"
                     soundcloud="https://soundcloud.com/benjamin-gibert/sets/gemmes"
@@ -89,7 +89,7 @@ function Gemmes() {
                     deezer="https://www.deezer.com/fr/album/123097352"
                     instagram="https://www.instagram.com/bgibertmusic/"
                     color="black"
-                />
+                /> */}
         <OneMediaContainer
           mediaSrc={gemmes_window}
           mediaType="image"

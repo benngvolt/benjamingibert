@@ -71,7 +71,7 @@ function NavBar({tracks, album, language}) {
             </p>
           </Link>
 
-          <div className="navBar_albums">
+          {/* <div className="navBar_albums">
             <Link
               className="navBar_link navBar_link--night"
               aria-label="Accéder à la page de Nightingales'"
@@ -98,7 +98,7 @@ function NavBar({tracks, album, language}) {
             >
               <img src={gemmes_icon} alt="" />
             </Link>
-          </div>
+          </div> */}
           <MusicNetworks
                       bandcamp="https://benjamingibert.bandcamp.com/"
                       spotify="https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX"

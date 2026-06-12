@@ -56,9 +56,14 @@ function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram
     ]
 
     return (
-        <ul className={direction==="column"?'home_menu_networksList home_menu_networksList--column':'home_menu_networksList home_menu_networksList--row'}>
+        <ul className={`home_menu_networksList home_menu_networksList--${direction}`}>
             {networks.map((ntw, index) => (
-                <li className={direction==="column"?'home_menu_networksList_item home_menu_networksList_item--small':'home_menu_networksList_item home_menu_networksList_item--large'} key={index}>
+                <li className={`home_menu_networksList_item ${
+                    direction === "column"
+                      ? "home_menu_networksList_item--small"
+                      : "home_menu_networksList_item--large"
+                  }`}
+                  key={index}>
                     <a
                         className={`home_menu_networksList_item_link ${color ? `home_menu_networksList_item_link--${color}` : ''}`}
                         href={ntw.url}

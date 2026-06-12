@@ -70,6 +70,7 @@ function Home () {
                     deezer="https://www.deezer.com/fr/artist/5685820"
                     instagram="https://www.instagram.com/bgibertmusic/"
                     color=""
+                    direction="row"
                 />
                 <div className="home_menu_langChoice">
                     <button className={lang==='fr'? 'home_menu_langChoice_fr home_menu_langChoice_fr--selected':'home_menu_langChoice_fr'} onClick={() => setLang('fr')}>

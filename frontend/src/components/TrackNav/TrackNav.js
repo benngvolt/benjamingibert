@@ -22,6 +22,12 @@ return (
             <a className="trackNav_nav_link" href={`#${album}_album`}>{language==="jp"?"アルバム":"album"}</a>
             <a className="trackNav_nav_link" href="#bio">{language==="jp"?"バイオ":"bio"}</a>
             <a className="trackNav_nav_link" href="#live">{language==="jp"?"ライブ":"live"}</a>
+            <a className="trackNav_nav_link" href="#career">{language === "jp"
+                ? "経歴"
+                : language === "en"
+                ? "career"
+                : "parcours"}
+            </a>
         </div>
         <ul className="trackNav_trackList">
             {tracks.map((track, index) => (

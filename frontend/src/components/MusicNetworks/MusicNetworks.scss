@@ -15,9 +15,18 @@
             padding: 0 10px;
             box-sizing: border-box;
             &--row {
-
                 margin: 45px auto;
                 @include Row;
+                @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                    @include Row;
+                    margin: 0 auto;
+                }
+                
+                @media only screen and (max-width:$mobileMaxWidth){
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    margin: 0 auto;
+                }
             }
 
             &--column {
