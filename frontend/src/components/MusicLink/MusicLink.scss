@@ -42,11 +42,12 @@
             
             margin: auto 0;
         }
-
-        &:hover {
-            background: none;
-            color: white;
-            // border: none;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: none;
+                color: white;
+                // border: none;
+            }
         }
     }
 }

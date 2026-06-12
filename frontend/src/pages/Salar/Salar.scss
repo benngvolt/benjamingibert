@@ -6,11 +6,11 @@
     // padding-top: 45px;
     isolation: isolate;
     position: relative;
-    @include Column;
+    // @include Column;
     row-gap: 45px;
-    padding-bottom: 90px;
+    // padding-bottom: 90px;
     animation: apparition 1s ease forwards;
-    background:#7e7162;
+    background:#7e7061;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;  
                     
@@ -23,7 +23,7 @@
     
     &_bgImage {
             // padding-top: 45px;
-            background: linear-gradient(to top, #7e7162 0%, #000000 100%);
+            background: linear-gradient(to top, #7e7061 0%, #000000 100%);
             width: auto;
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 

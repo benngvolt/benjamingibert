@@ -4,7 +4,7 @@
   @include Column;
   row-gap: 45px;
   width: 100%;
-  
+  background-color: black;
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -13,11 +13,13 @@
 
   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
     padding-top: 45px;
+    
   }
   
   @media only screen and (max-width:$mobileMaxWidth){
     margin: 0 auto;
     padding-top: 45px;
+    
   }
 
 
@@ -26,14 +28,25 @@
     width: 90%;
     margin: auto;
     @include Column;
+    
     // column-gap: 45px;
     justify-content: center;
     position: relative;
     z-index: 10;
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                
+    }
+    
+    @media only screen and (max-width:$mobileMaxWidth){
+        row-gap: 45px;
+        
+    }
 
     &_title {
       width: 60%;
       margin: 1% auto;
+      
+      text-align: justify;
       font-family: "SpecialFont";
       @include font-size(1);
       color: $salarcolor1;
@@ -42,12 +55,14 @@
       filter: brightness(1);
 
       @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+        width: 80%;
+        
       }
       
       @media only screen and (max-width:$mobileMaxWidth){
-          width: 80%;
-          margin: 22px auto;
+          width: 100%;
+          
+          
       }
 
     }

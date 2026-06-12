@@ -5,7 +5,7 @@ import "./Reveal.scss";
 // ✅ Réglages en dur (tu touches ici une seule fois)
 const OBSERVER = {
   once: true,
-  threshold: 0.18,
+  threshold: 0.1,
   rootMargin: "0px 0px -14% 0px",
 };
 

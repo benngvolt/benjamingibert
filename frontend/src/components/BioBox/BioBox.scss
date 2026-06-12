@@ -7,6 +7,7 @@
   margin: 0 auto;
   position: relative;
   display: flex;
+  background-color: black;
 
   // aspect-ratio: 1.5/1;
   overflow: hidden; // ✅ important pour cacher le dépassement du parallax
@@ -24,7 +25,7 @@
 
   &_paragraph {
     width: 90%;
-    margin: auto;
+    margin: 0 auto 45px auto;
     @include Column;
     // column-gap: 45px;
     justify-content: center;
@@ -32,6 +33,7 @@
     z-index: 10;
 
     &_title {
+      padding-top: 45px;
       width: 60%;
       margin: 1% auto;
       font-family: "SpecialFont";
@@ -42,12 +44,15 @@
       filter: brightness(1);
 
       @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                
+        width: 80%;  
+        padding-top: 22px;
       }
       
       @media only screen and (max-width:$mobileMaxWidth){
-          width: 80%;
+          width: 100%;
           margin: 22px auto;
+          padding-left: 22px;  
+          padding-top: 0;
       }
 
     }
@@ -65,6 +70,7 @@
         strong {
           display: block;
           margin-top: 45px;
+          text-align: left;
         }
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
           width: 80%;

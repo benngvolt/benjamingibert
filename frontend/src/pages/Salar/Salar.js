@@ -56,38 +56,18 @@ function Salar() {
     <main className='salar'>
     
       <div className='salar_bgImage'>
-        {/* <img
-          className='salar_mainDataContainer_title'
-          src={salar_title}
-        />  */}
-      
-      
-
       <section className='salar_mainDataContainer'>
-        {/* <SalarDatas 
-          lang={lang}
-        />
-        <MusicNetworks
-            bandcamp="https://benjamingibert.bandcamp.com"
-            spotify="https://open.spotify.com/intl-fr/album/6ZJviIbXhX7oWwPy2TCaiH"
-            soundcloud="https://soundcloud.com/benjamin-gibert"
-            apple="https://music.apple.com/fr/album/taihua/1491619557"
-            deezer="https://www.deezer.com/fr/album/123080572"
-            instagram="https://www.instagram.com/bgibertmusic/"
-            // color=""
-        /> */}
-
-        
-        
         <OneMediaContainer
           mediaSrc={salar_artwork}
           mediaType="image"
         />
+        
         <div className='salar_mainDataContainer_descriptionContainer'>
           <SalarDescription
             lang={lang}
           />
         </div>
+        
       </section>
       </div>
       <OneMediaContainer
@@ -185,6 +165,11 @@ function Salar() {
         trackText={getTrackText(7)}
         color='salar'
       />
+      <NavBar 
+        album= "salar"
+        tracks={["amanecer","saltscar", "texture of shards", "revolcadero", "chañar", "alti plano", "stellar"]}
+        language={lang}
+      />
       
       <BioBox
         lang={lang}
@@ -196,12 +181,6 @@ function Salar() {
       
       <LiveBox
         lang={lang}
-      />
-    
-      <NavBar 
-        album= "salar"
-        tracks={["amanecer","saltscar", "texture of shards", "revolcadero", "chañar", "alti plano", "stellar"]}
-        language={lang}
       />
     </main>
     

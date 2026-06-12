@@ -20,11 +20,11 @@ function LiveBox({ lang }) {
   return (
     <section className="live" id="live">
       <div className="live_paragraph">
-        <Reveal>
-          <p className="live_paragraph_title">
+        
+          <h3 className="live_paragraph_title">
             {currentLive.title}
-          </p>
-        </Reveal>
+          </h3>
+        
 
         <Reveal>
           <p

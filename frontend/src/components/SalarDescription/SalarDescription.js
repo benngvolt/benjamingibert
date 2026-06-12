@@ -2,6 +2,7 @@ import "./SalarDescription.scss";
 import React from "react";
 import { Reveal } from "../Reveal/Reveal";
 import salar_title from '../../assets/salar/salar_title.webp'
+import SalarDatas from '../../components/SalarDatas/SalarDatas'
 
 const copy = {
 
@@ -184,6 +185,9 @@ function SalarDescription({ lang }) {
           className='salar_mainDataContainer_title'
           src={salar_title}
         /> 
+        <div className="salar_mainDataContainer_datasContainer">
+          <SalarDatas lang={lang}/>
+        </div>
       </Reveal>
       <Reveal>
         <p className="salar_mainDataContainer_descriptionContainer_descriptions_1">
