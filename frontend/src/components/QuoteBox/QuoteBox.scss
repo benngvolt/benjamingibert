@@ -5,6 +5,7 @@
     margin: 0 auto;
     width: 50%;
     z-index: 10;
+    padding-bottom: 45px;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         width: 80%;            
     }
@@ -12,6 +13,7 @@
     @media only screen and (max-width:$mobileMaxWidth){
         width: 80%;
         margin: 45px auto;
+        padding-bottom: 0;
     }
 
     &_text {
