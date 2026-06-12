@@ -70,13 +70,14 @@
             width: 90%;
             object-fit: contain;
             display: flex;
+            padding: 45px 22px 0 22px;
             
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-                    
+                
             }
             
             @media only screen and (max-width:$mobileMaxWidth){
-                padding: 0 22px;
+                
                 box-sizing: border-box;
                 width: 100%;
             }

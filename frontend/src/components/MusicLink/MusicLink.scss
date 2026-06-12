@@ -3,7 +3,7 @@
 .musicLink {
 
     margin: 45px auto;
-    width: 100%;
+    width: auto;
     box-sizing: border-box;
     @include Column;
     justify-content: center;
@@ -19,7 +19,7 @@
     a {
         @include Row;
         box-sizing: border-box;
-        color: white;
+        
         justify-content: center;
         margin: auto;
         width: 100%;
@@ -28,7 +28,8 @@
         border-radius: 50px;
         font-family: 'Montserrat';
         gap: 12px;
-
+        background-color: white;
+        color: black;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                  
         }
@@ -43,9 +44,9 @@
         }
 
         &:hover {
-            background-color: white;
-            color: black;
-            border: none;
+            background: none;
+            color: white;
+            // border: none;
         }
     }
 }

@@ -76,5 +76,30 @@
             box-sizing: border-box;
       }
     }
+
+    
+  }
+  &_liveMediaContainer {
+    
+    @include Column;
+    width: 100%;
+    row-gap: 6px;
+
+    &_photosGrid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
+      }
+    }
+    &_video {
+      
+    }
   }
 }

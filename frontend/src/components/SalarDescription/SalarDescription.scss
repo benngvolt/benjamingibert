@@ -13,11 +13,13 @@
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         width: 90%;
+        padding-top: 45px;
     }
     
     @media only screen and (max-width:$mobileMaxWidth){
         width: 100%;
         row-gap: 22px;
+        padding-top: 45px;
     }
 
     &_1 {

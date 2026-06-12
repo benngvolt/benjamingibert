@@ -14,15 +14,16 @@ import salar_revolcadero from '../../assets/salar/salar_revolcadero.webp'
 import salar_chanar from '../../assets/salar/salar_chanar.webp'
 import salar_altiplano from '../../assets/salar/salar_altiplano.webp'
 import salar_stellar from '../../assets/salar/salar_stellar.webp'
+import portraitEPK from '../../assets/portraitEPK.webp'
+
 import NavBar from '../../components/NavBar/NavBar'
 import TrackBox from '../../components/TrackBox/TrackBox'
 import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
 import MusicLink from '../../components/MusicLink/MusicLink'
 import QuoteBox from '../../components/QuoteBox/QuoteBox'
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
-import PhotoGallery from '../../components/PhotoGallery/PhotoGallery'
 import OneMediaContainer from '../../components/OneMediaContainer/OneMediaContainer'
-
+import PhotoGallery from '../../components/PhotoGallery/PhotoGallery'
 import SalarDatas from '../../components/SalarDatas/SalarDatas'
 import SalarDescription from '../../components/SalarDescription/SalarDescription'
 import salarTracksTexts from '../../assets/salar/salarTracksTexts.json'
@@ -184,12 +185,19 @@ function Salar() {
         trackText={getTrackText(7)}
         color='salar'
       />
+      
       <BioBox
         lang={lang}
       />
+      <OneMediaContainer
+        mediaSrc={portraitEPK}
+        mediaType="image"
+      />
+      
       <LiveBox
         lang={lang}
       />
+    
       <NavBar 
         album= "salar"
         tracks={["amanecer","saltscar", "texture of shards", "revolcadero", "chañar", "alti plano", "stellar"]}
