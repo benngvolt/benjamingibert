@@ -2,11 +2,6 @@ import './Salar.scss'
 import { Link } from 'react-router-dom'
 import React, { useRef, useState, useEffect } from 'react'
 import salar_artwork from '../../assets/salar/salar_artwork.webp'
-import salar_title from '../../assets/salar/salar_title.webp'
-
-import { Helmet } from "react-helmet-async";
-
-
 import salar_amanecer from '../../assets/salar/salar_amanecer.webp'
 import salar_saltscar from '../../assets/salar/salar_saltscar.webp'
 import salar_textureofshards from '../../assets/salar/salar_textureofshards.webp'
@@ -15,21 +10,18 @@ import salar_chanar from '../../assets/salar/salar_chanar.webp'
 import salar_altiplano from '../../assets/salar/salar_altiplano.webp'
 import salar_stellar from '../../assets/salar/salar_stellar.webp'
 import portraitEPK from '../../assets/portraitEPK.webp'
-
 import NavBar from '../../components/NavBar/NavBar'
 import TrackBox from '../../components/TrackBox/TrackBox'
-import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
-import MusicLink from '../../components/MusicLink/MusicLink'
 import QuoteBox from '../../components/QuoteBox/QuoteBox'
-import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
 import OneMediaContainer from '../../components/OneMediaContainer/OneMediaContainer'
-import PhotoGallery from '../../components/PhotoGallery/PhotoGallery'
-import SalarDatas from '../../components/SalarDatas/SalarDatas'
 import SalarDescription from '../../components/SalarDescription/SalarDescription'
 import salarTracksTexts from '../../assets/salar/salarTracksTexts.json'
 import salarMiscTexts from '../../assets/salar/salarMiscTexts.json'
 import BioBox from '../../components/BioBox/BioBox'
 import LiveBox from '../../components/LiveBox/LiveBox'
+import amanecer_videoclip_1 from '../../assets/salar/amanecer_videoclip_1.webp'
+import amanecer_videoclip_2 from '../../assets/salar/amanecer_videoclip_2.webp'
+import amanecer_videoclip_3 from '../../assets/salar/amanecer_videoclip_3.webp'
 
 
 import { useApp } from "../../utils/AppContext";
@@ -80,6 +72,12 @@ function Salar() {
         trackText={getTrackText(1)}
         color='salar'
       />
+      
+      <div className='salar_threePicturesContainer'>
+        <img src={amanecer_videoclip_1} alt='capture video videoclip Amanecer 1'/>
+        <img src={amanecer_videoclip_2} alt='capture video videoclip Amanecer 2'/>
+        <img src={amanecer_videoclip_3} alt='capture video videoclip Amanecer 3'/>
+      </div>
       <QuoteBox
         text={salarMiscTexts[0][`miscText_${lang}`]}
         author={salarMiscTexts[0].author}

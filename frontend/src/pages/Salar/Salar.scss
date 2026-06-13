@@ -36,6 +36,28 @@
             }
         
     }
+
+    &_threePicturesContainer {
+        display: grid;
+        width: 100%;
+        gap: 6px;
+        height: auto;
+        margin-bottom: 45px;
+        grid-template-columns: 1fr 1fr 1fr;
+        img {
+            object-fit: cover;
+            width: 100%;
+        }
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+          
+                        
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            @include Column;
+            
+        }
+    }
     
     &_mainDataContainer {
         animation: apparition 3s ease forwards;
