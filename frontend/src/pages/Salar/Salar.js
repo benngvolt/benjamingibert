@@ -78,6 +78,7 @@ function Salar() {
         <img src={amanecer_videoclip_2} alt='capture video videoclip Amanecer 2'/>
         <img src={amanecer_videoclip_3} alt='capture video videoclip Amanecer 3'/>
       </div>
+      
       <QuoteBox
         text={salarMiscTexts[0][`miscText_${lang}`]}
         author={salarMiscTexts[0].author}

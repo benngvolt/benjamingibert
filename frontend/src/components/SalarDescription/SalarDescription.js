@@ -190,21 +190,21 @@ function SalarDescription({ lang }) {
         </div>
       </Reveal>
       <Reveal>
-        <p className="salar_mainDataContainer_descriptionContainer_descriptions_1">
+        <div className="salar_mainDataContainer_descriptionContainer_descriptions_1">
           {content.title}
-        </p>
+        </div>
       </Reveal>
 
       <Reveal>
-        <p className="salar_mainDataContainer_descriptionContainer_descriptions_2">
+        <div className="salar_mainDataContainer_descriptionContainer_descriptions_2">
           {content.subtitle}
-        </p>
+        </div>
       </Reveal>
 
       <Reveal>
-        <p className="salar_mainDataContainer_descriptionContainer_descriptions_3">
+        <div className="salar_mainDataContainer_descriptionContainer_descriptions_3">
           {content.body}
-        </p>
+        </div>
       </Reveal>
     </div>
   );
