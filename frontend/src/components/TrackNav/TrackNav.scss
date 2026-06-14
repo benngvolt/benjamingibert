@@ -16,13 +16,14 @@
     left: 0;
     @include Column;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-        padding: 12px;
+        // padding: 12px;
         box-sizing: border-box;
-        @include Column;  
-        width: 100%;
-        margin: auto;
+        @include Row;  
+        width: auto;
+        margin: 22px auto 0 auto;
         position: relative;   
         top: 40%;
+        column-gap: 45px;
         left: 0;
         justify-content: space-between; 
         border-radius: 0px;
@@ -30,11 +31,12 @@
     }
     
     @media only screen and (max-width:$mobileMaxWidth){
-        padding: 12px;
+        // padding: 12px;
         box-sizing: border-box;
-        @include Column;  
-        width: 100%;
-        margin: auto;
+        @include Row;  
+        width: auto;
+        column-gap: 45px;
+        margin: 22px auto 0 auto;
         position: relative;   
         top: 40%;
         left: 0;

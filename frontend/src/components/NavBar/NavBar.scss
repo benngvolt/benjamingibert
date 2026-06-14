@@ -1,6 +1,22 @@
 @import '../../utils/mixins';
 
 .navBar {
+
+    &_firstContainer {
+        
+        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+            @include Column;
+            width: auto;
+            margin: auto;
+            
+        }
+        
+        @media only screen and (max-width:$mobileMaxWidth){
+            @include Column;
+        width: auto;
+        margin: auto;
+        }
+    }
     
     &_navContainer {
         max-height: 100vh;
@@ -54,6 +70,7 @@
         left: 0;
         justify-content: space-between; 
         border-radius: 0px;
+        row-gap: 33px;
     }
     
     @media only screen and (max-width:$mobileMaxWidth){
@@ -66,6 +83,7 @@
         box-sizing: border-box;
         justify-content: space-between; 
         border-radius: 0px;
+        row-gap: 33px;
     }
 
     
@@ -130,7 +148,7 @@
     }
 
     &_langList {
-        margin: 0 auto 22px auto;
+        margin: 22px auto 0 auto;
         
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             margin: 0 auto;
@@ -251,7 +269,7 @@
 
     &_nav--open {
         @include Column;
-        row-gap: 45px;
+        row-gap: 22px;
         justify-content: center;
     }
     &_nav--closed {

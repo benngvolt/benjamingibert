@@ -36,11 +36,13 @@
                 @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                     @include Row;
                     margin: 0 auto;
+                    padding: 12px 0;
                 }
                 
                 @media only screen and (max-width:$mobileMaxWidth){
                     @include Row;
                     margin: 0 auto;
+                    padding: 12px 0;
                 }
             }
             
