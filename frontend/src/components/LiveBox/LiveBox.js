@@ -447,9 +447,9 @@ function LiveBox({ lang }) {
       <div className="live_paragraph live_paragraph_end" id="career">
         <h3 className="live_paragraph_title">
           {lang === "fr"
-            ? "Parcours"
+            ? "parcours"
             : lang === "en"
-            ? "Career"
+            ? "career"
             : "経歴"}
         </h3>
 

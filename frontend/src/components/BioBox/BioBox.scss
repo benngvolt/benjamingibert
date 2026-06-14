@@ -51,7 +51,7 @@
       @media only screen and (max-width:$mobileMaxWidth){
           width: 100%;
           margin: 22px auto;
-          padding-left: 22px;  
+          // padding-left: 22px;  
           padding-top: 0;
       }
 
@@ -78,7 +78,7 @@
         
         @media only screen and (max-width:$mobileMaxWidth){
             width: 100%;
-            padding: 0 22px;
+            padding: 0;
             box-sizing: border-box;
       }
     }
