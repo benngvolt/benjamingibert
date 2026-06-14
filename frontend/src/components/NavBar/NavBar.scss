@@ -2,19 +2,24 @@
 
 .navBar {
 
+    
     &_firstContainer {
         
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-            @include Column;
+            @include Row;
+            justify-content: flex-start;
             width: auto;
-            margin: auto;
+            column-gap: 22px;
+            margin: 0 0 0 43%;
             
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
-            @include Column;
-        width: auto;
-        margin: auto;
+            @include Row;
+            justify-content: flex-start;
+            width: auto;
+            column-gap: 22px;
+            margin: 0 0 0 43%;
         }
     }
     
@@ -110,16 +115,16 @@
 
     &_link {
         filter: saturate(0);
-        margin: auto;
+        // margin: auto;
         display: flex;
         justify-content: center;
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
             width: 10%;
-            
+            margin: auto 0;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
-            
+            margin: auto 0;
         }
 
         &--taihua, &--gemmes {
@@ -132,6 +137,7 @@
                 width: 35px;
             }
         }
+
 
         svg {
             color: white;
@@ -148,22 +154,22 @@
     }
 
     &_langList {
-        margin: 22px auto 0 auto;
+        margin: 22px 0 0 auto;
         
         @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
-            margin: 0 auto;
+            margin: auto 0;
             @include Row;
             justify-content: center;
             
-            margin: auto;
+            
             height: 50px;
         }
         
         @media only screen and (max-width:$mobileMaxWidth){
-            margin: 0 auto;
+            margin: auto 0;
             @include Row;
             justify-content: center;
-            margin: auto;
+            
             height: 50px;
         }
         @media (hover: hover) and (pointer: fine) {
