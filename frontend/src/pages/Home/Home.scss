@@ -198,13 +198,14 @@
           @media only screen and (max-width: $mobileMaxWidth) {
             flex: 0 0 auto;
             width: 100%;
+            min-height: 106px;
             border-right: none;
             border-bottom: 1px solid $lineColor;
 
             img {
-              width: auto;
-              height: 46px;
-              max-width: 70%;
+              width: 50%;
+              height: auto;
+              margin: 0 auto;
             }
 
             &:last-child {
