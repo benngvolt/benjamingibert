@@ -80,7 +80,22 @@ function Taihua() {
         />
       </Helmet>
       
-      <NavBar />
+      <NavBar
+        album="taihua"
+        tracks={[
+          'barefoot',
+          'low tide cavern',
+          'native forests',
+          'tuis garden',
+          { id: 'low tide cavern', label: 'low tide cavern II' },
+          'shells',
+          { id: 'low tide cavern', label: 'low tide cavern III' },
+          'franz josef glacier',
+        ]}
+        language={lang}
+        theme="taihua"
+        minimal
+      />
 
       <div className='taihua_bg'></div>
         <img
@@ -294,6 +309,7 @@ function Taihua() {
       <OneMediaContainer
         mediaSrc={taihua_videoFjg}
         mediaType="video"
+        variant="large"
       />
       <QuoteBox
         text={taihuaMiscTexts[1][`miscText_${lang}`]}

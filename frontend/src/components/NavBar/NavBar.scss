@@ -62,9 +62,26 @@
     @include Column;
     row-gap: 45px;
     justify-content: center;
-    background-color:black;
+    background-color: var(--navBg, black);
     border-radius: 10px 0 0 10px;
     padding: 12px 12px 12px 0;
+
+    &--taihua {
+        --navBg: #{$taihuacolor1};
+    }
+
+    &--gemmes {
+        --navBg: #{$gemmecolor3};
+    }
+
+    &--nightingales {
+        --navBg: #{$nightColor2};
+    }
+
+    &--taihua &_firstContainer,
+    &--taihua &_nav > .home_menu_networksList {
+        filter: invert(1);
+    }
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         padding: 12px;
         box-sizing: border-box;

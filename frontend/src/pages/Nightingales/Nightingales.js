@@ -25,7 +25,7 @@ import landesVideo from '../../assets/nightingales/night_landes.mp4'
 import artworkVideo from '../../assets/nightingales/night_artworkvideo.mp4'
 import nightingalesTracksTexts from "../../assets/nightingales/nightingalesTracksTexts.json";
 import night_selfphoto from '../../assets/nightingales/night_selfphoto.webp'
-
+import noct_video from '../../assets/nightingales/Noctambulism.mp4'
 import TrackBox from '../../components/TrackBox/TrackBox'
 import TwoImagesContainer from '../../components/TwoImagesContainer/TwoImagesContainer'
 import MusicLink from '../../components/MusicLink/MusicLink'
@@ -66,7 +66,13 @@ function Nightingales () {
           href="https://benjamingibert.com/nightingales"
         />
       </Helmet>
-      <NavBar/>
+      <NavBar
+        album="nightingales"
+        tracks={['glassbirds II', 'noctambulism', 'aspérité liquide', 'taste of sap']}
+        language={lang}
+        theme="nightingales"
+        minimal
+      />
       <section className='nightingales_mainDataContainer'>
         <img className='nightingales_mainDataContainer_title' src={night_title}/>
         <div className='nightingales_mainDataContainer_starryskyContainer'>
@@ -148,6 +154,12 @@ function Nightingales () {
         trackTitle='noctambulism'
         trackText={getTrackText(2)}
         color='night'
+      />
+      <OneMediaContainer
+        mediaSrc={noct_video}
+        mediaType="video"
+        variant="small"
+        allowUnmute
       />
     
       <OneMediaContainer

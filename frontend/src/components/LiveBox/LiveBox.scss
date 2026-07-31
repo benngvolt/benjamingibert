@@ -117,8 +117,23 @@
         
       }
     }
+    &_videosRow {
+      @include Row;
+      width: 100%;
+      gap: 6px;
+
+      @media only screen and (max-width: $mobileMaxWidth) {
+        @include Column;
+      }
+    }
+
     &_video {
-      
+      width: 50%;
+      object-fit: cover;
+
+      @media only screen and (max-width: $mobileMaxWidth) {
+        width: 100%;
+      }
     }
   }
 }

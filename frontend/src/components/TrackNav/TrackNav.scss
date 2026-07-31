@@ -9,8 +9,25 @@
     z-index: 200;
     row-gap: 22px;
     justify-content: flex-start;
-    background-color:black;
+    background-color: var(--tnBg, black);
     border-radius: 0 10px 10px 0;
+
+    &--taihua {
+        --tnBg: #{$taihuacolor1};
+    }
+
+    &--gemmes {
+        --tnBg: #{$gemmecolor3};
+    }
+
+    &--nightingales {
+        --tnBg: #{$nightColor2};
+    }
+
+    &--taihua &_nav,
+    &--taihua &_trackList {
+        filter: invert(1);
+    }
     position: fixed;
     bottom: 45px;
     left: 0;

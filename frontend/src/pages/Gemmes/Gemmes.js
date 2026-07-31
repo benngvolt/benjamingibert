@@ -40,6 +40,14 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
 
 import { useApp } from "../../utils/AppContext";
 
+const gemmesTrackTitlesByLang = {
+  fr: ["demi sommeil", "pluie froide", "vent du nord", "lumières nocturnes", "cheminées"],
+  en: ["half sleep", "cold rain", "northern wind", "nocturnal lights", "fireplaces"],
+  jp: ["半眠", "冷たい雨", "北風", "夜の灯り", "暖炉"],
+};
+
+const gemmesTrackNavLabels = ["Gemme I", "Gemme II", "Gemme III", "Gemme IV", "Gemme V"];
+
 function Gemmes() {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -51,7 +59,7 @@ function Gemmes() {
     const track = gemmesTracksTexts.find(
       (track) => track.trackNumber === trackNumber
     );
-  
+
     return track?.[`trackText_${lang}`] ?? "";
   };
 
@@ -66,7 +74,16 @@ function Gemmes() {
           href="https://benjamingibert.com/gemmes"
         />
       </Helmet>
-      <NavBar />
+      <NavBar
+        album="gemmes"
+        tracks={(gemmesTrackTitlesByLang[lang] || gemmesTrackTitlesByLang.fr).map((id, i) => ({
+          id,
+          label: gemmesTrackNavLabels[i],
+        }))}
+        language={lang}
+        theme="gemmes"
+        minimal
+      />
 
       <div className='gemmes_bg'></div>
         <img
@@ -165,6 +182,7 @@ function Gemmes() {
       <OneMediaContainer
           mediaSrc={gemmes_video_g4_2LQ}
           mediaType="video"
+          variant="large"
       />
       <TrackBox
         trackNumber={4}
@@ -203,6 +221,7 @@ function Gemmes() {
       <OneMediaContainer
           mediaSrc={gemmes_video_g4_1LQ}
           mediaType="video"
+          variant="large"
       />
     </main>
 

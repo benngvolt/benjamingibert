@@ -61,7 +61,7 @@ $font-scales: (
 $nightColor1: rgb(152, 206, 234);
 $nightColor2: rgb(255, 62, 171);
 
-$gemmecolor1: #141414;
+$gemmecolor1: #484848;
 $gemmecolor2: #ddeaf5;
 $gemmecolor3: #ce6342;
 
@@ -72,8 +72,9 @@ $taihuacolor4:rgb(44, 44, 44);
 $taihuacolor5:rgb(66, 61, 57);
 $taihuacolor6:rgb(15, 19, 17);
 
-$salarcolor1: #fde2ac;
+$salarcolor1: #303674;
 $salarcolor2: #38004b;
+$salarcolor3: #dacab9;
 
 @mixin Column {
     display: flex;

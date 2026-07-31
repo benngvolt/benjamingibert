@@ -10,7 +10,7 @@
     row-gap: 45px;
     // padding-bottom: 90px;
     animation: apparition 1s ease forwards;
-    background:#7e7061;
+    background:$salarcolor3;
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
         row-gap: 45px;  
                     
@@ -23,7 +23,7 @@
     
     &_bgImage {
             // padding-top: 45px;
-            background: linear-gradient(to top, #7e7061 0%, #000000 100%);
+            background: linear-gradient(to top, $salarcolor3 0%, #000000 100%);
             width: auto;
             @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
                 

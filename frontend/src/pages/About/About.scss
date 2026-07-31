@@ -1,7 +1,45 @@
-em {
-    font-style: italic;
+@import '../../utils/mixins';
+
+.about {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgb(46, 46, 46);
+  box-sizing: border-box;
+  padding: 90px 90px 90px 45px;
+
+  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+    padding: 90px 45px 45px 45px;
   }
-  
-  strong {
-    font-weight: 600;
+
+  @media only screen and (max-width: $mobileMaxWidth) {
+    padding: 90px 22px 45px 22px;
   }
+
+  &__title {
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: white;
+    @include font-size(2);
+    max-width: 700px;
+    margin: 0 auto 45px auto;
+  }
+
+  &__bio {
+    font-family: 'Montserrat';
+    color: white;
+    @include font-size(4);
+    line-height: 1.6;
+    text-align: justify;
+    max-width: 700px;
+    margin: 0 auto;
+
+    em {
+      font-style: italic;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+  }
+}

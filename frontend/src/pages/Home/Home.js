@@ -26,62 +26,75 @@ function Home () {
                 href="https://benjamingibert.com/"
                 />
             </Helmet>
-            <section className='home_menu'>
-                <div className="home_video">
+            <div className="home_video">
                 <video autoPlay muted loop playsInline preload="metadata">
                     <source src={video} type="video/mp4" />
                 </video>
-                </div>
-                <h1 className='home_menu_artistName'>BENJAMIN GIBERT</h1>
-              
-                <Link
-                    className='home_menu_albumTitle home_menu_albumTitle--nightingales'
-                    aria-label="Accéder à la page de Nightingales"
-                    to="/Nightingales"
-                >
-                    <img src={titleNightingales}/>
-                </Link>
-                <Link
-                    className='home_menu_albumTitle home_menu_albumTitle--taihua'
-                    aria-label="Accéder à la page de Taihua"
-                    to="/Taihua"
-                >
-                    <img src={titleTaihua}/>
-                </Link>
-                <Link
-                    className='home_menu_albumTitle home_menu_albumTitle--gemmes'
-                    aria-label="Accéder à la page de Gemmes"
-                    to="/Gemmes"
-                >
-                    <img src={titleGemmes}/>
-                </Link>
-                {/* <Link
-                    className='home_menu_albumTitle home_menu_about'
-                    aria-label="Accéder à la À propos"
-                    to="/about"
-                >
-                    <h2>ABOUT</h2>
-                </Link> */}
-                <MusicNetworks
-                    bandcamp="https://benjamingibert.bandcamp.com/"
-                    spotify="https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX"
-                    soundcloud="https://soundcloud.com/benjamin-gibert"
-                    apple="https://music.apple.com/fr/artist/benjamin-gibert/1491146372"
-                    deezer="https://www.deezer.com/fr/artist/5685820"
-                    instagram="https://www.instagram.com/bgibertmusic/"
-                    color=""
-                    direction="row"
-                />
-                <div className="home_menu_langChoice">
-                    <button className={lang==='fr'? 'home_menu_langChoice_fr home_menu_langChoice_fr--selected':'home_menu_langChoice_fr'} onClick={() => setLang('fr')}>
-                        FR
-                    </button>
-                    <button className={lang==='en'? 'home_menu_langChoice_en home_menu_langChoice_en--selected':'home_menu_langChoice_en'} onClick={() => setLang('en')}>
-                        EN
-                    </button>
-                    <button className={lang==='jp'? 'home_menu_langChoice_jp home_menu_langChoice_jp--selected':'home_menu_langChoice_jp'} onClick={() => setLang('jp')}>
-                        JP
-                    </button>
+            </div>
+
+            <div className='home_title'>
+                BENJAMIN GIBERT
+            </div>
+
+            <section className='home_menu'>
+                <div className='home_menu_flex'>
+                    <div className='home_menu_flex_main'>
+                        <div className='home_menu_flex_row home_menu_flex_row--nav'>
+                            <div className='home_menu_flex_cell home_menu_flex_cell--about'>
+                                <Link aria-label="Accéder à la page À propos" to="/about">
+                                    {lang === 'jp' ? 'バイオ' : 'Bio'}
+                                </Link>
+                            </div>
+                            <div className='home_menu_flex_cell home_menu_flex_cell--live'>
+                                <Link aria-label="Accéder à la page Live" to="/live">
+                                    {lang === 'jp' ? 'ライブ' : 'Live'}
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className='home_menu_flex_row home_menu_flex_row--albums'>
+                            <div className='home_menu_flex_cell home_menu_flex_cell--album home_menu_flex_cell--gemmes'>
+                                <Link aria-label="Accéder à la page de Gemmes" to="/Gemmes">
+                                    <img src={titleGemmes}/>
+                                </Link>
+                            </div>
+                            <div className='home_menu_flex_cell home_menu_flex_cell--album'>
+                                <Link aria-label="Accéder à la page de Taihua" to="/Taihua">
+                                    <img src={titleTaihua}/>
+                                </Link>
+                            </div>
+                            <div className='home_menu_flex_cell home_menu_flex_cell--album'>
+                                <Link aria-label="Accéder à la page de Nightingales" to="/Nightingales">
+                                    <img src={titleNightingales}/>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className='home_menu_flex_row home_menu_flex_row--social'>
+                            <MusicNetworks
+                                bandcamp="https://benjamingibert.bandcamp.com/"
+                                spotify="https://open.spotify.com/intl-fr/artist/6QucofyjGzYFvdq4TVQ8kX"
+                                soundcloud="https://soundcloud.com/benjamin-gibert"
+                                apple="https://music.apple.com/fr/artist/benjamin-gibert/1491146372"
+                                deezer="https://www.deezer.com/fr/artist/5685820"
+                                instagram="https://www.instagram.com/bgibertmusic/"
+                                color=""
+                                direction="row"
+                            />
+                        </div>
+                    </div>
+
+                    <div className='home_menu_flex_langs'>
+                        <button className={lang==='fr'? 'home_menu_langBtn home_menu_langBtn--selected':'home_menu_langBtn'} onClick={() => setLang('fr')}>
+                            FR
+                        </button>
+                        <button className={lang==='en'? 'home_menu_langBtn home_menu_langBtn--selected':'home_menu_langBtn'} onClick={() => setLang('en')}>
+                            EN
+                        </button>
+                        <button className={lang==='jp'? 'home_menu_langBtn home_menu_langBtn--selected':'home_menu_langBtn'} onClick={() => setLang('jp')}>
+                            JP
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>

@@ -11,7 +11,7 @@ import gemmes_icon from "../../assets/gemmes/gemmes_icon.webp";
 import night_icon from "../../assets/nightingales/night_icon.webp";
 import { useApp } from "../../utils/AppContext";
 
-function NavBar({tracks, album, language}) {
+function NavBar({tracks, album, language, theme, minimal}) {
   const { lang, setLang } = useApp();
 
   const [isLangsListOpened, setIsLangsListOpened] = useState(false);
@@ -44,7 +44,7 @@ function NavBar({tracks, album, language}) {
 
   return (
     <div className="navContainer">
-      <div className="navBar">
+      <div className={`navBar${theme ? ` navBar--${theme}` : ''}`}>
         <button
           className="navBar_burger"
           onClick={() => setIsNavbarOpened(!isNavbarOpened)}
@@ -137,6 +137,8 @@ function NavBar({tracks, album, language}) {
               album= {album}
               tracks={tracks}
               language={language}
+              theme={theme}
+              minimal={minimal}
             />
           }
         </div>

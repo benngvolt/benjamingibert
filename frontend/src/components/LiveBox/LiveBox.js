@@ -1,125 +1,6 @@
-// import "./LiveBox.scss";
-// import React from "react";
-// import { Reveal } from "../Reveal/Reveal";
-// import aboutLive from '../../assets/aboutLive/aboutLive.json'
-// import MusicLink from "../MusicLink/MusicLink";
-// import { faPlay } from '@fortawesome/free-solid-svg-icons'
-// import live1 from '../../assets/live1.webp'
-// import live2 from '../../assets/live2.webp'
-// import live3 from '../../assets/live3.webp'
-// import live4 from '../../assets/live4.webp'
-// import live5 from '../../assets/live5.webp'
-// import live6 from '../../assets/live6.webp'
-// import live7 from '../../assets/live7.webp'
-// import live8 from '../../assets/live8.webp'
-// import videoLive from '../../assets/videoLive.mp4'
-
-// function LiveBox({ lang }) {
-//   const currentLive = aboutLive[lang] || aboutLive.fr;
-
-//   return (
-//     <section className="live" id="live">
-//       <div className="live_paragraph">
-        
-//           <h3 className="live_paragraph_title">
-//             {currentLive.title}
-//           </h3>
-        
-
-//         <Reveal>
-//           <p
-//             className="live_paragraph_texts"
-//             dangerouslySetInnerHTML={{ __html: currentLive.text }}
-//           />
-//         </Reveal>
-//         <MusicLink
-//           link='https://soundcloud.com/benjamin-gibert/live-session-at-residence-alto-cordes-sur-ciel-240822?si=ef97ee5c43914dc499c8944d6e0ef2ac&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing'
-//           icon={faPlay}
-//           name={
-//             lang === 'fr'
-//               ? "Session live - 21.08.2022"
-//               : lang === 'en'
-//               ? 'Live session - 21.08.22'
-//               : 'ライブ・セッション — 2022.08.21'
-//           }
-//         />
-        
-//       </div>
-//       <div className="live_liveMediaContainer">
-//           <div className="live_liveMediaContainer_photosGrid" aria-label="Galerie de photos live session">
-//             <img
-//               src={live1}
-//               alt="Live session performance photo 1"
-//               aria-label="Live session performance photo 1"
-//             />
-
-//             <img
-//               src={live2}
-//               alt="Live session performance photo 2"
-//               aria-label="Live session performance photo 2"
-//             />
-
-//             <img
-//               src={live3}
-//               alt="Live session performance photo 3"
-//               aria-label="Live session performance photo 3"
-//             />
-
-//             <img
-//               src={live4}
-//               alt="Live session performance photo 4"
-//               aria-label="Live session performance photo 4"
-//             />
-//           </div>
-
-//           <video
-//             className="live_liveMediaContainer_video"
-//             src={videoLive}
-//             autoPlay
-//             loop
-//             muted
-//             playsInline
-//             controls
-//             aria-label="Live session video"
-//           >
-//             Votre navigateur ne supporte pas la lecture vidéo.
-//           </video>
-
-//           <div className="live_liveMediaContainer_photosGrid" aria-label="Galerie de photos live session deuxième partie">
-//             <img
-//               src={live5}
-//               alt="Live session performance photo 5"
-//               aria-label="Live session performance photo 5"
-//             />
-
-//             <img
-//               src={live6}
-//               alt="Live session performance photo 6"
-//               aria-label="Live session performance photo 6"
-//             />
-
-//             <img
-//               src={live7}
-//               alt="Live session performance photo 7"
-//               aria-label="Live session performance photo 7"
-//             />
-
-//             <img
-//               src={live8}
-//               alt="Live session performance photo 8"
-//               aria-label="Live session performance photo 8"
-//             />
-//           </div>
-//         </div>
-//     </section>
-//   );
-// }
-
-// export default LiveBox;
-
 
 import "./LiveBox.scss";
-import React from "react";
+import React, { useRef } from "react";
 import { Reveal } from "../Reveal/Reveal";
 import aboutLive from "../../assets/aboutLive/aboutLive.json";
 import MusicLink from "../MusicLink/MusicLink";
@@ -133,10 +14,22 @@ import live5 from "../../assets/live5.webp";
 import live6 from "../../assets/live6.webp";
 import live7 from "../../assets/live7.webp";
 import live8 from "../../assets/live8.webp";
-import videoLive from "../../assets/videoLive.mp4";
+import videoLive from "../../assets/videoLive2.mp4";
+import barefoot_live from "../../assets/barefoot_live.mp4";
 
-function LiveBox({ lang }) {
+function LiveBox({ lang, mediaOnly }) {
   const currentLive = aboutLive[lang] || aboutLive.fr;
+
+  const videoLiveRef = useRef(null);
+  const barefootLiveRef = useRef(null);
+
+  const muteOtherVideo = (currentRef, otherRef) => () => {
+    const current = currentRef.current;
+    const other = otherRef.current;
+    if (current && other && !current.muted) {
+      other.muted = true;
+    }
+  };
 
   const careerHighlights = {
     fr: (
@@ -364,28 +257,30 @@ function LiveBox({ lang }) {
 
   return (
     <section className="live" id="live">
-      <div className="live_paragraph">
-        <h3 className="live_paragraph_title">{currentLive.title}</h3>
+      {!mediaOnly && (
+        <div className="live_paragraph">
+          <h3 className="live_paragraph_title">{currentLive.title}</h3>
 
-        <Reveal>
-          <p
-            className="live_paragraph_texts"
-            dangerouslySetInnerHTML={{ __html: currentLive.text }}
+          <Reveal>
+            <p
+              className="live_paragraph_texts"
+              dangerouslySetInnerHTML={{ __html: currentLive.text }}
+            />
+          </Reveal>
+
+          <MusicLink
+            link="https://soundcloud.com/benjamin-gibert/live-session-at-residence-alto-cordes-sur-ciel-240822?si=ef97ee5c43914dc499c8944d6e0ef2ac&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+            icon={faPlay}
+            name={
+              lang === "fr"
+                ? "Session live - 21.08.2022"
+                : lang === "en"
+                ? "Live session - 21.08.22"
+                : "ライブ・セッション — 2022.08.21"
+            }
           />
-        </Reveal>
-
-        <MusicLink
-          link="https://soundcloud.com/benjamin-gibert/live-session-at-residence-alto-cordes-sur-ciel-240822?si=ef97ee5c43914dc499c8944d6e0ef2ac&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
-          icon={faPlay}
-          name={
-            lang === "fr"
-              ? "Session live - 21.08.2022"
-              : lang === "en"
-              ? "Live session - 21.08.22"
-              : "ライブ・セッション — 2022.08.21"
-          }
-        />
-      </div>
+        </div>
+      )}
 
       <div className="live_liveMediaContainer">
         <div
@@ -404,28 +299,57 @@ function LiveBox({ lang }) {
           <img src={live4} alt="Live session performance photo 4" />
         </div>
 
-        <video
-          className="live_liveMediaContainer_video"
-          src={videoLive}
-          autoPlay
-          loop
-          muted
-          playsInline
-          controls
-          aria-label={
-            lang === "fr"
-              ? "Vidéo de session live"
+        <div className="live_liveMediaContainer_videosRow">
+          <video
+            ref={videoLiveRef}
+            className="live_liveMediaContainer_video"
+            src={videoLive}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            onVolumeChange={muteOtherVideo(videoLiveRef, barefootLiveRef)}
+            aria-label={
+              lang === "fr"
+                ? "Vidéo de session live"
+                : lang === "en"
+                ? "Live session video"
+                : "ライブセッション映像"
+            }
+          >
+            {lang === "fr"
+              ? "Votre navigateur ne supporte pas la lecture vidéo."
               : lang === "en"
-              ? "Live session video"
-              : "ライブセッション映像"
-          }
-        >
-          {lang === "fr"
-            ? "Votre navigateur ne supporte pas la lecture vidéo."
-            : lang === "en"
-            ? "Your browser does not support video playback."
-            : "お使いのブラウザは動画再生に対応していません。"}
-        </video>
+              ? "Your browser does not support video playback."
+              : "お使いのブラウザは動画再生に対応していません。"}
+          </video>
+
+          <video
+            ref={barefootLiveRef}
+            className="live_liveMediaContainer_video"
+            src={barefoot_live}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            onVolumeChange={muteOtherVideo(barefootLiveRef, videoLiveRef)}
+            aria-label={
+              lang === "fr"
+                ? "Vidéo live de barefoot"
+                : lang === "en"
+                ? "Barefoot live video"
+                : "バレフット・ライブ映像"
+            }
+          >
+            {lang === "fr"
+              ? "Votre navigateur ne supporte pas la lecture vidéo."
+              : lang === "en"
+              ? "Your browser does not support video playback."
+              : "お使いのブラウザは動画再生に対応していません。"}
+          </video>
+        </div>
 
         <div
           className="live_liveMediaContainer_photosGrid"
@@ -444,33 +368,35 @@ function LiveBox({ lang }) {
         </div>
       </div>
 
-      <div className="live_paragraph live_paragraph_end" id="career">
-        <h3 className="live_paragraph_title">
-          {lang === "fr"
-            ? "parcours"
-            : lang === "en"
-            ? "career"
-            : "経歴"}
-        </h3>
-
-        <Reveal>
-          <p className="live_paragraph_texts">
-            {careerHighlights[lang]}
-          </p>
-        </Reveal>
-        <MusicLink
-          link="https://www.indiemusic.fr/benjamin-gibert-taihua/"
-          icon={faPlay}
-          name={
-            lang === "fr"
-              ? "Article Indiemusic - Taihua"
+      {!mediaOnly && (
+        <div className="live_paragraph live_paragraph_end" id="career">
+          <h3 className="live_paragraph_title">
+            {lang === "fr"
+              ? "parcours"
               : lang === "en"
-              ? "Indiemusic Article - Taihua"
-              : "Indiemusic 記事 - Taihua"
-          }
-        />
-      </div>
-      
+              ? "career"
+              : "経歴"}
+          </h3>
+
+          <Reveal>
+            <p className="live_paragraph_texts">
+              {careerHighlights[lang]}
+            </p>
+          </Reveal>
+          <MusicLink
+            link="https://www.indiemusic.fr/benjamin-gibert-taihua/"
+            icon={faPlay}
+            name={
+              lang === "fr"
+                ? "Article Indiemusic - Taihua"
+                : lang === "en"
+                ? "Indiemusic Article - Taihua"
+                : "Indiemusic 記事 - Taihua"
+            }
+          />
+        </div>
+      )}
+
     </section>
   );
 }

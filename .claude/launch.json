@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "benjamingibert-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "cwd": "/Users/user/Desktop/DEV WEB/BENJAMINGIBERT/www/frontend",
+      "port": 3011,
+      "autoPort": true
+    }
+  ]
+}

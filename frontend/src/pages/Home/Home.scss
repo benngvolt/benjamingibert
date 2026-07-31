@@ -2,17 +2,8 @@
 
 .home {
   height: 100%;
-  width: 400px;
-  margin: auto;
-  @include Column;
-  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-    width: 330px;
-   }
-  
-  @media only screen and (max-width: $mobileMaxWidth) {
-    width: 65%;
-  }
-  
+  width: 100%;
+  position: relative;
 
   &_video {
     background-color: black;
@@ -27,6 +18,8 @@
       height: 100%;
       object-fit: cover;
       pointer-events: none;
+      filter: blur(10px) hue-rotate(220deg) saturate(1.1);
+      // filter: grayscale(1) sepia(0.6) hue-rotate(170deg) saturate(1.1) brightness(0.8) contrast(1.8);
     }
   }
 
@@ -34,256 +27,283 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(36, 18, 57, 0.45);
+    // background: rgba(20, 14, 46, 0.5);
     pointer-events: none;
   }
 
-  &_menu {
-    width: 100%;
-    height: auto;
-    @include Column;
-    justify-content: center;
-    margin: auto;
-    position: relative;
-    overflow: auto;
+  &_title {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    color: white;
+    font-family: 'Montserrat';
+    letter-spacing: 0.2em;
+    @include font-size(4);
 
     @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-      row-gap: 10px;
-      width: 100%;
-      margin: 22px auto;
-     }
-    
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
     @media only screen and (max-width: $mobileMaxWidth) {
-      row-gap: 10px;
-      width: 100%;
-      margin: 22px auto;
-    }
-
-    &_artistName {
-      letter-spacing: 0.2em;
-      color: white;
-      @include font-size(3);
-      margin: 90px auto;
-      font-family: 'Montserrat';
-      width: auto;
-
-      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-        @include font-size(3);
-        margin: 45px auto;
-      }
-
-      @media only screen and (max-width: $mobileMaxWidth) {
-        @include font-size(4);
-        margin: 22px auto;
-      }
-    }
-
-    &_albumTitle {
-      color: white;
-      font-size: 140px;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      box-sizing: border-box;
-      transition: transform 0.4s cubic-bezier(.36,.07,.19,.97);
-
-      // pointer visible immediately on desktop
-      cursor: pointer;
-
-      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-        font-size: 100px;
-      }
-
-      @media only screen and (max-width: $mobileMaxWidth) { 
-      }
-
-      // hover effects ONLY where hover really exists
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          transform: scale(1.03) rotate(1deg) skew(1deg);
-        }
-      }
-
-      img {
-        filter: saturate(0);
-        width: 100%;
-        margin: auto;
-
-        @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-          width: 100%;
-        }
-
-        @media only screen and (max-width: $mobileMaxWidth) {
-          width: 100%;
-          margin: 0 auto;
-        }
-      }
-
-      &--gemmes {
-        margin-top: 35px;
-      }
-    }
-
-    &_about {
-      font-family: 'Montserrat';
-      color: white;
-      font-size: 22px;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      box-sizing: border-box;
-      cursor: pointer;
-
-      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-        font-size: 100px;
-      }
-
-      @media only screen and (max-width: $mobileMaxWidth) { }
-
-      // hover effects ONLY where hover really exists
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          background-color: white;
-          color: black;
-        }
-      }
-    }
-
-    &_networksList {
-      // @include Row;
-      // justify-content: space-between;
-      // gap: 1rem;
-      // width: 100%;
-
-      // @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) { 
-      //   display: grid;
-      //   grid-template-columns: 1fr 1fr 1fr;
-      // }
-
-      // @media only screen and (max-width: $mobileMaxWidth) {
-      //   display: grid;
-      //   grid-template-columns: 1fr 1fr 1fr;
-      // }
-
-      // &_item {
-      //   position: relative;
-      //   width: 40px;
-      //   height: 40px;
-
-      //   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-          
-      //    }
-
-      //   @media only screen and (max-width: $mobileMaxWidth) {
-      //     width: 30px;
-      //     height: 30px;
-      //   }
-
-      //   &_link {
-      //     display: block;
-      //     position: relative;
-      //     width: 100%;
-      //     height: 100%;
-
-      //     // pointer visible immediately on desktop
-      //     cursor: pointer;
-
-      //     img {
-      //       position: absolute;
-      //       top: 0;
-      //       left: 0;
-      //       width: 100%;
-      //       height: auto;
-      //       transition: opacity 0.3s ease;
-      //     }
-
-      //     .white {
-      //       opacity: 1;
-      //     }
-
-      //     .color {
-      //       opacity: 0;
-      //     }
-
-      //     // hover swap ONLY on devices that truly support hover
-      //     @media (hover: hover) and (pointer: fine) {
-      //       &:hover .white {
-      //         opacity: 0;
-      //       }
-
-      //       &:hover .color {
-      //         opacity: 1;
-      //       }
-      //     }
-      //   }
-      // }
-    }
-
-    &_langChoice {
-      @include Row;
-      margin: 0 auto 90px auto;
-      @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-          
-      }
-
-     @media only screen and (max-width: $mobileMaxWidth) {
-        margin-top: 22px;
-     }
-
-      button {
-        font-family: 'Montserrat';
-        border-bottom: none;
-        border-left: none;
-        border-top: none;
-        background: none;
-        
-        @include font-size(3);
-        padding: 5px 22px;
-
-        // pointer visible immediately on desktop
-        cursor: pointer;
-
-        // keep hover-only rules here if you add visual effects later
-        @media (hover: hover) and (pointer: fine) {
-          &:hover { }
-        }
-
-        
-      }
-
-      &_fr,
-      &_en {
-        border-right: white solid 1px;
-      }
-
-      &_jp {
-        border-right: none;
-      }
-
-      &_fr,
-      &_en,
-      &_jp {
-        color: white;
-
-        &--selected {
-          color: $nightColor2;
-        }
-      }
+      top: 16px;
+      left: 0;
+      right: 0;
+      text-align: center;
     }
   }
 
-  // Safety net: explicitly neutralize hover states on touch/coarse pointers
-  @media (hover: none), (pointer: coarse) {
-    .home_menu_albumTitle:hover {
-      transform: none;
+  &_menu {
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+    width: 100%;
+    max-width: 50vw;
+    box-sizing: border-box;
+
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      width: auto;
+      max-width: none;
     }
 
-    .home_menu_networksList_item_link:hover .white {
-      opacity: 1;
+    @media only screen and (max-width: $mobileMaxWidth) {
+      max-width: min(92vw, 350px);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      bottom: 16px;
     }
 
-    .home_menu_networksList_item_link:hover .color {
-      opacity: 0;
+    $lineColor: rgba(255, 255, 255, 0.8);
+    $navSocialRowHeight: 48px;
+
+    &_flex {
+      @include Row;
+      align-items: stretch;
+      border: 1px solid $lineColor;
+      border-radius: 6px;
+      overflow: hidden;
+      box-sizing: border-box;
+      width: 100%;
+
+      &_main {
+        flex: 1 1 auto;
+        min-width: 0;
+        @include Column;
+      }
+
+      &_row {
+        @include Row;
+        box-sizing: border-box;
+
+        &--nav,
+        &--albums {
+          border-bottom: 1px solid $lineColor;
+        }
+
+        &--nav {
+          min-height: $navSocialRowHeight;
+        }
+
+        &--albums {
+          @media only screen and (max-width: $mobileMaxWidth) {
+            flex-direction: column;
+          }
+        }
+      }
+
+      &_cell {
+        flex: 1 1 0;
+        min-width: 0;
+        text-align: center;
+        box-sizing: border-box;
+        @include Row;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 10px;
+
+        @media only screen and (max-width: $mobileMaxWidth) {
+          padding: 7px 6px;
+        }
+
+        &--about {
+          border-right: 1px solid $lineColor;
+        }
+
+        &--about,
+        &--live {
+          transition: background-color 0.25s ease;
+
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: white;
+            font-family: 'Montserrat';
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            box-sizing: border-box;
+            @include font-size(5);
+            cursor: pointer;
+            transition: color 0.25s ease;
+          }
+
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+              background-color: white;
+
+              a {
+                color: rgb(20, 14, 46);
+              }
+            }
+          }
+        }
+
+        &--album {
+          padding: 10px 12px;
+          border-right: 1px solid $lineColor;
+          transition: background-color 0.25s ease;
+
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+          }
+
+          img {
+            filter: saturate(0);
+            width: 64%;
+          }
+
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.15);
+            }
+          }
+
+          &:last-child {
+            border-right: none;
+          }
+
+          @media only screen and (max-width: $mobileMaxWidth) {
+            flex: 0 0 auto;
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid $lineColor;
+
+            img {
+              width: auto;
+              height: 46px;
+              max-width: 70%;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+
+        &--gemmes img {
+          margin-top: 10px;
+
+          @media only screen and (max-width: $mobileMaxWidth) {
+            margin-top: 0;
+          }
+        }
+      }
+
+      &_row--social {
+        min-height: $navSocialRowHeight;
+        padding: 10px 12px;
+        box-sizing: border-box;
+
+        .home_menu_networksList--row {
+          margin: 0;
+          padding: 0;
+          @include Row;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 12px;
+          width: 100%;
+
+          @media only screen and (max-width: $mobileMaxWidth) {
+            row-gap: 8px;
+          }
+        }
+
+        .home_menu_networksList_item--large {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      &_langs {
+        flex: 0 0 auto;
+        width: 46px;
+        border-left: 1px solid $lineColor;
+        box-sizing: border-box;
+        @include Column;
+
+        @media only screen and (max-width: $mobileMaxWidth) {
+          width: 100%;
+          border-left: none;
+          border-top: 1px solid $lineColor;
+          @include Row;
+        }
+
+        .home_menu_langBtn {
+          flex: 1 1 0;
+          border-bottom: 1px solid $lineColor;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          @media only screen and (max-width: $mobileMaxWidth) {
+            border-bottom: none;
+            border-right: 1px solid $lineColor;
+
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width: $mobileMaxWidth) {
+        flex-direction: column;
+      }
+    }
+
+    &_langBtn {
+      width: 100%;
+      min-height: 36px;
+      background: none;
+      border: none;
+      color: white;
+      font-family: 'Montserrat';
+      @include font-size(5);
+      cursor: pointer;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          font-weight: 700;
+        }
+      }
+
+      &--selected {
+        font-weight: 700;
+      }
     }
   }
 }
