@@ -212,6 +212,14 @@
               border-bottom: none;
             }
           }
+
+          @media only screen and (max-width: $mobileMaxWidth) and (orientation: landscape) {
+            min-height: 52px;
+
+            img {
+              width: 20%;
+            }
+          }
         }
 
         &--gemmes img {
