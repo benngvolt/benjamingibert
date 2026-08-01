@@ -198,7 +198,6 @@
           @media only screen and (max-width: $mobileMaxWidth) {
             flex: 0 0 auto;
             width: 100%;
-            min-height: 106px;
             border-right: none;
             border-bottom: 1px solid $lineColor;
 
@@ -214,19 +213,9 @@
           }
 
           @media only screen and (max-width: $mobileMaxWidth) and (orientation: landscape) {
-            min-height: 52px;
-
             img {
-              width: 20%;
+              width: 30%;
             }
-          }
-        }
-
-        &--gemmes img {
-          margin-top: 10px;
-
-          @media only screen and (max-width: $mobileMaxWidth) {
-            margin-top: 0;
           }
         }
       }

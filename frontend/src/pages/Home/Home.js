@@ -5,9 +5,9 @@ import { Helmet } from "react-helmet-async";
 
 
 import MusicNetworks from '../../components/MusicNetworks/MusicNetworks'
-import titleNightingales from '../../assets/nightingales/night_title.webp'
-import titleTaihua from '../../assets/taihua/taihua_title.webp'
-import titleGemmes from '../../assets/gemmes/gemmes_title.webp'
+import titleNightingales from '../../assets/nightingales/night_title_menu.webp'
+import titleTaihua from '../../assets/taihua/taihua_title_menu.webp'
+import titleGemmes from '../../assets/gemmes/gemmes_title_menu.webp'
 import video from '../../assets/videoLive.mp4'
 import { useApp } from "../../utils/AppContext";
 

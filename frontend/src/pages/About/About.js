@@ -4,6 +4,7 @@ import { useApp } from "../../utils/AppContext"
 import { Helmet } from "react-helmet-async";
 
 import aboutBio from '../../assets/aboutBio/aboutBio'
+import portraitEPK from '../../assets/portraitEPK.webp'
 
 function About() {
   const { lang } = useApp()
@@ -20,7 +21,7 @@ function About() {
         />
       </Helmet>
       <NavBar />
-      <h1 className="about__title">{bio.title}</h1>
+      <img className="about__portrait" src={portraitEPK} alt="Benjamin Gibert" />
       <article
         className="about__bio"
         dangerouslySetInnerHTML={{ __html: bio.text }}

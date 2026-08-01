@@ -5,24 +5,29 @@
   min-height: 100vh;
   background-color: rgb(46, 46, 46);
   box-sizing: border-box;
-  padding: 90px 90px 90px 45px;
+  padding: 0 0 90px 0;
 
   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-    padding: 90px 45px 45px 45px;
+    padding: 45px 0 90px 0;
   }
 
   @media only screen and (max-width: $mobileMaxWidth) {
-    padding: 90px 22px 45px 22px;
+    padding: 45px 0 45px 0;
   }
 
-  &__title {
-    font-family: 'Montserrat';
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: white;
-    @include font-size(2);
-    max-width: 700px;
-    margin: 0 auto 45px auto;
+  &__portrait {
+    display: block;
+    width: 100vw;
+    height: auto;
+    aspect-ratio: 2500 / 1254;
+    object-fit: cover;
+    margin: 0 0 45px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    @media only screen and (max-width: $mobileMaxWidth) {
+      margin-bottom: 22px;
+    }
   }
 
   &__bio {
@@ -33,6 +38,7 @@
     text-align: justify;
     max-width: 700px;
     margin: 0 auto;
+    padding: 0 45px;
 
     em {
       font-style: italic;
