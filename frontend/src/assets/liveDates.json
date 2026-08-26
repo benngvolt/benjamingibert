@@ -1,0 +1,266 @@
+[
+  {
+    "year": 2025,
+    "day": 26,
+    "month": 4,
+    "venue": "Le Stockage",
+    "city": "Cordes-sur-Ciel",
+    "country": "France"
+  },
+  {
+    "year": 2022,
+    "day": 25,
+    "month": 11,
+    "venue": "Centre Ken Saro Wiwa",
+    "city": "Paris",
+    "country": "France"
+  },
+  {
+    "year": 2022,
+    "day": 21,
+    "month": 8,
+    "venue": "Alto Residence",
+    "city": "Cordes-sur-Ciel",
+    "country": "France"
+  },
+  {
+    "year": 2021,
+    "day": 8,
+    "month": 10,
+    "venue": "Le Poinçonneur",
+    "city": "Toulouse",
+    "country": "France"
+  },
+  {
+    "year": 2021,
+    "day": 5,
+    "month": 8,
+    "venue": "Nestival (Pomegranate Sounds)",
+    "city": "Lannemezan",
+    "country": "France"
+  },
+  {
+    "year": 2021,
+    "day": 28,
+    "month": 3,
+    "venue": "Livestream (pandémie) — Hiroshima Fragile",
+    "city": "En ligne",
+    "country": "Japon"
+  },
+  {
+    "year": 2020,
+    "day": 28,
+    "month": 3,
+    "venue": "Livestream (pandémie) — Sottkvi Online Festival",
+    "city": "En ligne",
+    "country": "Islande"
+  },
+  {
+    "year": 2019,
+    "day": 6,
+    "month": 11,
+    "venue": "Le Petit Bain (avec Sacha Bernardson)",
+    "city": "Paris",
+    "country": "France"
+  },
+  {
+    "year": 2019,
+    "day": 9,
+    "month": 10,
+    "venue": "Connexion Live (avec Sacha Bernardson)",
+    "city": "Toulouse",
+    "country": "France"
+  },
+  {
+    "year": 2019,
+    "day": 13,
+    "month": 9,
+    "venue": "La Papesse (avec Sacha Bernardson)",
+    "city": "Toulouse",
+    "country": "France"
+  },
+  {
+    "year": 2018,
+    "day": 10,
+    "month": 12,
+    "venue": "Chaotic Noise (avec Sacha Bernardson)",
+    "city": "Kochi",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 11,
+    "month": 12,
+    "venue": "k.d.japon (avec Sacha Bernardson)",
+    "city": "Nagoya",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 14,
+    "month": 12,
+    "venue": "ELLCUBE (avec Sacha Bernardson)",
+    "city": "Tomakomai",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 15,
+    "month": 12,
+    "venue": "OTO-1 (avec Sacha Bernardson)",
+    "city": "Akabira",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 16,
+    "month": 12,
+    "venue": "PWFLPWR (avec Sacha Bernardson)",
+    "city": "Asahikawa",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 17,
+    "month": 12,
+    "venue": "Spiritual Lounge (avec Sacha Bernardson)",
+    "city": "Sapporo",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 18,
+    "month": 12,
+    "venue": "Hisomine (avec Sacha Bernardson)",
+    "city": "Omiya",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 19,
+    "month": 12,
+    "venue": "Tsutaya O-Nest (avec Sacha Bernardson)",
+    "city": "Shibuya",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 20,
+    "month": 12,
+    "venue": "Give Me Little More (avec Sacha Bernardson)",
+    "city": "Matsumoto",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 21,
+    "month": 12,
+    "venue": "RAF-REC (avec Sacha Bernardson)",
+    "city": "Yamagata",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 22,
+    "month": 12,
+    "venue": "Elevate, Tsukamoto (avec Sacha Bernardson)",
+    "city": "Osaka",
+    "country": "Japon"
+  },
+  {
+    "year": 2018,
+    "day": 23,
+    "month": 12,
+    "venue": "Helluva Lounge (avec Sacha Bernardson)",
+    "city": "Kobe",
+    "country": "Japon"
+  },
+  {
+    "year": 2017,
+    "day": 28,
+    "month": 11,
+    "venue": "Rock School Barbey (avec Sacha Bernardson, première partie de Perfume Genius)",
+    "city": "Bordeaux",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 15,
+    "month": 11,
+    "venue": "Pop In (avec Sacha Bernardson)",
+    "city": "Paris",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 19,
+    "month": 11,
+    "venue": "Château H (avec Sacha Bernardson)",
+    "city": "Saint-Julia",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 24,
+    "month": 11,
+    "venue": "La Fada Ignorant (avec Sacha Bernardson)",
+    "city": "Andorre-la-Vieille",
+    "country": "Andorre"
+  },
+  {
+    "year": 2017,
+    "day": 1,
+    "month": 9,
+    "venue": "La Lata de Bombillas (avec Sacha Bernardson)",
+    "city": "Zaragoza",
+    "country": "Espagne"
+  },
+  {
+    "year": 2017,
+    "day": 3,
+    "month": 9,
+    "venue": "Château H (avec Sacha Bernardson)",
+    "city": "Toulouse",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 7,
+    "month": 9,
+    "venue": "Quartier Libre (avec Sacha Bernardson)",
+    "city": "Bordeaux",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 14,
+    "month": 9,
+    "venue": "iBoat (avec Sacha Bernardson)",
+    "city": "Bordeaux",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 16,
+    "month": 9,
+    "venue": "La Java (avec Sacha Bernardson)",
+    "city": "Paris",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 24,
+    "month": 8,
+    "venue": "Pip (avec Sacha Bernardson)",
+    "city": "Bordeaux",
+    "country": "France"
+  },
+  {
+    "year": 2017,
+    "day": 25,
+    "month": 8,
+    "venue": "Blind Tiger (avec Sacha Bernardson)",
+    "city": "Toulouse",
+    "country": "France"
+  }
+]

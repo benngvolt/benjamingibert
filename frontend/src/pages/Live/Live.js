@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 
 import NavBar from '../../components/NavBar/NavBar'
 import LiveBox from '../../components/LiveBox/LiveBox'
+import LiveDates from '../../components/LiveDates/LiveDates'
 import { useApp } from "../../utils/AppContext";
 
 function Live() {
@@ -24,6 +25,7 @@ function Live() {
       </Helmet>
       <NavBar />
       <LiveBox lang={lang} mediaOnly />
+      <LiveDates lang={lang} />
     </main>
   )
 }

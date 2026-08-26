@@ -1,0 +1,73 @@
+@import '../../utils/mixins';
+
+.liveDates {
+  width: 90%;
+  max-width: 900px;
+  margin: 90px auto;
+  color: white;
+  font-family: 'Montserrat';
+
+  @media only screen and (max-width: $mobileMaxWidth) {
+    width: 100%;
+    margin: 45px auto;
+    padding: 0 22px;
+    box-sizing: border-box;
+  }
+
+  &_heading {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    @include font-size(2);
+    margin: 0 0 45px;
+  }
+
+  &_year {
+    margin-bottom: 45px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &_title {
+      @include font-size(3);
+      font-weight: 700;
+      margin: 0 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    &_list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      @include Column;
+      row-gap: 12px;
+
+      &_item {
+        @include Row;
+        column-gap: 16px;
+        @include font-size(4);
+
+        @media only screen and (max-width: $mobileMaxWidth) {
+          @include Column;
+          row-gap: 2px;
+        }
+
+        &_date {
+          font-weight: 700;
+          min-width: 55px;
+          flex-shrink: 0;
+        }
+
+        &_venue {
+          flex: 1;
+        }
+
+        &_place {
+          opacity: 0.7;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
