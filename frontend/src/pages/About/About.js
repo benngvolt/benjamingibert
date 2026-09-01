@@ -28,7 +28,7 @@ function About() {
         dangerouslySetInnerHTML={{ __html: bio.text }}
       >
       </article>
-      <img className="about__portrait" src={portraitEPK2} alt="Benjamin Gibert" />
+      <img className="about__portrait2" src={portraitEPK2} alt="Benjamin Gibert" />
     </main>
   )
 }
