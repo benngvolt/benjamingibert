@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 
 import aboutBio from '../../assets/aboutBio/aboutBio'
 import portraitEPK from '../../assets/portraitEPK.webp'
+import portraitEPK2 from '../../assets/portraitEPK2.webp'
 
 function About() {
   const { lang } = useApp()
@@ -27,6 +28,7 @@ function About() {
         dangerouslySetInnerHTML={{ __html: bio.text }}
       >
       </article>
+      <img className="about__portrait" src={portraitEPK2} alt="Benjamin Gibert" />
     </main>
   )
 }
