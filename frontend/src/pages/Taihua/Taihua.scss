@@ -142,7 +142,17 @@
                 
             }
         }
+        &_manuscrit {
+            width: 30%;
+            margin: auto;
+            @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth){
+                width: 60%;
+            }
         
+            @media only screen and (max-width:$mobileMaxWidth){
+                width: 80%;
+            }
+        }
 
         
     }

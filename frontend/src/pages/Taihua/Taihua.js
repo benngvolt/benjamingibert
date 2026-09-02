@@ -18,6 +18,7 @@ import taihua_bTitle from '../../assets/taihua/taihua_bTitle.webp'
 import taihua_ltcTitle from '../../assets/taihua/taihua_ltcTitle.webp'
 import taihua_tgTitle from '../../assets/taihua/taihua_tgTitle.webp'
 import taihua_fjgTitle from '../../assets/taihua/taihua_fjgTitle.webp'
+import taihua_phrase_manuscrite from '../../assets/taihua/taihua_phrase_manuscrite.webp'
 import taihua_photo_blackstone from '../../assets/taihua/taihua_photo_blackstone.webp'
 import taihua_photo_car from '../../assets/taihua/taihua_photo_car.webp'
 import taihua_photo_foam1 from '../../assets/taihua/taihua_photo_foam1.webp'
@@ -316,11 +317,15 @@ function Taihua() {
         author={taihuaMiscTexts[1].author}
         color='taihua'
       />
-      <QuoteBox
+      {/* <QuoteBox
         text={taihuaMiscTexts[6][`miscText_${lang}`]}
         author={taihuaMiscTexts[6].author}
         color='taihua'
-      />
+      /> */}
+      <img
+          className='taihua_mainDataContainer_manuscrit'
+          src={taihua_phrase_manuscrite}
+        />
     </main>
    
   )
