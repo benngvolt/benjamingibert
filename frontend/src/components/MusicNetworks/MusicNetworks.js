@@ -21,37 +21,37 @@ function MusicNetworks ({bandcamp, spotify, soundcloud, apple, deezer, instagram
             url: bandcamp,
             logo: bandcampLogo,
             logoAlter: bandcampLogo2,
-            name: "page Bandcamp de Benjamin Gibert"
+            name: "Bandcamp"
         },
         {
             url: spotify,
             logo: spotifyLogo,
             logoAlter: spotifyLogo2,
-            name: "page Spotify de Benjamin Gibert"
+            name: "Spotify"
         },
         {
             url: soundcloud,
             logo: soundcloudLogo,
             logoAlter: soundcloudLogo2,
-            name: "page Soundcloud de Benjamin Gibert"
+            name: "SoundCloud"
         },
         {
             url: apple,
             logo: appleLogo,
             logoAlter: appleLogo2,
-            name: "page Apple Music de Benjamin Gibert"
+            name: "Apple Music"
         },
         {
             url: deezer,
             logo: deezerLogo,
             logoAlter: deezerLogo2,
-            name: "page Deezer de Benjamin Gibert"
+            name: "Deezer"
         },
         {
             url: instagram,
             logo: instagramLogo,
             logoAlter: instagramLogo2,
-            name: "page Instagram de Benjamin Gibert"
+            name: "Instagram"
         },
     ]
 
