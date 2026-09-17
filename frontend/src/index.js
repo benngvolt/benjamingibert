@@ -33,7 +33,7 @@ root.render(
               <Route path="/gemmes" element={<Gemmes />} />
               <Route path="/about" element={<About />} />
               <Route path="/live" element={<Live />} />
-              <Route path="/34L4R" element={<Salar />} />
+              {/* <Route path="/34L4R" element={<Salar />} /> */}
             </Routes>
           </Suspense>
         </Router>
