@@ -56,6 +56,8 @@ function Midigen() {
   const [steps, setSteps] = useState(false);
   const [glow, setGlow] = useState(true);
   const [offset, setOffset] = useState(0);
+  const [midiBpm, setMidiBpm] = useState(null);
+  const [realBpm, setRealBpm] = useState(null);
   const [volume, setVolume] = useState(0.7);
   const [synthEnabled, setSynthEnabled] = useState(true);
 
@@ -69,9 +71,24 @@ function Midigen() {
   const [recInfo, setRecInfo] = useState('L’enregistrement se fait en temps réel, du début à la fin du morceau.');
 
   const canPlay = midiFiles.length > 0;
+
+  // Corrige un tempo mal détecté (ou différent de l'audio réel) : le MIDI encode son propre tempo,
+  // `realBpm` permet de le corriger (ex. détecté à 120 mais le morceau est en fait à 123). S'applique
+  // aussi bien en mode synthé (sans audio) qu'avec un fichier audio.
+  const rate = useMemo(() => (
+    midiBpm && realBpm ? realBpm / midiBpm : 1
+  ), [midiBpm, realBpm]);
+
+  // Le tempo réel par défaut suit le tempo détecté dans le MIDI (donc rate=1) à chaque nouveau
+  // chargement, tant que l'utilisateur ne le corrige pas lui-même.
+  useEffect(() => { setRealBpm(midiBpm); }, [midiBpm]);
+
+  // Quand un audio est chargé, c'est lui qui fait autorité sur la durée réelle : le visuel (piloté
+  // par `rate`) doit tenir dans cette fenêtre, pas la déborder. Sans audio, la durée (en secondes
+  // réelles) dépend elle aussi de `rate` : à tempo corrigé plus rapide, tout va plus vite.
   const duration = audioUrl && audioDuration
-    ? Math.max(midiDuration || 1, Math.max(0, audioDuration - offset))
-    : (midiDuration || 1);
+    ? Math.max(0.1, audioDuration - offset)
+    : (midiDuration || 1) / (rate || 1);
 
   const midiSources = useMemo(
     () => midiFiles.map((f) => ({ src: f.url, label: midiFiles.length > 1 ? baseName(f.name) : null })),
@@ -104,7 +121,7 @@ function Midigen() {
     synthSongRef.current = null;
     if (!midiFiles.length) return;
     loadMidiSources(midiFiles.map((f) => ({ src: f.url, label: midiFiles.length > 1 ? baseName(f.name) : null })))
-      .then((raw) => { if (!cancelled) synthSongRef.current = prepareGroups(raw); })
+      .then(({ groups: rawGroups }) => { if (!cancelled) synthSongRef.current = prepareGroups(rawGroups); })
       .catch(() => { synthSongRef.current = null; });
     return () => { cancelled = true; };
   }, [midiFiles]);
@@ -115,6 +132,10 @@ function Midigen() {
     synthRef.current.stopAll();
   };
 
+  // `clockRef.current.currentTime` avance en secondes réelles brutes (non affectées par `rate`) :
+  // MidiVisualizer applique déjà `* rate` lui-même pour en tirer le temps "visuel" (comme pour l'audio,
+  // voir MidiVisualizer.renderNow). Ici, pour la planification du synthé, on doit donc convertir
+  // explicitement entre les deux espaces (temps réel écoulé ↔ temps MIDI/visuel).
   const startLocalClock = () => {
     stopLocalClock();
     let last = performance.now();
@@ -122,12 +143,13 @@ function Midigen() {
     let ctxAnchor = null;
     const song = synthSongRef.current;
     const useSynth = synthEnabled && !audioUrl && song && song.notes.length > 0;
+    const r = rate || 1;
     if (useSynth) {
       const ctx = synthRef.current.ensure();
       const ctxStart = ctx.currentTime + 0.05;
-      const songStart = clockRef.current.currentTime;
-      ctxAnchor = { ctxStart, songStart };
-      schedIdx = song.notes.findIndex((n) => n.time >= songStart);
+      const startVisual = clockRef.current.currentTime * r;
+      ctxAnchor = { ctxStart, startVisual };
+      schedIdx = song.notes.findIndex((n) => n.time >= startVisual);
       if (schedIdx === -1) schedIdx = song.notes.length;
     }
     const step = (ts) => {
@@ -143,13 +165,13 @@ function Midigen() {
       clockRef.current.currentTime = next;
       if (!scrubbingRef.current) setCurrentTime(next);
       if (useSynth) {
-        const horizon = next + 0.2;
-        while (schedIdx < song.notes.length && song.notes[schedIdx].time < horizon) {
+        const horizonVisual = (next + 0.2) * r;
+        while (schedIdx < song.notes.length && song.notes[schedIdx].time < horizonVisual) {
           const n = song.notes[schedIdx++];
           const g = song.groups[n.g];
           const override = tracksRef.current && tracksRef.current[n.g];
           const visible = override ? override.visible : !g.drums;
-          if (visible && !g.drums) synthRef.current.playNote(n, ctxAnchor.ctxStart + (n.time - ctxAnchor.songStart));
+          if (visible && !g.drums) synthRef.current.playNote(n, ctxAnchor.ctxStart + (n.time - ctxAnchor.startVisual) / r);
         }
       }
       clockRafRef.current = requestAnimationFrame(step);
@@ -179,6 +201,7 @@ function Midigen() {
     resetPlaybackState();
     setTrackMeta(null);
     setTracks(null);
+    setMidiBpm(null);
     setMidiFiles((prev) => [...prev, ...additions]);
   };
 
@@ -191,6 +214,7 @@ function Midigen() {
     resetPlaybackState();
     setTrackMeta(null);
     setTracks(null);
+    setMidiBpm(null);
   };
 
   const handleAudioFile = (file) => {
@@ -211,8 +235,9 @@ function Midigen() {
     setShape('custom');
   };
 
-  const handleReady = useCallback(({ duration: d, groups }) => {
+  const handleReady = useCallback(({ duration: d, bpm, groups }) => {
     setMidiDuration(d);
+    setMidiBpm(bpm);
     setTrackMeta(groups);
     setTracks((prev) => {
       const pal = PALETTES[palette] || PALETTES.aube;
@@ -324,6 +349,7 @@ function Midigen() {
           midiSrc={midiSources}
           audioRef={audioUrl ? audioElRef : clockRef}
           offset={audioUrl ? offset : 0}
+          rate={rate}
           format={format}
           shape={shape}
           customShapeSrc={customShapeUrl}
@@ -539,6 +565,22 @@ function Midigen() {
               <span>Décalage audio <b>{offset.toFixed(2)} s</b></span>
               <input type="range" min="-5" max="5" step="0.01" value={offset} onChange={(e) => setOffset(parseFloat(e.target.value))} />
             </label>
+            {midiBpm && (
+              <label className="midigen_field">
+                <span>
+                  <span>Tempo du MIDI (BPM) <small>détecté : {midiBpm.toFixed(2)}</small></span>
+                  <b>×{rate.toFixed(4)}</b>
+                </span>
+                <input
+                  type="number"
+                  min="20"
+                  max="400"
+                  step="0.01"
+                  value={realBpm ?? ''}
+                  onChange={(e) => setRealBpm(parseFloat(e.target.value) || midiBpm)}
+                />
+              </label>
+            )}
             <label className="midigen_field">
               <span>Volume</span>
               <input type="range" min="0" max="1" step="0.01" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} />

@@ -51,10 +51,11 @@ export function parseMidi(buf) {
     tracks.push({ name, evs, last: tick });
   }
 
-  let toSec;
+  let toSec, bpm = null;
   if (div & 0x8000) {
     const fps = 256 - ((div >> 8) & 0xff), tpf = div & 0xff;
     const spt = 1 / (fps * tpf); toSec = t => t * spt;
+    // Division SMPTE (timecode) : pas de notion de tempo/BPM applicable.
   } else {
     tempos.sort((a, b) => a.tick - b.tick);
     const segs = [{ tick: 0, sec: 0, spt: 0.5 / div }];
@@ -69,6 +70,9 @@ export function parseMidi(buf) {
       while (lo < hi) { const m = (lo + hi + 1) >> 1; if (segs[m].tick <= tick) lo = m; else hi = m - 1; }
       const s = segs[lo]; return s.sec + (tick - s.tick) * s.spt;
     };
+    // Tempo initial (au tick 0), pris comme valeur représentative du fichier — les fichiers avec
+    // un tempo qui varie en cours de route n'ont pas de BPM unique, on prend celui du début.
+    bpm = 60 / (segs[0].spt * div);
   }
 
   const groups = [];
@@ -93,5 +97,5 @@ export function parseMidi(buf) {
     }
   });
   if (!groups.length) throw new Error('Aucune note trouvée dans ce fichier.');
-  return groups;
+  return { groups, bpm };
 }

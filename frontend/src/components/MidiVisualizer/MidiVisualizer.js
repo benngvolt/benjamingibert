@@ -13,6 +13,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     midiSrc,
     audioRef,
     offset = 0,
+    rate = 1,
     format = 'portrait',
     shape = 'circles',
     customShapeSrc,
@@ -83,13 +84,14 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     spriteCacheRef.current = [];
     if (!midiSrcKey) { setSongVersion(v => v + 1); return; }
     loadMidiSources(midiSrc)
-      .then(raw => {
+      .then(({ groups: rawGroups, bpm }) => {
         if (cancelled) return;
-        const prepared = prepareGroups(raw);
+        const prepared = prepareGroups(rawGroups);
         songRef.current = prepared;
         if (onReadyRef.current) {
           onReadyRef.current({
             duration: prepared.duration,
+            bpm,
             groups: prepared.groups.map(g => ({ name: g.name, drums: g.drums, noteCount: g.notes.length })),
           });
         }
@@ -117,14 +119,17 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     if (!song || !canvas) return;
     const ctx = canvas.getContext('2d');
     const audio = audioRef && audioRef.current;
-    const t = audio ? Math.max(0, audio.currentTime - offset) : 0;
+    // `rate` étire la ligne de temps du visuel sur celle de l'audio : corrige une dérive de tempo
+    // progressive (ex. un .mid exporté à un tempo légèrement différent du rendu audio final), ce
+    // qu'un simple décalage constant (`offset`) ne peut pas faire.
+    const t = audio ? Math.max(0, (audio.currentTime - offset) * rate) : 0;
     renderFrame(ctx, canvas.width, canvas.height, {
       groups: song.groups, notes: song.notes, t,
       lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
       size: noteSize, spread, lines, steps, glow, shape, tint, customImage: customImageRef.current,
     }, spriteCacheRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioRef, offset, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, shape, tint, customImageVersion]);
+  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, shape, tint, customImageVersion]);
 
   // Couleurs/visibilité par piste : recalculées sans reparser le fichier.
   useEffect(() => {
@@ -142,6 +147,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     const canvas = canvasRef.current;
     if (!wrap || !canvas) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let raf = null;
     const resize = () => {
       const { width, height } = wrap.getBoundingClientRect();
       if (width < 1 || height < 1) return;
@@ -150,9 +156,20 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
       renderNow();
     };
     resize();
-    const ro = new ResizeObserver(resize);
+    // Le travail (redraw complet) est reporté au frame suivant plutôt qu'exécuté directement dans
+    // le callback : sinon, sur des redimensionnements rapides/répétés, ResizeObserver peut ne pas
+    // réussir à livrer toutes ses notifications dans le budget d'une frame et le navigateur émet
+    // l'avertissement "ResizeObserver loop completed with undelivered notifications" (inoffensif,
+    // mais que certains outils comme l'overlay d'erreurs de CRA affichent à tort comme une erreur).
+    const ro = new ResizeObserver(() => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(resize);
+    });
     ro.observe(wrap);
-    return () => ro.disconnect();
+    return () => {
+      ro.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [renderNow]);
 
   // Boucle de rendu : active seulement à l'écran, onglet visible, et si le mouvement n'est pas réduit.

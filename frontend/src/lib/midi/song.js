@@ -5,16 +5,19 @@ import { parseMidi } from './parseMidi';
 // Charge et parse un ou plusieurs fichiers .mid, puis fusionne leurs pistes en une seule liste.
 // `sources` accepte une URL, ou un tableau d'URLs / { src, label }. Quand un `label` est fourni
 // (fichier parmi plusieurs), il préfixe le nom des pistes de ce fichier pour les distinguer.
+// Le `bpm` retourné est celui du premier fichier (le tempo n'a pas de sens unique une fois fusionné).
 export async function loadMidiSources(sources) {
   const list = Array.isArray(sources) ? sources : (sources ? [sources] : []);
   const normalized = list.map(s => (typeof s === 'string' ? { src: s, label: null } : s));
-  const rawGroupsList = await Promise.all(
+  const parsedList = await Promise.all(
     normalized.map(({ src }) => fetch(src).then(r => r.arrayBuffer()).then(parseMidi))
   );
-  return rawGroupsList.flatMap((groups, i) => {
+  const groups = parsedList.flatMap((parsed, i) => {
     const label = normalized[i].label;
-    return label ? groups.map(g => ({ ...g, name: label + ' — ' + g.name })) : groups;
+    return label ? parsed.groups.map(g => ({ ...g, name: label + ' — ' + g.name })) : parsed.groups;
   });
+  const bpm = parsedList.length ? parsedList[0].bpm : null;
+  return { groups, bpm };
 }
 
 // Regroupe les notes brutes issues de parseMidi() en voix, et construit la liste plate de notes triées.
