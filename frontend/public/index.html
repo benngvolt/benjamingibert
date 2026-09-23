@@ -14,7 +14,9 @@
     />
   
     <!-- SEO basics -->
-    <meta name="robots" content="index, follow" />
+    <!-- Pas de meta robots par défaut : "index, follow" est déjà le comportement standard des
+         moteurs de recherche en l'absence de balise. Les pages qui ont besoin de noindex (ex.
+         /midigen) le déclarent elles-mêmes via Helmet, sans entrer en conflit avec cette balise. -->
     <!-- <link rel="canonical" href="https://benjamingibert.com/" /> -->
   
     <!-- Theme / PWA -->

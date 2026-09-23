@@ -17,6 +17,7 @@ const Gemmes = lazy(() => import("./pages/Gemmes/Gemmes"));
 const About = lazy(() => import("./pages/About/About"));
 const Live = lazy(() => import("./pages/Live/Live"));
 const Salar = lazy(() => import("./pages/Salar/Salar"));
+const Midigen = lazy(() => import("./pages/Midigen/Midigen"));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -33,6 +34,7 @@ root.render(
               <Route path="/gemmes" element={<Gemmes />} />
               <Route path="/about" element={<About />} />
               <Route path="/live" element={<Live />} />
+              <Route path="/midigen" element={<Midigen />} />
               {/* <Route path="/34L4R" element={<Salar />} /> */}
             </Routes>
           </Suspense>
