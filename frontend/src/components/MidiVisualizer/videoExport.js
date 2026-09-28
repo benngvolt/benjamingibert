@@ -1,8 +1,19 @@
 // Export vidéo (MediaRecorder). Module isolé, réservé à l'outil privé /midigen — jamais importé
 // par MidiVisualizer.js, pour ne rien envoyer au bundle du site public.
 
+// H.264 + AAC en priorité (le couple le mieux supporté par des logiciels de montage comme After
+// Effects) : sans préciser explicitement le codec audio, le navigateur peut choisir Opus même dans
+// un conteneur .mp4, ce qu'After Effects ne sait souvent pas lire (vidéo importée, mais sans son).
 function pickMime() {
-  const list = ['video/mp4;codecs=avc1', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+  const list = [
+    'video/mp4;codecs="avc1.42E01E,mp4a.40.2"',
+    'video/mp4;codecs=avc1,mp4a.40.2',
+    'video/mp4;codecs=avc1',
+    'video/mp4',
+    'video/webm;codecs=vp9,opus',
+    'video/webm;codecs=vp8,opus',
+    'video/webm',
+  ];
   if (!window.MediaRecorder) return null;
   for (const m of list) if (MediaRecorder.isTypeSupported(m)) return m;
   return '';
@@ -17,7 +28,11 @@ export function recordCanvas(canvas, audioEl, { format = 'portrait', extraAudioS
     onError && onError('Ce navigateur ne sait pas enregistrer de vidéo. Essaie Chrome, Firefox ou Safari récent.');
     return null;
   }
-  const stream = canvas.captureStream(60);
+  // 30 plutôt que 60 im/s : moins de charge d'encodage en temps réel, donc moins de risque que
+  // MediaRecorder produise des frames à intervalles irréguliers (frame rate variable), ce que des
+  // logiciels de montage comme After Effects interprètent mal (dérive audio/image progressive à
+  // l'import, même quand le fichier semble parfaitement synchro à la simple lecture).
+  const stream = canvas.captureStream(30);
   if (audioEl && audioEl.captureStream) {
     try {
       audioEl.captureStream().getAudioTracks().forEach(track => stream.addTrack(track));

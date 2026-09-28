@@ -2,6 +2,10 @@
 RewriteEngine On
 RewriteBase /
 
+# www -> non-www (évite le contenu en double vu par Google sur les deux domaines)
+RewriteCond %{HTTP_HOST} ^www\.benjamingibert\.com$ [NC]
+RewriteRule ^ https://benjamingibert.com%{REQUEST_URI} [L,R=301]
+
 # Cache long pour assets versionnés / médias
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|woff2?|ttf|otf|eot|png|jpg|jpeg|webp|avif|gif|svg|mp4|webm)$">

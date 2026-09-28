@@ -5,7 +5,7 @@
     background: #000;
 
     &--portrait {
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 3 / 5;
     }
 
     &--carre {
@@ -13,7 +13,7 @@
     }
 
     &--paysage {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 5 / 3;
     }
 
     &_canvas {

@@ -54,17 +54,17 @@ function Home () {
 
                         <div className='home_menu_flex_row home_menu_flex_row--albums'>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album home_menu_flex_cell--gemmes'>
-                                <Link aria-label="Accéder à la page de Gemmes" to="/Gemmes">
+                                <Link aria-label="Accéder à la page de Gemmes" to="/gemmes">
                                     <img src={titleGemmes}/>
                                 </Link>
                             </div>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album'>
-                                <Link aria-label="Accéder à la page de Taihua" to="/Taihua">
+                                <Link aria-label="Accéder à la page de Taihua" to="/taihua">
                                     <img src={titleTaihua}/>
                                 </Link>
                             </div>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album'>
-                                <Link aria-label="Accéder à la page de Nightingales" to="/Nightingales">
+                                <Link aria-label="Accéder à la page de Nightingales" to="/nightingales">
                                     <img src={titleNightingales}/>
                                 </Link>
                             </div>

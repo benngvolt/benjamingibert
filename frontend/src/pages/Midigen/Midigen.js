@@ -7,7 +7,8 @@ import { PALETTES } from '../../lib/midi/palettes';
 import { loadMidiSources, prepareGroups } from '../../lib/midi/song';
 import { createSynth } from '../../lib/midi/synth';
 
-const FORMAT_LABELS = { portrait: '9:16', carre: '1:1', paysage: '16:9' };
+const FORMAT_LABELS = { portrait: '3:5', carre: '1:1', paysage: '5:3' };
+const FORMAT_RATIOS = { portrait: 3 / 5, carre: 1, paysage: 5 / 3 };
 
 const fmt = (s) => {
   s = Math.max(0, s || 0);
@@ -20,6 +21,7 @@ const baseName = (name) => name.replace(/\.[^.]+$/, '');
 function Midigen() {
   const audioElRef = useRef(null);
   const canvasRef = useRef(null);
+  const stageRef = useRef(null);
   const audioUrlRef = useRef(null);
   const customShapeUrlRef = useRef(null);
   const recorderRef = useRef(null);
@@ -43,6 +45,7 @@ function Midigen() {
   const [infoText, setInfoText] = useState('Ajoute un ou plusieurs fichiers .mid pour prévisualiser. L’audio est optionnel.');
 
   const [format, setFormat] = useState('portrait');
+  const [stageBoxSize, setStageBoxSize] = useState(null);
   const [secondsVisible, setSecondsVisible] = useState(6);
   const [headPosition, setHeadPosition] = useState(0.45);
   const [noteSize, setNoteSize] = useState(1);
@@ -94,6 +97,38 @@ function Midigen() {
     () => midiFiles.map((f) => ({ src: f.url, label: midiFiles.length > 1 ? baseName(f.name) : null })),
     [midiFiles]
   );
+
+  // Calcule la taille exacte (en px) de la zone d'aperçu en JS plutôt qu'en CSS pur (aspect-ratio +
+  // auto-sizing en flexbox a des incohérences connues entre navigateurs, notamment sur Safari, où le
+  // format sélectionné peut ne pas être respecté visuellement malgré un CSS correct).
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const target = FORMAT_RATIOS[format] || 1;
+    let raf = null;
+    let last = null;
+    const compute = () => {
+      const w = el.clientWidth, h = el.clientHeight;
+      if (!w || !h) return;
+      const boxW = Math.floor(w / h > target ? h * target : w);
+      const boxH = Math.floor(w / h > target ? h : w / target);
+      if (last && last.width === boxW && last.height === boxH) return;
+      last = { width: boxW, height: boxH };
+      setStageBoxSize(last);
+    };
+    compute();
+    // Le calcul est reporté au frame suivant plutôt qu'exécuté directement dans le callback de
+    // ResizeObserver, pour la même raison que dans MidiVisualizer.js (évite tout risque de boucle).
+    const ro = new ResizeObserver(() => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(compute);
+    });
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [format]);
 
   useEffect(() => { midiFilesRef.current = midiFiles; }, [midiFiles]);
   useEffect(() => { tracksRef.current = tracks; }, [tracks]);
@@ -327,7 +362,12 @@ function Midigen() {
         setRecInfo('Enregistrement en cours. Il s’arrête tout seul à la fin.');
         if (!audioUrl) startLocalClock();
       },
-      onStop: ({ ext }) => { setRecording(false); setRecInfo('Vidéo prête (' + ext.toUpperCase() + ').'); },
+      onStop: ({ ext }) => {
+        setRecording(false);
+        setRecInfo(ext === 'webm'
+          ? 'Vidéo prête (WEBM). Attention : After Effects lit mal le WebM (souvent sans le son) — convertis-la en MP4 avant import (ex. avec HandBrake) si besoin.'
+          : 'Vidéo prête (MP4).');
+      },
       onError: (msg) => { setRecording(false); setRecInfo(msg); },
     });
     recorderRef.current = recorder;
@@ -343,29 +383,34 @@ function Midigen() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="midigen_stage">
-        <MidiVisualizer
-          ref={canvasRef}
-          midiSrc={midiSources}
-          audioRef={audioUrl ? audioElRef : clockRef}
-          offset={audioUrl ? offset : 0}
-          rate={rate}
-          format={format}
-          shape={shape}
-          customShapeSrc={customShapeUrl}
-          palette={palette}
-          tracks={tracks}
-          secondsVisible={secondsVisible}
-          headPosition={headPosition}
-          noteSize={noteSize}
-          spread={spread}
-          lines={lines}
-          steps={steps}
-          glow={glow}
-          tint={tint}
-          onReady={handleReady}
-          ariaLabel="Aperçu du visuel MIDI"
-        />
+      <div className="midigen_stage" ref={stageRef}>
+        <div
+          className="midigen_stageBox"
+          style={stageBoxSize ? { width: stageBoxSize.width, height: stageBoxSize.height } : undefined}
+        >
+          <MidiVisualizer
+            ref={canvasRef}
+            midiSrc={midiSources}
+            audioRef={audioUrl ? audioElRef : clockRef}
+            offset={audioUrl ? offset : 0}
+            rate={rate}
+            format={format}
+            shape={shape}
+            customShapeSrc={customShapeUrl}
+            palette={palette}
+            tracks={tracks}
+            secondsVisible={secondsVisible}
+            headPosition={headPosition}
+            noteSize={noteSize}
+            spread={spread}
+            lines={lines}
+            steps={steps}
+            glow={glow}
+            tint={tint}
+            onReady={handleReady}
+            ariaLabel="Aperçu du visuel MIDI"
+          />
+        </div>
         {recording && <div className="midigen_recbadge">Enregistrement</div>}
       </div>
 
