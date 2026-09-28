@@ -3,12 +3,21 @@ import { Helmet } from 'react-helmet-async';
 import './Midigen.scss';
 import MidiVisualizer from '../../components/MidiVisualizer/MidiVisualizer';
 import { recordCanvas, stopRecording } from '../../components/MidiVisualizer/videoExport';
+import { exportVideoOffline, offlineExportSupported } from '../../components/MidiVisualizer/offlineExport';
 import { PALETTES } from '../../lib/midi/palettes';
 import { loadMidiSources, prepareGroups } from '../../lib/midi/song';
 import { createSynth } from '../../lib/midi/synth';
 
 const FORMAT_LABELS = { portrait: '3:5', carre: '1:1', paysage: '5:3' };
 const FORMAT_RATIOS = { portrait: 3 / 5, carre: 1, paysage: 5 / 3 };
+
+// Résolution d'export : le petit côté fait toujours 1080px, l'autre suit le ratio du format.
+const EXPORT_SHORT_SIDE = 1080;
+const exportDimensions = (ratio) => (
+  ratio <= 1
+    ? { width: EXPORT_SHORT_SIDE, height: Math.round(EXPORT_SHORT_SIDE / ratio) }
+    : { width: Math.round(EXPORT_SHORT_SIDE * ratio), height: EXPORT_SHORT_SIDE }
+);
 
 const fmt = (s) => {
   s = Math.max(0, s || 0);
@@ -23,8 +32,11 @@ function Midigen() {
   const canvasRef = useRef(null);
   const stageRef = useRef(null);
   const audioUrlRef = useRef(null);
+  const audioFileRef = useRef(null);
   const customShapeUrlRef = useRef(null);
   const recorderRef = useRef(null);
+  const cancelExportRef = useRef(false);
+  const exportModeRef = useRef(null);
   const midiFilesRef = useRef([]);
   const tracksRef = useRef(null);
   const synthRef = useRef(null);
@@ -71,7 +83,11 @@ function Midigen() {
 
   const [recording, setRecording] = useState(false);
   const recordingRef = useRef(false);
-  const [recInfo, setRecInfo] = useState('L’enregistrement se fait en temps réel, du début à la fin du morceau.');
+  const [recInfo, setRecInfo] = useState(() => (
+    offlineExportSupported()
+      ? 'L’export calcule chaque image séparément (pas en temps réel) : plus long que la durée du morceau, mais un fichier à frame rate constant, prêt pour le montage.'
+      : 'L’enregistrement se fait en temps réel, du début à la fin du morceau.'
+  ));
 
   const canPlay = midiFiles.length > 0;
 
@@ -256,6 +272,7 @@ function Midigen() {
     if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
     const url = URL.createObjectURL(file);
     audioUrlRef.current = url;
+    audioFileRef.current = file;
     resetPlaybackState();
     setAudioUrl(url);
     setInfoText((t) => t.split(' + ')[0] + ' + audio : ' + file.name);
@@ -334,7 +351,10 @@ function Midigen() {
     }
   };
 
-  const startRecordingNow = () => {
+  // Ancien chemin, en secours pour les navigateurs sans WebCodecs (voir offlineExportSupported) :
+  // capture temps réel du canvas (canvas.captureStream + MediaRecorder). Produit un frame rate variable
+  // (voir offlineExport.js), donc à éviter dès que le nouveau chemin est disponible.
+  const startRealtimeRecordingNow = () => {
     const canvas = canvasRef.current;
     if (!canvas || !canPlay) return;
     stopLocalClock();
@@ -374,7 +394,59 @@ function Midigen() {
     if (recorder && audioUrl) audioElRef.current.play().catch(() => {});
   };
 
-  const handleRecordClick = () => (recording ? stopRecording(recorderRef.current) : startRecordingNow());
+  // Export hors-ligne (image par image, pas de lecture en temps réel) : frame rate réellement
+  // constant, lisible tel quel dans un logiciel de montage. Ne touche pas à l'aperçu en direct, qui
+  // reste utilisable normalement pendant l'export.
+  const startOfflineExportNow = () => {
+    exportModeRef.current = 'offline';
+    cancelExportRef.current = false;
+    setRecording(true);
+    setRecInfo('Export en cours (0 %)…');
+    const dims = exportDimensions(FORMAT_RATIOS[format] || 1);
+    exportVideoOffline({
+      midiSources,
+      palette,
+      tracks,
+      format,
+      width: dims.width,
+      height: dims.height,
+      fps: 30,
+      shape,
+      customShapeSrc: customShapeUrl,
+      tint,
+      secondsVisible,
+      headPosition,
+      noteSize,
+      spread,
+      lines,
+      steps,
+      glow,
+      rate,
+      duration,
+      offset: audioUrl ? offset : 0,
+      audioFile: audioUrl ? audioFileRef.current : null,
+      synthEnabled,
+      cancelRef: cancelExportRef,
+      onProgress: (p) => setRecInfo(`Export en cours (${Math.round(p * 100)} %)…`),
+      onDone: ({ cancelled }) => {
+        setRecording(false);
+        setRecInfo(cancelled ? 'Export annulé.' : 'Vidéo prête (MP4, frame rate constant).');
+      },
+      onError: (msg) => { setRecording(false); setRecInfo(msg); },
+    });
+  };
+
+  const startRecordingNow = () => {
+    if (!canPlay) return;
+    if (offlineExportSupported()) startOfflineExportNow();
+    else { exportModeRef.current = 'realtime'; startRealtimeRecordingNow(); }
+  };
+
+  const handleRecordClick = () => {
+    if (!recording) return startRecordingNow();
+    if (exportModeRef.current === 'offline') cancelExportRef.current = true;
+    else stopRecording(recorderRef.current);
+  };
 
   return (
     <main className="midigen">
@@ -490,7 +562,7 @@ function Midigen() {
           onClick={handleRecordClick}
           disabled={!canPlay}
         >
-          {recording ? 'Arrêter l’enregistrement' : 'Enregistrer la vidéo'}
+          {recording ? (exportModeRef.current === 'offline' ? 'Annuler l’export' : 'Arrêter l’enregistrement') : 'Enregistrer la vidéo'}
         </button>
         <p className="midigen_info">{recInfo}</p>
 
