@@ -35,7 +35,7 @@ root.render(
               <Route path="/about" element={<About />} />
               <Route path="/live" element={<Live />} />
               <Route path="/midigen" element={<Midigen />} />
-              {/* <Route path="/34L4R" element={<Salar />} /> */}
+              <Route path="/34L4R" element={<Salar />} />
             </Routes>
           </Suspense>
         </Router>
