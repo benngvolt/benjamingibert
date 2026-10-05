@@ -1,4 +1,5 @@
 import './Salar.scss'
+import { Helmet } from "react-helmet-async";
 import { Link } from 'react-router-dom'
 import React, { useRef, useState, useEffect } from 'react'
 import salar_artwork from '../../assets/salar/salar_artwork.webp'
@@ -46,7 +47,11 @@ function Salar() {
   return (
     
     <main className='salar'>
-    
+      <Helmet>
+        <title>Salar — Benjamin Gibert</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
       <div className='salar_bgImage'>
       <section className='salar_mainDataContainer'>
         <OneMediaContainer

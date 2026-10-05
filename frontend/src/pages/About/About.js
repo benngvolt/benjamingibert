@@ -16,6 +16,7 @@ function About() {
     <main className='about'>
       <Helmet>
         <title>Benjamin Gibert — Bio</title>
+        <meta name="description" content="Biographie de Benjamin Gibert, musicien basé à Toulouse : IDM, hyperpop et ambient, voyage, field-recording, résidences en France et à l’international." />
         <link
           rel="canonical"
           href="https://benjamingibert.com/about"

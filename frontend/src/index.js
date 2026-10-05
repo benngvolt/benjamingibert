@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
@@ -19,9 +19,9 @@ const Live = lazy(() => import("./pages/Live/Live"));
 const Salar = lazy(() => import("./pages/Salar/Salar"));
 const Midigen = lazy(() => import("./pages/Midigen/Midigen"));
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const container = document.getElementById("root");
 
-root.render(
+const app = (
   <React.StrictMode>
     <HelmetProvider>
       <AppProvider>
@@ -43,6 +43,16 @@ root.render(
     </HelmetProvider>
   </React.StrictMode>
 );
+
+// Le HTML prérendu au build (scripts/prerender.js) est « hydraté » plutôt que remplacé, mais seulement
+// s'il correspond à la page demandée : sur une URL non prérendue, le serveur renvoie la page d'accueil
+// prérendue en repli, qu'il faut alors remplacer par un rendu normal.
+const currentRoute = window.location.pathname.replace(/\/+$/, "") || "/";
+if (container.dataset.prerenderedRoute === currentRoute) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
 
 reportWebVitals();
 

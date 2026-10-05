@@ -61,6 +61,7 @@ function Nightingales () {
     <main className='nightingales'>
       <Helmet>
         <title>Nightingales — Benjamin Gibert</title>
+        <meta name="description" content="Nightingales (2025), EP de Benjamin Gibert : l’euphorie des forêts nocturnes, à l’intersection du field-recording, de l’IDM et de la synthwave." />
         <link
           rel="canonical"
           href="https://benjamingibert.com/nightingales"

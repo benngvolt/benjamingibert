@@ -75,6 +75,7 @@ function Taihua() {
     <main className='taihua'>
     <Helmet>
         <title>Taihua — Benjamin Gibert</title>
+        <meta name="description" content="Taihua (2019), album de Benjamin Gibert : un récit immersif qui suit un voyageur se dissolvant dans les paysages de Nouvelle-Zélande." />
         <link
           rel="canonical"
           href="https://benjamingibert.com/taihua"

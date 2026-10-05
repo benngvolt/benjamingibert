@@ -31,5 +31,9 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
+# Pages prérendues au build (scripts/prerender.js) : /about est servi par about.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
 # Sinon, fallback React Router
 RewriteRule ^ index.html [L]

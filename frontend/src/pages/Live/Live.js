@@ -18,6 +18,7 @@ function Live() {
     <main className='live-page'>
       <Helmet>
         <title>Benjamin Gibert — Live</title>
+        <meta name="description" content="Live de Benjamin Gibert : un set électronique immersif en flux continu, entre IDM, ambient et trance, avec création vidéo. Dates et extraits." />
         <link
           rel="canonical"
           href="https://benjamingibert.com/live"

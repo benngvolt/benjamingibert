@@ -69,6 +69,7 @@ function Gemmes() {
     <main className='gemmes'>
       <Helmet>
         <title>Gemmes — Benjamin Gibert</title>
+        <meta name="description" content="Gemmes, EP de Benjamin Gibert sorti en 2019 : un repli hibernatoire dans l’abbaye de Gemmes. Écoute, textes et visuels." />
         <link
           rel="canonical"
           href="https://benjamingibert.com/gemmes"

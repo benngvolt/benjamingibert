@@ -21,6 +21,7 @@ function Home () {
         <main className='home'>
             <Helmet>
                 <title>Benjamin Gibert</title>
+        <meta name="description" content="Benjamin Gibert, musicien électronique : IDM, ambient, field-recording, expérimental, hyperpop. Albums Gemmes, Taihua, Nightingales, live et biographie." />
                 <link
                 rel="canonical"
                 href="https://benjamingibert.com/"
@@ -55,17 +56,17 @@ function Home () {
                         <div className='home_menu_flex_row home_menu_flex_row--albums'>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album home_menu_flex_cell--gemmes'>
                                 <Link aria-label="Accéder à la page de Gemmes" to="/gemmes">
-                                    <img src={titleGemmes}/>
+                                    <img src={titleGemmes} alt="Gemmes"/>
                                 </Link>
                             </div>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album'>
                                 <Link aria-label="Accéder à la page de Taihua" to="/taihua">
-                                    <img src={titleTaihua}/>
+                                    <img src={titleTaihua} alt="Taihua"/>
                                 </Link>
                             </div>
                             <div className='home_menu_flex_cell home_menu_flex_cell--album'>
                                 <Link aria-label="Accéder à la page de Nightingales" to="/nightingales">
-                                    <img src={titleNightingales}/>
+                                    <img src={titleNightingales} alt="Nightingales"/>
                                 </Link>
                             </div>
                         </div>
