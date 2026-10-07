@@ -1,0 +1,72 @@
+@import '../../utils/mixins';
+
+// Même gabarit que la rangée de vidéos de LiveBox : écart de 6px, en colonne sur mobile.
+.liveVideos {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+  margin-bottom: 6px;
+
+  @media only screen and (max-width: $mobileMaxWidth) {
+    flex-direction: column;
+  }
+
+  &_item {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+    background: #000;
+
+    &_facade {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: #000;
+      cursor: pointer;
+      position: relative;
+
+      &:hover .liveVideos_item_icon,
+      &:focus-visible .liveVideos_item_icon {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      &:focus-visible {
+        outline: 2px solid white;
+        outline-offset: -4px;
+      }
+    }
+
+    &_thumb {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &_icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 72px;
+      height: 72px;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+      pointer-events: none;
+
+      @media only screen and (max-width: $mobileMaxWidth) {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    &_player {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+}

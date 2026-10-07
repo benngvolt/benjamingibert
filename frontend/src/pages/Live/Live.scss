@@ -4,4 +4,40 @@
   width: 100vw;
   min-height: 100vh;
   background-color: rgb(46, 46, 46);
+  box-sizing: border-box;
+
+  // Même réserve en haut que la page bio, pour la barre de navigation fixe en tablette/mobile.
+  @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+    padding-top: 45px;
+  }
+
+  @media only screen and (max-width: $mobileMaxWidth) {
+    padding-top: 45px;
+  }
+
+  // Image plein écran : toute la hauteur visible (100svh = sans la barre d'adresse mobile quand elle
+  // est affichée), rognée sur les côtés si besoin. En tablette/mobile on retire les 45px de la barre fixe.
+  &__hero {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    object-fit: cover;
+    object-position: 58% center; // garde la silhouette dans le cadre quand l'image est rognée
+    margin-bottom: 6px; // même écart que la grille de médias en dessous
+
+    @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
+      height: calc(100svh - 45px);
+    }
+
+    @media only screen and (max-width: $mobileMaxWidth) {
+      height: calc(100svh - 45px);
+    }
+  }
+
+  // La réserve de 45px en haut de LiveBox servait à la barre de navigation : elle est désormais
+  // portée par .live-page, sinon on aurait un double espace entre l'image et le contenu.
+  .live {
+    padding-top: 0;
+  }
 }

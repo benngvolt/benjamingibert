@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet-async";
 import NavBar from '../../components/NavBar/NavBar'
 import LiveBox from '../../components/LiveBox/LiveBox'
 import LiveDates from '../../components/LiveDates/LiveDates'
+import LiveVideos from '../../components/LiveVideos/LiveVideos'
+import liveHero from '../../assets/live_hero.webp'
 import { useApp } from "../../utils/AppContext";
 
 function Live() {
@@ -25,6 +27,15 @@ function Live() {
         />
       </Helmet>
       <NavBar />
+      <img
+        className="live-page__hero"
+        src={liveHero}
+        width="3360"
+        height="1890"
+        alt="Benjamin Gibert en live, devant des projections de paysages de montagne"
+        fetchPriority="high"
+      />
+      <LiveVideos lang={lang} />
       <LiveBox lang={lang} mediaOnly />
       <LiveDates lang={lang} />
     </main>
