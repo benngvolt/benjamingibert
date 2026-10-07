@@ -1,5 +1,12 @@
 # Étape 1 : Build de l'application
-FROM node:18 AS build
+FROM node:22 AS build
+
+# Chromium sert uniquement au prérendu des pages pendant le build (scripts/prerender.js) ; il n'est
+# pas copié dans l'image finale, qui reste un simple nginx.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium fonts-liberation \
+    && rm -rf /var/lib/apt/lists/*
+ENV CHROME_PATH=/usr/bin/chromium
 
 WORKDIR /app
 

@@ -8,7 +8,6 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
-const puppeteer = require('puppeteer-core');
 
 const ROOT = path.join(__dirname, '..');
 const BUILD = path.join(ROOT, 'build');
@@ -57,6 +56,9 @@ function serve(shell) {
 }
 
 async function main() {
+  // puppeteer-core est un module ESM : import dynamique obligatoire depuis ce fichier CommonJS.
+  // Si l'import échoue (Node trop ancien…), le build continue sans prérendu au lieu d'échouer.
+  const puppeteer = (await import('puppeteer-core')).default;
   const chrome = CHROME_CANDIDATES.find((p) => fs.existsSync(p));
   if (!chrome) {
     console.warn('[prerender] Chrome introuvable (définis CHROME_PATH) : prérendu ignoré, le site reste en SPA classique.');
@@ -74,7 +76,7 @@ async function main() {
   const browser = await puppeteer.launch({
     executablePath: chrome,
     headless: true,
-    args: ['--no-sandbox', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
   });
 
   const results = [];
