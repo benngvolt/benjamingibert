@@ -33,7 +33,7 @@ function Midigen() {
   const stageRef = useRef(null);
   const audioUrlRef = useRef(null);
   const audioFileRef = useRef(null);
-  const customShapeUrlRef = useRef(null);
+  const customShapesRef = useRef([]);
   const recorderRef = useRef(null);
   const cancelExportRef = useRef(false);
   const exportModeRef = useRef(null);
@@ -63,13 +63,18 @@ function Midigen() {
   const [noteSize, setNoteSize] = useState(1);
   const [spread, setSpread] = useState(0.5);
   const [shape, setShape] = useState('circles');
-  const [customShapeUrl, setCustomShapeUrl] = useState(null);
-  const [customShapeName, setCustomShapeName] = useState(null);
+  const [customShapes, setCustomShapes] = useState([]);
   const [tint, setTint] = useState(0.35);
   const [palette, setPalette] = useState('aube');
   const [lines, setLines] = useState(true);
   const [steps, setSteps] = useState(false);
   const [glow, setGlow] = useState(true);
+  const [trail, setTrail] = useState(false);
+  const [whiteLine, setWhiteLine] = useState(false);
+  const [playheadLine, setPlayheadLine] = useState(false);
+  const [spinMode, setSpinMode] = useState('fixed');
+  const [spinDegPerSec, setSpinDegPerSec] = useState(10);
+  const spinSpeed = spinMode === 'spin' ? spinDegPerSec : 0;
   const [offset, setOffset] = useState(0);
   const [midiBpm, setMidiBpm] = useState(null);
   const [realBpm, setRealBpm] = useState(null);
@@ -147,6 +152,8 @@ function Midigen() {
   }, [format]);
 
   useEffect(() => { midiFilesRef.current = midiFiles; }, [midiFiles]);
+  useEffect(() => { customShapesRef.current = customShapes; }, [customShapes]);
+  const customShapeUrls = useMemo(() => customShapes.map((s) => s.url), [customShapes]);
   useEffect(() => { tracksRef.current = tracks; }, [tracks]);
   // Le loop rAF de l'horloge locale capture ses closures une seule fois : il doit lire ces refs
   // (toujours à jour) plutôt que les états correspondants, qui seraient figés à leur valeur de départ.
@@ -156,7 +163,7 @@ function Midigen() {
   useEffect(() => () => {
     midiFilesRef.current.forEach((f) => URL.revokeObjectURL(f.url));
     if (audioUrlRef.current) URL.revokeObjectURL(audioUrlRef.current);
-    if (customShapeUrlRef.current) URL.revokeObjectURL(customShapeUrlRef.current);
+    customShapesRef.current.forEach((s) => URL.revokeObjectURL(s.url));
     if (clockRafRef.current) cancelAnimationFrame(clockRafRef.current);
   }, []);
 
@@ -278,13 +285,23 @@ function Midigen() {
     setInfoText((t) => t.split(' + ')[0] + ' + audio : ' + file.name);
   };
 
-  const handleCustomShapeFile = (file) => {
-    if (customShapeUrlRef.current) URL.revokeObjectURL(customShapeUrlRef.current);
-    const url = URL.createObjectURL(file);
-    customShapeUrlRef.current = url;
-    setCustomShapeUrl(url);
-    setCustomShapeName(file.name);
+  // Chaque note reçoit au hasard (de façon stable) l'une des formes importées.
+  const handleCustomShapeFiles = (files) => {
+    const additions = files.map((file) => ({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+    setCustomShapes((prev) => [...prev, ...additions]);
     setShape('custom');
+  };
+
+  const removeCustomShape = (id) => {
+    const target = customShapes.find((s) => s.id === id);
+    if (target) URL.revokeObjectURL(target.url);
+    const rest = customShapes.filter((s) => s.id !== id);
+    setCustomShapes(rest);
+    if (!rest.length && shape === 'custom') setShape('circles');
   };
 
   const handleReady = useCallback(({ duration: d, bpm, groups }) => {
@@ -412,7 +429,7 @@ function Midigen() {
       height: dims.height,
       fps: 30,
       shape,
-      customShapeSrc: customShapeUrl,
+      customShapeSrcs: customShapeUrls,
       tint,
       secondsVisible,
       headPosition,
@@ -421,6 +438,10 @@ function Midigen() {
       lines,
       steps,
       glow,
+      trail,
+      whiteLine,
+      playheadLine,
+      spinSpeed,
       rate,
       duration,
       offset: audioUrl ? offset : 0,
@@ -468,7 +489,7 @@ function Midigen() {
             rate={rate}
             format={format}
             shape={shape}
-            customShapeSrc={customShapeUrl}
+            customShapeSrcs={customShapeUrls}
             palette={palette}
             tracks={tracks}
             secondsVisible={secondsVisible}
@@ -478,6 +499,10 @@ function Midigen() {
             lines={lines}
             steps={steps}
             glow={glow}
+            trail={trail}
+            whiteLine={whiteLine}
+            playheadLine={playheadLine}
+            spinSpeed={spinSpeed}
             tint={tint}
             onReady={handleReady}
             ariaLabel="Aperçu du visuel MIDI"
@@ -600,20 +625,51 @@ function Midigen() {
               <select value={shape} onChange={(e) => setShape(e.target.value)}>
                 <option value="circles">Cercles</option>
                 <option value="cones">Pommes de pin</option>
-                {customShapeUrl && <option value="custom">Personnalisée ({customShapeName})</option>}
+                {customShapes.length > 0 && (
+                  <option value="custom">
+                    {customShapes.length === 1 ? `Personnalisée (${customShapes[0].name})` : `Personnalisées (${customShapes.length} formes, au hasard)`}
+                  </option>
+                )}
               </select>
             </label>
             <div className="midigen_row">
               <label className="midigen_btn">
-                Importer une forme (SVG)
+                Importer des formes (SVG)
                 <input
                   type="file"
                   accept="image/svg+xml,.svg"
+                  multiple
                   hidden
-                  onChange={(e) => { const f = e.target.files[0]; if (f) handleCustomShapeFile(f); e.target.value = ''; }}
+                  onChange={(e) => { const files = [...e.target.files]; if (files.length) handleCustomShapeFiles(files); e.target.value = ''; }}
                 />
               </label>
             </div>
+            {customShapes.length > 0 && (
+              <ul className="midigen_fileList">
+                {customShapes.map((s) => (
+                  <li key={s.id}>
+                    <span>{s.name}</span>
+                    <button type="button" onClick={() => removeCustomShape(s.id)} aria-label={'Retirer ' + s.name}>×</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <label className="midigen_field">
+              <span>Mouvement des formes</span>
+              <select value={spinMode} onChange={(e) => setSpinMode(e.target.value)}>
+                <option value="fixed">Fixes</option>
+                <option value="spin">Rotation lente (sens aléatoire)</option>
+              </select>
+            </label>
+            {spinMode === 'spin' && (
+              <>
+                <label className="midigen_field">
+                  <span>Vitesse de rotation <b>{spinDegPerSec}°/s</b></span>
+                  <input type="range" min="2" max="45" step="1" value={spinDegPerSec} onChange={(e) => setSpinDegPerSec(parseInt(e.target.value, 10))} />
+                </label>
+                {shape === 'circles' && <p className="midigen_info">Sans effet visible sur les cercles : choisis les pommes de pin ou des formes importées.</p>}
+              </>
+            )}
             {shape === 'cones' && (
               <label className="midigen_field">
                 <span>Couleur de la piste sur les pommes de pin</span>
@@ -637,6 +693,15 @@ function Midigen() {
             </label>
             <label className="midigen_check">
               <input type="checkbox" checked={glow} onChange={(e) => setGlow(e.target.checked)} /> Halo sur les notes jouées
+            </label>
+            <label className="midigen_check">
+              <input type="checkbox" checked={trail} onChange={(e) => setTrail(e.target.checked)} /> Traînée lumineuse
+            </label>
+            <label className="midigen_check">
+              <input type="checkbox" checked={whiteLine} onChange={(e) => setWhiteLine(e.target.checked)} /> Ligne blanche horizontale sur la note jouée
+            </label>
+            <label className="midigen_check">
+              <input type="checkbox" checked={playheadLine} onChange={(e) => setPlayheadLine(e.target.checked)} /> Ligne blanche verticale fixe (tête de lecture)
             </label>
           </div>
         </details>

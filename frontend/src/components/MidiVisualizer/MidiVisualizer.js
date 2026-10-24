@@ -3,7 +3,7 @@ import './MidiVisualizer.scss';
 import { useInView } from '../../utils/useInView';
 import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../../lib/midi/song';
 import { renderFrame } from '../../lib/midi/renderFrame';
-import { loadCustomShapeImage } from '../../lib/midi/customSprite';
+import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 
 // Composant public minimal : aucune UI de réglage, aucun export. Se synchronise uniquement sur
 // `audioRef.current.currentTime` (pas de synthé). Tous les réglages viennent des props.
@@ -16,7 +16,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     rate = 1,
     format = 'portrait',
     shape = 'circles',
-    customShapeSrc,
+    customShapeSrcs,
     palette = 'aube',
     tracks,
     secondsVisible = 6,
@@ -26,6 +26,10 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     lines = true,
     steps = false,
     glow = true,
+    trail = false,
+    whiteLine = false,
+    playheadLine = false,
+    spinSpeed = 0,
     tint = 0.35,
     ariaLabel,
     className,
@@ -37,7 +41,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
   const canvasRef = useRef(null);
   const songRef = useRef(null);
   const spriteCacheRef = useRef([]);
-  const customImageRef = useRef(null);
+  const customImagesRef = useRef([]);
   const onReadyRef = useRef(onReady);
   const [songVersion, setSongVersion] = useState(0);
   const [customImageVersion, setCustomImageVersion] = useState(0);
@@ -102,16 +106,16 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [midiSrcKey]);
 
-  // Chargement de la forme personnalisée (SVG) : rechargée seulement quand sa source change.
+  // Chargement des formes personnalisées (SVG) : rechargées seulement quand la liste des sources change.
+  const customKey = (customShapeSrcs || []).join('\n');
   useEffect(() => {
     let cancelled = false;
-    customImageRef.current = null;
-    if (!customShapeSrc) { setCustomImageVersion(v => v + 1); return; }
-    loadCustomShapeImage(customShapeSrc)
-      .then(img => { if (!cancelled) { customImageRef.current = img; setCustomImageVersion(v => v + 1); } })
-      .catch(() => { customImageRef.current = null; setCustomImageVersion(v => v + 1); });
+    customImagesRef.current = [];
+    if (!customKey) { setCustomImageVersion(v => v + 1); return; }
+    loadCustomShapeImages(customKey.split('\n'))
+      .then(imgs => { if (!cancelled) { customImagesRef.current = imgs; setCustomImageVersion(v => v + 1); } });
     return () => { cancelled = true; };
-  }, [customShapeSrc]);
+  }, [customKey]);
 
   const renderNow = useCallback(() => {
     const song = songRef.current;
@@ -126,10 +130,10 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     renderFrame(ctx, canvas.width, canvas.height, {
       groups: song.groups, notes: song.notes, t,
       lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
-      size: noteSize, spread, lines, steps, glow, shape, tint, customImage: customImageRef.current,
+      size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages: customImagesRef.current, spin: spinSpeed * Math.PI / 180,
     }, spriteCacheRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, shape, tint, customImageVersion]);
+  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, shape, tint, customImageVersion]);
 
   // Couleurs/visibilité par piste : recalculées sans reparser le fichier.
   useEffect(() => {

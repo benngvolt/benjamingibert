@@ -7,7 +7,7 @@
 import { Output, Mp4OutputFormat, BufferTarget, CanvasSource, AudioBufferSource, QUALITY_HIGH } from 'mediabunny';
 import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../../lib/midi/song';
 import { renderFrame } from '../../lib/midi/renderFrame';
-import { loadCustomShapeImage } from '../../lib/midi/customSprite';
+import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 import { buildSynthGraph, scheduleNote } from '../../lib/midi/synth';
 
 const FPS = 30;
@@ -65,7 +65,7 @@ async function renderSynthOffline(song, tracks, rate, duration) {
 // `cancelRef` : objet { current: false } — le mettre à true depuis l'appelant annule l'export en cours.
 export async function exportVideoOffline({
   midiSources, palette, tracks, format, width, height, fps = FPS,
-  shape, customShapeSrc, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow,
+  shape, customShapeSrcs, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed,
   rate, duration, offset, audioFile, synthEnabled,
   cancelRef, onProgress, onDone, onError,
 }) {
@@ -76,7 +76,7 @@ export async function exportVideoOffline({
     applyStyling(prepared.groups, palette, tracks);
     const range = computeRange(prepared.groups);
     const song = { groups: prepared.groups, notes: prepared.notes, lo: range.lo, hi: range.hi };
-    const customImage = customShapeSrc ? await loadCustomShapeImage(customShapeSrc).catch(() => null) : null;
+    const customImages = customShapeSrcs && customShapeSrcs.length ? await loadCustomShapeImages(customShapeSrcs) : [];
 
     const willHaveAudio = !!audioFile || (synthEnabled && hasAudibleNotes(song, tracks));
     // Décodage/rendu de l'audio en parallèle du rendu vidéo (indépendants l'un de l'autre).
@@ -115,7 +115,7 @@ export async function exportVideoOffline({
       renderFrame(ctx, width, height, {
         groups: song.groups, notes: song.notes, t,
         lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
-        size: noteSize, spread, lines, steps, glow, shape, tint, customImage,
+        size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages, spin: (spinSpeed || 0) * Math.PI / 180,
       }, spriteCache);
       await videoSource.add(elapsedReal, frameDur);
       if (onProgress) onProgress(Math.min(0.9, (i + 1) / totalFrames * 0.9));
