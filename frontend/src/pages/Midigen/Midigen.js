@@ -72,6 +72,18 @@ function Midigen() {
   const [trail, setTrail] = useState(false);
   const [whiteLine, setWhiteLine] = useState(false);
   const [playheadLine, setPlayheadLine] = useState(false);
+  // Deux « onglets » de visualisation : les notes, ou l'irisation (voir lib/midi/renderIris.js).
+  const [mode, setMode] = useState('notes');
+  const [irisSpread, setIrisSpread] = useState(0.85);
+  const [irisLife, setIrisLife] = useState(3);
+  const [irisGain, setIrisGain] = useState(1.3);
+  const [irisTurbulence, setIrisTurbulence] = useState(0.7);
+  const [irisHue, setIrisHue] = useState(0);
+  const [irisLine, setIrisLine] = useState(true);
+  const iris = useMemo(
+    () => ({ spread: irisSpread, life: irisLife, gain: irisGain, turbulence: irisTurbulence, hue: irisHue, line: irisLine }),
+    [irisSpread, irisLife, irisGain, irisTurbulence, irisHue, irisLine]
+  );
   const [spinMode, setSpinMode] = useState('fixed');
   const [spinDegPerSec, setSpinDegPerSec] = useState(10);
   const spinSpeed = spinMode === 'spin' ? spinDegPerSec : 0;
@@ -418,7 +430,11 @@ function Midigen() {
     exportModeRef.current = 'offline';
     cancelExportRef.current = false;
     setRecording(true);
-    setRecInfo('Export en cours (0 %)…');
+    // Rappel du tempo réellement appliqué : un facteur ×1.0000 alors qu'on croyait avoir corrigé le BPM se voit tout de suite.
+    const tempoNote = midiBpm
+      ? (Math.abs(rate - 1) < 1e-6 ? `tempo du MIDI non corrigé (${midiBpm.toFixed(0)} BPM)` : `tempo ${realBpm} BPM (×${rate.toFixed(4)})`)
+      : '';
+    setRecInfo(`Export en cours (0 %)${tempoNote ? ' — ' + tempoNote : ''}…`);
     const dims = exportDimensions(FORMAT_RATIOS[format] || 1);
     exportVideoOffline({
       midiSources,
@@ -442,16 +458,18 @@ function Midigen() {
       whiteLine,
       playheadLine,
       spinSpeed,
+      mode,
+      iris,
       rate,
       duration,
       offset: audioUrl ? offset : 0,
       audioFile: audioUrl ? audioFileRef.current : null,
       synthEnabled,
       cancelRef: cancelExportRef,
-      onProgress: (p) => setRecInfo(`Export en cours (${Math.round(p * 100)} %)…`),
+      onProgress: (p) => setRecInfo(`Export en cours (${Math.round(p * 100)} %)${tempoNote ? ' — ' + tempoNote : ''}…`),
       onDone: ({ cancelled }) => {
         setRecording(false);
-        setRecInfo(cancelled ? 'Export annulé.' : 'Vidéo prête (MP4, frame rate constant).');
+        setRecInfo(cancelled ? 'Export annulé.' : `Vidéo prête (MP4, frame rate constant${tempoNote ? ' ; ' + tempoNote : ''}).`);
       },
       onError: (msg) => { setRecording(false); setRecInfo(msg); },
     });
@@ -503,6 +521,8 @@ function Midigen() {
             whiteLine={whiteLine}
             playheadLine={playheadLine}
             spinSpeed={spinSpeed}
+            mode={mode}
+            iris={iris}
             tint={tint}
             onReady={handleReady}
             ariaLabel="Aperçu du visuel MIDI"
@@ -511,10 +531,19 @@ function Midigen() {
         {recording && <div className="midigen_recbadge">Enregistrement</div>}
       </div>
 
-      <section className="midigen_panel">
+      <section className="midigen_panel" data-mode={mode}>
         <div>
           <h1>Visualiseur MIDI</h1>
-          <p className="midigen_lede">Chaque note devient une forme, les lignes suivent les voix.</p>
+          <p className="midigen_lede">
+            {mode === 'notes'
+              ? 'Chaque note devient une forme, les lignes suivent les voix.'
+              : 'Chaque note libère une irisation qui se diffuse depuis la barre.'}
+          </p>
+        </div>
+
+        <div className="midigen_seg midigen_seg--tabs" role="tablist" aria-label="Mode de visualisation">
+          <button type="button" role="tab" aria-selected={mode === 'notes'} onClick={() => setMode('notes')}>Notes</button>
+          <button type="button" role="tab" aria-selected={mode === 'iris'} onClick={() => setMode('iris')}>Irisation</button>
         </div>
 
         <div className="midigen_transport">
@@ -604,14 +633,17 @@ function Midigen() {
                 ))}
               </div>
             </div>
+            {mode === 'notes' && (
+              <label className="midigen_field">
+                <span>Secondes visibles <b>{secondsVisible}</b></span>
+                <input type="range" min="2" max="24" step="0.5" value={secondsVisible} onChange={(e) => setSecondsVisible(parseFloat(e.target.value))} />
+              </label>
+            )}
             <label className="midigen_field">
-              <span>Secondes visibles <b>{secondsVisible}</b></span>
-              <input type="range" min="2" max="24" step="0.5" value={secondsVisible} onChange={(e) => setSecondsVisible(parseFloat(e.target.value))} />
-            </label>
-            <label className="midigen_field">
-              <span>Position de la tête de lecture</span>
+              <span>{mode === 'notes' ? 'Position de la tête de lecture' : 'Position de la barre'}</span>
               <input type="range" min="0.15" max="0.85" step="0.01" value={headPosition} onChange={(e) => setHeadPosition(parseFloat(e.target.value))} />
             </label>
+            {mode === 'notes' && (<>
             <label className="midigen_field">
               <span>Taille des notes</span>
               <input type="range" min="0.3" max="2.5" step="0.05" value={noteSize} onChange={(e) => setNoteSize(parseFloat(e.target.value))} />
@@ -703,6 +735,33 @@ function Midigen() {
             <label className="midigen_check">
               <input type="checkbox" checked={playheadLine} onChange={(e) => setPlayheadLine(e.target.checked)} /> Ligne blanche verticale fixe (tête de lecture)
             </label>
+            </>)}
+            {mode === 'iris' && (<>
+              <label className="midigen_field">
+                <span>Étendue <b>{Math.round(irisSpread * 100)} %</b></span>
+                <input type="range" min="0.3" max="1.3" step="0.01" value={irisSpread} onChange={(e) => setIrisSpread(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Persistance <b>{irisLife.toFixed(1)} s</b></span>
+                <input type="range" min="1" max="8" step="0.1" value={irisLife} onChange={(e) => setIrisLife(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Intensité <b>{irisGain.toFixed(2)}</b></span>
+                <input type="range" min="0.4" max="2.5" step="0.05" value={irisGain} onChange={(e) => setIrisGain(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Turbulence <b>{irisTurbulence.toFixed(2)}</b></span>
+                <input type="range" min="0" max="1.5" step="0.05" value={irisTurbulence} onChange={(e) => setIrisTurbulence(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Teinte <b>{Math.round(irisHue * 360)}°</b></span>
+                <input type="range" min="0" max="1" step="0.01" value={irisHue} onChange={(e) => setIrisHue(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_check">
+                <input type="checkbox" checked={irisLine} onChange={(e) => setIrisLine(e.target.checked)} /> Barre verticale
+              </label>
+              <p className="midigen_info">À l’export, la vidéo se prolonge de la durée nécessaire pour que la dernière onde s’éteigne.</p>
+            </>)}
           </div>
         </details>
 

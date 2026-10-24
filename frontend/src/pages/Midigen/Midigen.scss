@@ -484,9 +484,21 @@
                 }
             }
 
-            &[aria-pressed='true'] {
+            &[aria-pressed='true'],
+            &[aria-selected='true'] {
                 background: var(--ink);
                 color: var(--bg);
+            }
+        }
+
+        // Onglets Notes / Irisation : deux cellules, libellé en capitales espacées.
+        &--tabs {
+            grid-template-columns: repeat(2, 1fr);
+
+            button {
+                font-size: 10.5px;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
             }
         }
     }
@@ -620,6 +632,15 @@
                 font-size: 10.5px;
                 margin-left: 4px;
             }
+        }
+    }
+
+    // En mode irisation, la couleur des pistes n'est pas utilisée : on ne montre que leur visibilité.
+    &_panel[data-mode='iris'] &_tracks_item {
+        grid-template-columns: auto 1fr;
+
+        input[type='color'] {
+            display: none;
         }
     }
 }

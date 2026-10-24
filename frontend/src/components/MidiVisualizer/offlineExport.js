@@ -7,6 +7,7 @@
 import { Output, Mp4OutputFormat, BufferTarget, CanvasSource, AudioBufferSource, QUALITY_HIGH } from 'mediabunny';
 import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../../lib/midi/song';
 import { renderFrame } from '../../lib/midi/renderFrame';
+import { renderIris } from '../../lib/midi/renderIris';
 import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 import { buildSynthGraph, scheduleNote } from '../../lib/midi/synth';
 
@@ -28,7 +29,7 @@ function hasAudibleNotes(song, tracks) {
 
 // Décode le fichier audio et en extrait exactement la fenêtre [offset, offset+duration] : l'export
 // doit démarrer pile au même instant que l'aperçu (qui saute directement à `offset` avant de jouer).
-async function decodeAudioWindow(audioFile, offset, duration) {
+async function decodeAudioWindow(audioFile, offset, duration, totalDuration) {
   const arrBuf = await audioFile.arrayBuffer();
   const actx = new (window.AudioContext || window.webkitAudioContext)();
   let decoded;
@@ -36,7 +37,8 @@ async function decodeAudioWindow(audioFile, offset, duration) {
   const sr = decoded.sampleRate;
   const startSample = Math.max(0, Math.floor(offset * sr));
   const frameCount = Math.max(1, Math.floor(duration * sr));
-  const out = new AudioBuffer({ length: frameCount, numberOfChannels: decoded.numberOfChannels, sampleRate: sr });
+  // Le buffer peut être plus long que la fenêtre (fin de l'export) : la suite reste silencieuse.
+  const out = new AudioBuffer({ length: Math.max(frameCount, Math.floor(totalDuration * sr)), numberOfChannels: decoded.numberOfChannels, sampleRate: sr });
   for (let ch = 0; ch < decoded.numberOfChannels; ch++) {
     const src = decoded.getChannelData(ch).subarray(startSample, startSample + frameCount);
     out.getChannelData(ch).set(src);
@@ -65,7 +67,7 @@ async function renderSynthOffline(song, tracks, rate, duration) {
 // `cancelRef` : objet { current: false } — le mettre à true depuis l'appelant annule l'export en cours.
 export async function exportVideoOffline({
   midiSources, palette, tracks, format, width, height, fps = FPS,
-  shape, customShapeSrcs, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed,
+  shape, customShapeSrcs, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, mode, iris,
   rate, duration, offset, audioFile, synthEnabled,
   cancelRef, onProgress, onDone, onError,
 }) {
@@ -78,16 +80,30 @@ export async function exportVideoOffline({
     const song = { groups: prepared.groups, notes: prepared.notes, lo: range.lo, hi: range.hi };
     const customImages = customShapeSrcs && customShapeSrcs.length ? await loadCustomShapeImages(customShapeSrcs) : [];
 
+    // Fin d'export : en mode irisation, la vidéo se prolonge jusqu'à ce que l'onde de la dernière note ait
+    // fini de se propager et de s'éteindre (sa durée de vie = « persistance », convertie en temps réel).
+    let tail = 0;
+    if (mode === 'iris' && iris) {
+      let lastOnset = 0;
+      for (const n of song.notes) {
+        const g = song.groups[n.g];
+        if (g.visible && !g.drums && n.time > lastOnset) lastOnset = n.time;
+      }
+      tail = Math.max(0, (lastOnset + iris.life) / (rate || 1) - duration);
+    }
+    const totalDuration = duration + tail;
+
     const willHaveAudio = !!audioFile || (synthEnabled && hasAudibleNotes(song, tracks));
     // Décodage/rendu de l'audio en parallèle du rendu vidéo (indépendants l'un de l'autre).
     const audioPromise = audioFile
-      ? decodeAudioWindow(audioFile, offset, duration)
-      : (willHaveAudio ? renderSynthOffline(song, tracks, rate, duration) : Promise.resolve(null));
+      ? decodeAudioWindow(audioFile, offset, duration, totalDuration)
+      : (willHaveAudio ? renderSynthOffline(song, tracks, rate, totalDuration) : Promise.resolve(null));
 
     const canvas = document.createElement('canvas');
     canvas.width = width; canvas.height = height;
     const ctx = canvas.getContext('2d');
     const spriteCache = [];
+    const irisCache = {};
 
     output = new Output({ format: new Mp4OutputFormat(), target: new BufferTarget() });
     const videoSource = new CanvasSource(canvas, { codec: 'avc', quality: QUALITY_HIGH });
@@ -106,17 +122,23 @@ export async function exportVideoOffline({
     }
     await output.start();
 
-    const totalFrames = Math.max(1, Math.round(duration * fps));
+    const totalFrames = Math.max(1, Math.round(totalDuration * fps));
     const frameDur = 1 / fps;
     for (let i = 0; i < totalFrames; i++) {
       if (cancelRef && cancelRef.current) { await output.cancel(); onDone && onDone({ cancelled: true }); return; }
       const elapsedReal = i * frameDur;
       const t = elapsedReal * (rate || 1);
-      renderFrame(ctx, width, height, {
-        groups: song.groups, notes: song.notes, t,
-        lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
-        size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages, spin: (spinSpeed || 0) * Math.PI / 180,
-      }, spriteCache);
+      if (mode === 'iris') {
+        renderIris(ctx, width, height, {
+          groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, head: headPosition, ...iris,
+        }, irisCache);
+      } else {
+        renderFrame(ctx, width, height, {
+          groups: song.groups, notes: song.notes, t,
+          lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
+          size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages, spin: (spinSpeed || 0) * Math.PI / 180,
+        }, spriteCache);
+      }
       await videoSource.add(elapsedReal, frameDur);
       if (onProgress) onProgress(Math.min(0.9, (i + 1) / totalFrames * 0.9));
     }
@@ -131,7 +153,7 @@ export async function exportVideoOffline({
 
     await output.finalize();
     const blob = new Blob([output.target.buffer], { type: 'video/mp4' });
-    const filename = `visuel-midi-${format}.mp4`;
+    const filename = `visuel-${mode === 'iris' ? 'irisation' : 'midi'}-${format}.mp4`;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = filename;

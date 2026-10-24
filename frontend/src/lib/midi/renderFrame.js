@@ -3,7 +3,7 @@ import { getCustomSprite } from './customSprite';
 
 // Nombre pseudo-aléatoire stable dans [0, 1[ pour une note : il ne change ni d'une image à l'autre ni
 // entre l'aperçu et l'export. `salt` permet d'en tirer plusieurs indépendants pour la même note.
-function hash01(id, salt) {
+export function hash01(id, salt) {
   let h = Math.imul(id + 1, 2654435761) ^ Math.imul(salt + 1, 40503);
   h = Math.imul(h ^ (h >>> 15), 2246822519);
   h = Math.imul(h ^ (h >>> 13), 3266489917);
