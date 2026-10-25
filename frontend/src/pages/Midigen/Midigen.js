@@ -8,6 +8,8 @@ import { PALETTES } from '../../lib/midi/palettes';
 import { loadMidiSources, prepareGroups } from '../../lib/midi/song';
 import { createSynth } from '../../lib/midi/synth';
 
+const IRIS_MAX_COLORS = 6;
+const IRIS_DEFAULT_COLORS = ['#ff4d6d', '#ffd166', '#4cc9f0', '#9b5de5', '#06d6a0', '#ffffff'];
 const FORMAT_LABELS = { portrait: '3:5', carre: '1:1', paysage: '5:3' };
 const FORMAT_RATIOS = { portrait: 3 / 5, carre: 1, paysage: 5 / 3 };
 
@@ -80,9 +82,17 @@ function Midigen() {
   const [irisTurbulence, setIrisTurbulence] = useState(0.7);
   const [irisHue, setIrisHue] = useState(0);
   const [irisLine, setIrisLine] = useState(true);
+  const [irisSize, setIrisSize] = useState(1);
+  // Couleurs : irisées par défaut, ou un jeu choisi (de 1 à IRIS_MAX_COLORS couleurs).
+  const [irisPalette, setIrisPalette] = useState('iridescent');
+  const [irisColorCount, setIrisColorCount] = useState(3);
+  const [irisColors, setIrisColors] = useState(IRIS_DEFAULT_COLORS);
   const iris = useMemo(
-    () => ({ spread: irisSpread, life: irisLife, gain: irisGain, turbulence: irisTurbulence, hue: irisHue, line: irisLine }),
-    [irisSpread, irisLife, irisGain, irisTurbulence, irisHue, irisLine]
+    () => ({
+      spread: irisSpread, life: irisLife, gain: irisGain, turbulence: irisTurbulence, hue: irisHue, line: irisLine, size: irisSize,
+      colors: irisPalette === 'custom' ? irisColors.slice(0, irisColorCount) : null,
+    }),
+    [irisSpread, irisLife, irisGain, irisTurbulence, irisHue, irisLine, irisSize, irisPalette, irisColorCount, irisColors]
   );
   const [spinMode, setSpinMode] = useState('fixed');
   const [spinDegPerSec, setSpinDegPerSec] = useState(10);
@@ -739,7 +749,11 @@ function Midigen() {
             {mode === 'iris' && (<>
               <label className="midigen_field">
                 <span>Étendue <b>{Math.round(irisSpread * 100)} %</b></span>
-                <input type="range" min="0.3" max="1.3" step="0.01" value={irisSpread} onChange={(e) => setIrisSpread(parseFloat(e.target.value))} />
+                <input type="range" min="0.2" max="2.5" step="0.01" value={irisSpread} onChange={(e) => setIrisSpread(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Épaisseur <b>{Math.round(irisSize * 100)} %</b></span>
+                <input type="range" min="0.4" max="3" step="0.05" value={irisSize} onChange={(e) => setIrisSize(parseFloat(e.target.value))} />
               </label>
               <label className="midigen_field">
                 <span>Persistance <b>{irisLife.toFixed(1)} s</b></span>
@@ -753,10 +767,35 @@ function Midigen() {
                 <span>Turbulence <b>{irisTurbulence.toFixed(2)}</b></span>
                 <input type="range" min="0" max="1.5" step="0.05" value={irisTurbulence} onChange={(e) => setIrisTurbulence(parseFloat(e.target.value))} />
               </label>
-              <label className="midigen_field">
-                <span>Teinte <b>{Math.round(irisHue * 360)}°</b></span>
-                <input type="range" min="0" max="1" step="0.01" value={irisHue} onChange={(e) => setIrisHue(parseFloat(e.target.value))} />
-              </label>
+              <div className="midigen_field">
+                <span>Couleurs</span>
+                <div className="midigen_seg midigen_seg--tabs">
+                  <button type="button" aria-pressed={irisPalette === 'iridescent'} onClick={() => setIrisPalette('iridescent')}>Irisées</button>
+                  <button type="button" aria-pressed={irisPalette === 'custom'} onClick={() => setIrisPalette('custom')}>Jeu perso</button>
+                </div>
+              </div>
+              {irisPalette === 'iridescent' ? (
+                <label className="midigen_field">
+                  <span>Teinte <b>{Math.round(irisHue * 360)}°</b></span>
+                  <input type="range" min="0" max="1" step="0.01" value={irisHue} onChange={(e) => setIrisHue(parseFloat(e.target.value))} />
+                </label>
+              ) : (<>
+                <label className="midigen_field">
+                  <span>Nombre de couleurs <b>{irisColorCount}</b></span>
+                  <input type="range" min="1" max={IRIS_MAX_COLORS} step="1" value={irisColorCount} onChange={(e) => setIrisColorCount(parseInt(e.target.value, 10))} />
+                </label>
+                <div className="midigen_palette">
+                  {irisColors.slice(0, irisColorCount).map((c, i) => (
+                    <input
+                      key={i}
+                      type="color"
+                      value={c}
+                      aria-label={'Couleur ' + (i + 1)}
+                      onChange={(e) => { const v = e.target.value; setIrisColors((arr) => arr.map((x, j) => (j === i ? v : x))); }}
+                    />
+                  ))}
+                </div>
+              </>)}
               <label className="midigen_check">
                 <input type="checkbox" checked={irisLine} onChange={(e) => setIrisLine(e.target.checked)} /> Barre verticale
               </label>

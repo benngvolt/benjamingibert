@@ -635,6 +635,36 @@
         }
     }
 
+    // Jeu de couleurs de l'irisation : une pastille par couleur.
+    &_palette {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        input[type='color'] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid var(--line-field);
+            background: none;
+            cursor: pointer;
+
+            &::-webkit-color-swatch-wrapper {
+                padding: 0;
+            }
+
+            &::-webkit-color-swatch {
+                border: 0;
+            }
+
+            &::-moz-color-swatch {
+                border: 0;
+            }
+        }
+    }
+
     // En mode irisation, la couleur des pistes n'est pas utilisée : on ne montre que leur visibilité.
     &_panel[data-mode='iris'] &_tracks_item {
         grid-template-columns: auto 1fr;

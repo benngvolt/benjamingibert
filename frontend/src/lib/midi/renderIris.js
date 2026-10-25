@@ -14,7 +14,7 @@ const FIELD_LONG = 320; // plus grand côté du champ calculé, en pixels
 const LUT_N = 1024;
 const MAX_ACTIVE = 70;
 
-const PALETTE = (() => {
+const IRIDESCENT = (() => {
   const lut = new Float32Array(LUT_N * 3);
   const tau = Math.PI * 2;
   for (let i = 0; i < LUT_N; i++) {
@@ -26,6 +26,27 @@ const PALETTE = (() => {
   }
   return lut;
 })();
+
+// Palette personnalisée : dégradé cyclique (la dernière couleur revient vers la première) entre les
+// couleurs choisies. Pas de mélange avec du blanc : les teintes restent celles qu'on a réglées.
+const customLuts = new Map();
+function customPalette(colors) {
+  const key = colors.join(',');
+  let lut = customLuts.get(key);
+  if (lut) return lut;
+  const rgb = colors.map((c) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16) / 255));
+  lut = new Float32Array(LUT_N * 3);
+  const n = rgb.length;
+  for (let i = 0; i < LUT_N; i++) {
+    const f = (i / LUT_N) * n, k = Math.floor(f), m = f - k;
+    const e = m * m * (3 - 2 * m);
+    const a = rgb[k % n], b = rgb[(k + 1) % n];
+    for (let c = 0; c < 3; c++) lut[i * 3 + c] = a[c] + (b[c] - a[c]) * e;
+  }
+  if (customLuts.size > 20) customLuts.clear();
+  customLuts.set(key, lut);
+  return lut;
+}
 
 function hash2(ix, iy) {
   let h = (Math.imul(ix, 374761393) + Math.imul(iy, 668265263)) | 0;
@@ -43,7 +64,8 @@ function vnoise(x, y) {
 }
 
 export function renderIris(ctx, W, H, state, cache) {
-  const { groups, notes, t, lo, hi, head, spread = 0.85, life = 4, gain = 1.2, turbulence = 0.7, hue = 0, line = true } = state;
+  const { groups, notes, t, lo, hi, head, spread = 0.85, life = 4, gain = 1.2, turbulence = 0.7, hue = 0, line = true, size = 1, colors } = state;
+  const PALETTE = colors && colors.length ? customPalette(colors) : IRIDESCENT;
   const scale = FIELD_LONG / Math.max(W, H);
   const fw = Math.max(8, Math.round(W * scale)), fh = Math.max(8, Math.round(H * scale));
   if (cache.fw !== fw || cache.fh !== fh) {
@@ -79,9 +101,9 @@ export function renderIris(ctx, W, H, state, cache) {
     const grow = rMax * (1 - Math.exp(-age * 1.3)) * (1 + 0.06 * Math.sin(age * 2.1 + seed));
     active.push({
       oy: fh * (0.08 + 0.84 * (hi - n.pitch) / span),
-      L: fh * (0.035 + 0.07 * s),
+      L: fh * (0.035 + 0.07 * s) * size,
       age, env, hold, R: grow,
-      w: fw * (0.012 + 0.024 * (grow / rMax)),
+      w: fw * (0.012 + 0.024 * (grow / rMax)) * size,
       hx: 0.6 + 0.32 * hash01(n.id, 3), // < 1 : les distances horizontales comptent moins, l'onde va plus loin en largeur
       ph: hue + 0.17 * n.g + 0.35 * hash01(n.id, 4),
     });
