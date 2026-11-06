@@ -1,5 +1,19 @@
 @import '../../utils/mixins';
 
+// Au survol, les liens passent en gras, donc plus larges. Une copie invisible du texte, déjà en gras
+// (data-text), réserve cette largeur en permanence : le survol ne déplace plus rien autour.
+@mixin reserveBoldWidth {
+    &::after {
+        content: attr(data-text);
+        display: block;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        font-weight: bold;
+        pointer-events: none;
+    }
+}
+
 .trackNav {
 
     width: 200px;
@@ -84,6 +98,7 @@
 
         }
         &_link {
+            @include reserveBoldWidth;
             color: white;
             @media (hover: hover) and (pointer: fine) {
                 &:hover {
@@ -95,10 +110,17 @@
     }
 
     &_trackList {
+        // Titres un peu plus petits que les liens de navigation.
+        @include font-size(5);
 
         &_item {
 
+            // Index et titre sur deux colonnes : les index sont alignés à gauche, les débuts de titre
+            // aussi (un titre sur deux lignes reste calé sous son premier mot).
             &_link {
+                display: grid;
+                grid-template-columns: 2.4em 1fr;
+                align-items: baseline;
                 color: white;
                 
                 @media (hover: hover) and (pointer: fine) {
@@ -107,6 +129,10 @@
                         font-weight: bold;
                 }
             }
+
+                &_title {
+                    @include reserveBoldWidth;
+                }
             }
         }
     }

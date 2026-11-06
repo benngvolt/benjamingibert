@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 function TrackNav({ tracks, album, language, theme, minimal }) {
-
+const careerLabel = language === "jp" ? "経歴" : language === "en" ? "career" : "parcours";
 
 return (
     <div className={`trackNav${theme ? ` trackNav--${theme}` : ''}`}>
@@ -21,15 +21,10 @@ return (
             />
             {!minimal && (
                 <>
-                    <a className="trackNav_nav_link" href={`#${album}_album`}>{language==="jp"?"アルバム":"album"}</a>
-                    <a className="trackNav_nav_link" href="#bio">{language==="jp"?"バイオ":"bio"}</a>
-                    <a className="trackNav_nav_link" href="#live">{language==="jp"?"ライブ":"live"}</a>
-                    <a className="trackNav_nav_link" href="#career">{language === "jp"
-                        ? "経歴"
-                        : language === "en"
-                        ? "career"
-                        : "parcours"}
-                    </a>
+                    <a className="trackNav_nav_link" href={`#${album}_album`} data-text={language==="jp"?"アルバム":"album"}>{language==="jp"?"アルバム":"album"}</a>
+                    <a className="trackNav_nav_link" href="#bio" data-text={language==="jp"?"バイオ":"bio"}>{language==="jp"?"バイオ":"bio"}</a>
+                    <a className="trackNav_nav_link" href="#live" data-text={language==="jp"?"ライブ":"live"}>{language==="jp"?"ライブ":"live"}</a>
+                    <a className="trackNav_nav_link" href="#career" data-text={careerLabel}>{careerLabel}</a>
                 </>
             )}
         </div>
@@ -43,7 +38,8 @@ return (
                             className="trackNav_trackList_item_link"
                             href={`#${trackId}`}
                         >
-                            {`0${1+index} ${trackLabel}`}
+                            <span className="trackNav_trackList_item_link_index">{String(1 + index).padStart(2, '0')}</span>
+                            <span className="trackNav_trackList_item_link_title" data-text={trackLabel}>{trackLabel}</span>
                         </a>
                     </li>
                 );
