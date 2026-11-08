@@ -8,6 +8,7 @@ import { Output, Mp4OutputFormat, BufferTarget, CanvasSource, AudioBufferSource,
 import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../../lib/midi/song';
 import { renderFrame } from '../../lib/midi/renderFrame';
 import { renderIris } from '../../lib/midi/renderIris';
+import { renderSnow } from '../../lib/midi/renderSnow';
 import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 import { buildSynthGraph, scheduleNote } from '../../lib/midi/synth';
 
@@ -67,7 +68,7 @@ async function renderSynthOffline(song, tracks, rate, duration) {
 // `cancelRef` : objet { current: false } — le mettre à true depuis l'appelant annule l'export en cours.
 export async function exportVideoOffline({
   midiSources, palette, tracks, format, width, height, fps = FPS,
-  shape, customShapeSrcs, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, mode, iris,
+  shape, customShapeSrcs, tint, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, mode, iris, snow,
   rate, duration, offset, audioFile, synthEnabled,
   cancelRef, onProgress, onDone, onError,
 }) {
@@ -91,6 +92,15 @@ export async function exportVideoOffline({
       }
       tail = Math.max(0, (lastOnset + iris.life) / (rate || 1) - duration);
     }
+    if (mode === 'snow' && snow) {
+      // La dernière note a besoin de temps pour s'éteindre (3 × la durée d'extinction choisie).
+      let lastEnd = 0;
+      for (const n of song.notes) {
+        const g = song.groups[n.g];
+        if (g.visible && !g.drums && n.end > lastEnd) lastEnd = n.end;
+      }
+      tail = Math.max(0, (lastEnd + snow.decay * 3) / (rate || 1) - duration);
+    }
     const totalDuration = duration + tail;
 
     const willHaveAudio = !!audioFile || (synthEnabled && hasAudibleNotes(song, tracks));
@@ -104,6 +114,7 @@ export async function exportVideoOffline({
     const ctx = canvas.getContext('2d');
     const spriteCache = [];
     const irisCache = {};
+    const snowCache = {};
 
     output = new Output({ format: new Mp4OutputFormat(), target: new BufferTarget() });
     const videoSource = new CanvasSource(canvas, { codec: 'avc', quality: QUALITY_HIGH });
@@ -132,6 +143,10 @@ export async function exportVideoOffline({
         renderIris(ctx, width, height, {
           groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, head: headPosition, ...iris,
         }, irisCache);
+      } else if (mode === 'snow') {
+        renderSnow(ctx, width, height, {
+          groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, ...snow,
+        }, snowCache);
       } else {
         renderFrame(ctx, width, height, {
           groups: song.groups, notes: song.notes, t,
@@ -153,7 +168,7 @@ export async function exportVideoOffline({
 
     await output.finalize();
     const blob = new Blob([output.target.buffer], { type: 'video/mp4' });
-    const filename = `visuel-${mode === 'iris' ? 'irisation' : 'midi'}-${format}.mp4`;
+    const filename = `visuel-${mode === 'iris' ? 'irisation' : mode === 'snow' ? 'snowflake' : 'midi'}-${format}.mp4`;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = filename;

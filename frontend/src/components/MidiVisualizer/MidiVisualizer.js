@@ -4,6 +4,7 @@ import { useInView } from '../../utils/useInView';
 import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../../lib/midi/song';
 import { renderFrame } from '../../lib/midi/renderFrame';
 import { renderIris } from '../../lib/midi/renderIris';
+import { renderSnow } from '../../lib/midi/renderSnow';
 import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 
 // Composant public minimal : aucune UI de réglage, aucun export. Se synchronise uniquement sur
@@ -33,6 +34,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     spinSpeed = 0,
     mode = 'notes',
     iris,
+    snow,
     tint = 0.35,
     ariaLabel,
     className,
@@ -45,6 +47,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
   const songRef = useRef(null);
   const spriteCacheRef = useRef([]);
   const irisCacheRef = useRef({});
+  const snowCacheRef = useRef({});
   const customImagesRef = useRef([]);
   const onReadyRef = useRef(onReady);
   const [songVersion, setSongVersion] = useState(0);
@@ -137,13 +140,19 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
       }, irisCacheRef.current);
       return;
     }
+    if (mode === 'snow') {
+      renderSnow(ctx, canvas.width, canvas.height, {
+        groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, ...snow,
+      }, snowCacheRef.current);
+      return;
+    }
     renderFrame(ctx, canvas.width, canvas.height, {
       groups: song.groups, notes: song.notes, t,
       lo: song.lo, hi: song.hi, secs: secondsVisible, head: headPosition,
       size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages: customImagesRef.current, spin: spinSpeed * Math.PI / 180,
     }, spriteCacheRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, shape, tint, customImageVersion, mode, iris]);
+  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, shape, tint, customImageVersion, mode, iris, snow]);
 
   // Couleurs/visibilité par piste : recalculées sans reparser le fichier.
   useEffect(() => {

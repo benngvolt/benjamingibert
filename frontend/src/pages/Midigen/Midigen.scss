@@ -493,11 +493,15 @@
 
         // Onglets Notes / Irisation : deux cellules, libellé en capitales espacées.
         &--tabs {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: none;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(0, 1fr);
 
             button {
-                font-size: 10.5px;
-                letter-spacing: 0.22em;
+                font-size: 10px;
+                letter-spacing: 0.14em;
+                padding-left: 2px;
+                padding-right: 2px;
                 text-transform: uppercase;
             }
         }

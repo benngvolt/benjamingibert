@@ -94,6 +94,33 @@ function Midigen() {
     }),
     [irisSpread, irisLife, irisGain, irisTurbulence, irisHue, irisLine, irisSize, irisPalette, irisColorCount, irisColors]
   );
+  // Troisième onglet : un flocon dont chaque note fait vibrer une bande, du centre (graves) à la pointe (aigus).
+  const [snowArms, setSnowArms] = useState(6);
+  const [snowBranches, setSnowBranches] = useState(4);
+  const [snowAngle, setSnowAngle] = useState(60);
+  const [snowLength, setSnowLength] = useState(0.8);
+  const [snowShape, setSnowShape] = useState('line');
+  const [snowCrystal, setSnowCrystal] = useState(1);
+  const [snowSub, setSnowSub] = useState(true);
+  const [snowRings, setSnowRings] = useState(1);
+  const [snowSize, setSnowSize] = useState(0.8);
+  const [snowBand, setSnowBand] = useState(0.07);
+  const [snowDecay, setSnowDecay] = useState(0.7);
+  const [snowVibration, setSnowVibration] = useState(1);
+  const [snowGain, setSnowGain] = useState(1.1);
+  const [snowThickness, setSnowThickness] = useState(1);
+  const [snowSpin, setSnowSpin] = useState(0);
+  const [snowPerArm, setSnowPerArm] = useState(false);
+  const [snowTrackColors, setSnowTrackColors] = useState(false);
+  const [snowColor, setSnowColor] = useState('#bfe8ff');
+  const snow = useMemo(
+    () => ({
+      arms: snowArms, branches: snowBranches, angle: snowAngle, length: snowLength, sub: snowSub, rings: snowRings, shape: snowShape, crystal: snowCrystal,
+      size: snowSize, band: snowBand, decay: snowDecay, vibration: snowVibration, gain: snowGain, thickness: snowThickness,
+      spin: snowSpin * Math.PI / 180, perArm: snowPerArm, trackColors: snowTrackColors, color: snowColor,
+    }),
+    [snowArms, snowBranches, snowAngle, snowLength, snowSub, snowRings, snowShape, snowCrystal, snowSize, snowBand, snowDecay, snowVibration, snowGain, snowThickness, snowSpin, snowPerArm, snowTrackColors, snowColor]
+  );
   const [spinMode, setSpinMode] = useState('fixed');
   const [spinDegPerSec, setSpinDegPerSec] = useState(10);
   const spinSpeed = spinMode === 'spin' ? spinDegPerSec : 0;
@@ -470,6 +497,7 @@ function Midigen() {
       spinSpeed,
       mode,
       iris,
+      snow,
       rate,
       duration,
       offset: audioUrl ? offset : 0,
@@ -533,6 +561,7 @@ function Midigen() {
             spinSpeed={spinSpeed}
             mode={mode}
             iris={iris}
+            snow={snow}
             tint={tint}
             onReady={handleReady}
             ariaLabel="Aperçu du visuel MIDI"
@@ -547,13 +576,16 @@ function Midigen() {
           <p className="midigen_lede">
             {mode === 'notes'
               ? 'Chaque note devient une forme, les lignes suivent les voix.'
-              : 'Chaque note libère une irisation qui se diffuse depuis la barre.'}
+              : mode === 'iris'
+                ? 'Chaque note libère une irisation qui se diffuse depuis la barre.'
+                : 'Chaque note fait vibrer le flocon : les graves au centre, les aigus à la pointe.'}
           </p>
         </div>
 
         <div className="midigen_seg midigen_seg--tabs" role="tablist" aria-label="Mode de visualisation">
-          <button type="button" role="tab" aria-selected={mode === 'notes'} onClick={() => setMode('notes')}>Notes</button>
+          <button type="button" role="tab" aria-selected={mode === 'notes'} onClick={() => setMode('notes')}>Flow</button>
           <button type="button" role="tab" aria-selected={mode === 'iris'} onClick={() => setMode('iris')}>Irisation</button>
+          <button type="button" role="tab" aria-selected={mode === 'snow'} onClick={() => setMode('snow')}>Snowflake</button>
         </div>
 
         <div className="midigen_transport">
@@ -649,10 +681,12 @@ function Midigen() {
                 <input type="range" min="2" max="24" step="0.5" value={secondsVisible} onChange={(e) => setSecondsVisible(parseFloat(e.target.value))} />
               </label>
             )}
-            <label className="midigen_field">
-              <span>{mode === 'notes' ? 'Position de la tête de lecture' : 'Position de la barre'}</span>
-              <input type="range" min="0.15" max="0.85" step="0.01" value={headPosition} onChange={(e) => setHeadPosition(parseFloat(e.target.value))} />
-            </label>
+            {mode !== 'snow' && (
+              <label className="midigen_field">
+                <span>{mode === 'notes' ? 'Position de la tête de lecture' : 'Position de la barre'}</span>
+                <input type="range" min="0.15" max="0.85" step="0.01" value={headPosition} onChange={(e) => setHeadPosition(parseFloat(e.target.value))} />
+              </label>
+            )}
             {mode === 'notes' && (<>
             <label className="midigen_field">
               <span>Taille des notes</span>
@@ -800,6 +834,94 @@ function Midigen() {
                 <input type="checkbox" checked={irisLine} onChange={(e) => setIrisLine(e.target.checked)} /> Barre verticale
               </label>
               <p className="midigen_info">À l’export, la vidéo se prolonge de la durée nécessaire pour que la dernière onde s’éteigne.</p>
+            </>)}
+            {mode === 'snow' && (<>
+              <label className="midigen_field">
+                <span>Branches <b>{snowArms}</b></span>
+                <input type="range" min="3" max="12" step="1" value={snowArms} onChange={(e) => setSnowArms(parseInt(e.target.value, 10))} />
+              </label>
+              <label className="midigen_field">
+                <span>Forme des branches</span>
+                <select value={snowShape} onChange={(e) => setSnowShape(e.target.value)}>
+                  <option value="line">Fines lignes</option>
+                  <option value="rect">Rectangles</option>
+                  <option value="triangle">Triangles (pointes)</option>
+                  <option value="diamond">Losanges</option>
+                  <option value="hexagon">Hexagones allongés</option>
+                </select>
+              </label>
+              {snowShape !== 'line' && (
+                <label className="midigen_field">
+                  <span>Épaisseur des cristaux <b>{Math.round(snowCrystal * 100)} %</b></span>
+                  <input type="range" min="0.3" max="2" step="0.05" value={snowCrystal} onChange={(e) => setSnowCrystal(parseFloat(e.target.value))} />
+                </label>
+              )}
+              <label className="midigen_field">
+                <span>Ramifications par branche <b>{snowBranches}</b></span>
+                <input type="range" min="1" max="6" step="1" value={snowBranches} onChange={(e) => setSnowBranches(parseInt(e.target.value, 10))} />
+              </label>
+              <label className="midigen_field">
+                <span>Angle des ramifications <b>{snowAngle}°</b></span>
+                <input type="range" min="25" max="85" step="1" value={snowAngle} onChange={(e) => setSnowAngle(parseInt(e.target.value, 10))} />
+              </label>
+              <label className="midigen_field">
+                <span>Longueur des ramifications <b>{Math.round(snowLength * 100)} %</b></span>
+                <input type="range" min="0.4" max="1.5" step="0.05" value={snowLength} onChange={(e) => setSnowLength(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Anneaux <b>{snowRings}</b></span>
+                <input type="range" min="0" max="3" step="1" value={snowRings} onChange={(e) => setSnowRings(parseInt(e.target.value, 10))} />
+              </label>
+              <label className="midigen_check">
+                <input type="checkbox" checked={snowSub} onChange={(e) => setSnowSub(e.target.checked)} /> Sous-branches
+              </label>
+              <label className="midigen_field">
+                <span>Taille du flocon <b>{Math.round(snowSize * 100)} %</b></span>
+                <input type="range" min="0.4" max="1.3" step="0.01" value={snowSize} onChange={(e) => setSnowSize(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Épaisseur du trait <b>{Math.round(snowThickness * 100)} %</b></span>
+                <input type="range" min="0.5" max="3" step="0.05" value={snowThickness} onChange={(e) => setSnowThickness(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Largeur de la zone touchée <b>{Math.round(snowBand * 100)} %</b></span>
+                <input type="range" min="0.03" max="0.3" step="0.005" value={snowBand} onChange={(e) => setSnowBand(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Persistance <b>{snowDecay.toFixed(1)} s</b></span>
+                <input type="range" min="0.2" max="3" step="0.1" value={snowDecay} onChange={(e) => setSnowDecay(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Vibration <b>{snowVibration.toFixed(2)}</b></span>
+                <input type="range" min="0" max="2.5" step="0.05" value={snowVibration} onChange={(e) => setSnowVibration(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Intensité <b>{snowGain.toFixed(2)}</b></span>
+                <input type="range" min="0.5" max="3" step="0.05" value={snowGain} onChange={(e) => setSnowGain(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Rotation lente <b>{snowSpin === 0 ? 'fixe' : snowSpin + ' °/s'}</b></span>
+                <input type="range" min="-20" max="20" step="1" value={snowSpin} onChange={(e) => setSnowSpin(parseInt(e.target.value, 10))} />
+              </label>
+              <div className="midigen_field">
+                <span>Chaque note touche</span>
+                <div className="midigen_seg midigen_seg--tabs">
+                  <button type="button" aria-pressed={!snowPerArm} onClick={() => setSnowPerArm(false)}>Toutes les branches</button>
+                  <button type="button" aria-pressed={snowPerArm} onClick={() => setSnowPerArm(true)}>Une branche</button>
+                </div>
+              </div>
+              <label className="midigen_check">
+                <input type="checkbox" checked={snowTrackColors} onChange={(e) => setSnowTrackColors(e.target.checked)} /> Couleurs des pistes
+              </label>
+              {!snowTrackColors && (
+                <label className="midigen_field">
+                  <span>Couleur</span>
+                  <div className="midigen_palette">
+                    <input type="color" value={snowColor} aria-label="Couleur du flocon" onChange={(e) => setSnowColor(e.target.value)} />
+                  </div>
+                </label>
+              )}
+              <p className="midigen_info">À l’export, la vidéo se prolonge de quelques secondes pour que la dernière note s’éteigne.</p>
             </>)}
           </div>
         </details>
