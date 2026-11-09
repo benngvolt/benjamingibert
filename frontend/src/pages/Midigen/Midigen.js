@@ -100,7 +100,13 @@ function Midigen() {
   const [snowAngle, setSnowAngle] = useState(60);
   const [snowLength, setSnowLength] = useState(0.8);
   const [snowShape, setSnowShape] = useState('line');
-  const [snowCrystal, setSnowCrystal] = useState(1);
+  // Épaisseur des hexagones, réglée par degré de ramification : [tronc, branches, sous-branches].
+  const [snowCrystal, setSnowCrystal] = useState([1, 1, 1]);
+  const [snowOrganic, setSnowOrganic] = useState(0);
+  const [snowSeed, setSnowSeed] = useState(1);
+  const [snowBase, setSnowBase] = useState(1);
+  const [snowFuse, setSnowFuse] = useState(false);
+  const [snowFill, setSnowFill] = useState(true);
   const [snowSub, setSnowSub] = useState(true);
   const [snowRings, setSnowRings] = useState(1);
   const [snowSize, setSnowSize] = useState(0.8);
@@ -115,11 +121,11 @@ function Midigen() {
   const [snowColor, setSnowColor] = useState('#bfe8ff');
   const snow = useMemo(
     () => ({
-      arms: snowArms, branches: snowBranches, angle: snowAngle, length: snowLength, sub: snowSub, rings: snowRings, shape: snowShape, crystal: snowCrystal,
+      arms: snowArms, branches: snowBranches, angle: snowAngle, length: snowLength, sub: snowSub, rings: snowRings, shape: snowShape, crystal: snowCrystal, organic: snowOrganic, seed: snowSeed, base: snowBase, fuseAll: snowFuse, fill: snowFill,
       size: snowSize, band: snowBand, decay: snowDecay, vibration: snowVibration, gain: snowGain, thickness: snowThickness,
       spin: snowSpin * Math.PI / 180, perArm: snowPerArm, trackColors: snowTrackColors, color: snowColor,
     }),
-    [snowArms, snowBranches, snowAngle, snowLength, snowSub, snowRings, snowShape, snowCrystal, snowSize, snowBand, snowDecay, snowVibration, snowGain, snowThickness, snowSpin, snowPerArm, snowTrackColors, snowColor]
+    [snowArms, snowBranches, snowAngle, snowLength, snowSub, snowRings, snowShape, snowCrystal, snowOrganic, snowSeed, snowBase, snowFuse, snowFill, snowSize, snowBand, snowDecay, snowVibration, snowGain, snowThickness, snowSpin, snowPerArm, snowTrackColors, snowColor]
   );
   const [spinMode, setSpinMode] = useState('fixed');
   const [spinDegPerSec, setSpinDegPerSec] = useState(10);
@@ -844,17 +850,38 @@ function Midigen() {
                 <span>Forme des branches</span>
                 <select value={snowShape} onChange={(e) => setSnowShape(e.target.value)}>
                   <option value="line">Fines lignes</option>
-                  <option value="rect">Rectangles</option>
-                  <option value="triangle">Triangles (pointes)</option>
-                  <option value="diamond">Losanges</option>
                   <option value="hexagon">Hexagones allongés</option>
+                  <option value="hexagon-acute">Hexagones à pointe aiguë</option>
+                  <option value="hexagon-obtuse">Hexagones à pointe obtuse</option>
                 </select>
               </label>
-              {snowShape !== 'line' && (
-                <label className="midigen_field">
-                  <span>Épaisseur des cristaux <b>{Math.round(snowCrystal * 100)} %</b></span>
-                  <input type="range" min="0.3" max="2" step="0.05" value={snowCrystal} onChange={(e) => setSnowCrystal(parseFloat(e.target.value))} />
+              {snowShape !== 'line' && [['Tronc', 0], ['Branches', 1], ['Sous-branches', 2]].filter(([, lvl]) => lvl < 2 || snowSub).map(([label, lvl]) => (
+                <label className="midigen_field" key={lvl}>
+                  <span>Épaisseur · {label} <b>{Math.round(snowCrystal[lvl] * 100)} %</b></span>
+                  <input
+                    type="range" min="0.3" max="2" step="0.05" value={snowCrystal[lvl]}
+                    onChange={(e) => { const v = parseFloat(e.target.value); setSnowCrystal((c) => c.map((x, i) => (i === lvl ? v : x))); }}
+                  />
                 </label>
+              ))}
+              {snowShape !== 'line' && (
+                <label className="midigen_check">
+                  <input type="checkbox" checked={snowFuse} onChange={(e) => setSnowFuse(e.target.checked)} /> Tout fusionner
+                </label>
+              )}
+              {snowShape !== 'line' && (
+                <label className="midigen_check">
+                  <input type="checkbox" checked={snowFill} onChange={(e) => setSnowFill(e.target.checked)} /> Remplir l’intérieur des formes
+                </label>
+              )}
+              <label className="midigen_field">
+                <span>Organicité <b>{Math.round(snowOrganic * 100)} %</b></span>
+                <input type="range" min="0" max="1" step="0.01" value={snowOrganic} onChange={(e) => setSnowOrganic(parseFloat(e.target.value))} />
+              </label>
+              {snowOrganic > 0 && (
+                <button type="button" className="midigen_btn" onClick={() => setSnowSeed((v) => v + 1)}>
+                  Nouveau tirage
+                </button>
               )}
               <label className="midigen_field">
                 <span>Ramifications par branche <b>{snowBranches}</b></span>
@@ -867,6 +894,10 @@ function Midigen() {
               <label className="midigen_field">
                 <span>Longueur des ramifications <b>{Math.round(snowLength * 100)} %</b></span>
                 <input type="range" min="0.4" max="1.5" step="0.05" value={snowLength} onChange={(e) => setSnowLength(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Ramifications de la base <b>{Math.round(snowBase * 100)} %</b></span>
+                <input type="range" min="0.4" max="1.5" step="0.05" value={snowBase} onChange={(e) => setSnowBase(parseFloat(e.target.value))} />
               </label>
               <label className="midigen_field">
                 <span>Anneaux <b>{snowRings}</b></span>
