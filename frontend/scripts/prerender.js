@@ -108,7 +108,11 @@ async function main() {
           root.insertBefore(document.createComment('$'), root.firstChild);
           root.appendChild(document.createComment('/$'));
         }, route);
-        results.push({ route, html: await page.content() });
+        // Vite ajoute au <head> des <link rel="modulepreload"> en URL absolue (celle du serveur local
+        // ci-dessus) : on les ramène à des chemins relatifs au domaine, sinon le site en ligne irait les
+        // chercher sur 127.0.0.1.
+        const html = (await page.content()).split(base).join('');
+        results.push({ route, html });
         console.log('[prerender] OK  ' + route);
       } catch (e) {
         console.warn('[prerender] ÉCHEC ' + route + ' : ' + e.message);

@@ -1,4 +1,4 @@
-@import '../../utils/mixins';
+@use '../../utils/mixins' as *;
 
 // Même gabarit que la rangée de vidéos de LiveBox : écart de 6px, en colonne sur mobile.
 .liveVideos {

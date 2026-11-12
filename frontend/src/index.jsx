@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
 
-import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext";
@@ -53,6 +52,3 @@ if (container.dataset.prerenderedRoute === currentRoute) {
 } else {
   createRoot(container).render(app);
 }
-
-reportWebVitals();
-

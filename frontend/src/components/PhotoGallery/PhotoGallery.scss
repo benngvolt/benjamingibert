@@ -1,4 +1,4 @@
-@import '../../utils/mixins';
+@use '../../utils/mixins' as *;
 
 .taihua_photoGallery {
     @include Column;

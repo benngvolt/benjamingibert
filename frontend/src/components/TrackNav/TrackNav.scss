@@ -1,4 +1,4 @@
-@import '../../utils/mixins';
+@use '../../utils/mixins' as *;
 
 // Au survol, les liens passent en gras, donc plus larges. Une copie invisible du texte, déjà en gras
 // (data-text), réserve cette largeur en permanence : le survol ne déplace plus rien autour.

@@ -1,3 +1,4 @@
+@use 'sass:map';
 /*-------------------
 ----- VARIABLES -----
 -------------------*/
@@ -47,14 +48,14 @@ $font-scales: (
 );
 
 @mixin font-size($level) {
-  font-size: map-get(map-get($font-scales, desktop), $level);
+  font-size: map.get(map.get($font-scales, desktop), $level);
 
   @media only screen and (min-width: $padMinWidth) and (max-width: $padMaxWidth) {
-    font-size: map-get(map-get($font-scales, tablet), $level);
+    font-size: map.get(map.get($font-scales, tablet), $level);
   }
 
   @media only screen and (max-width:$mobileMaxWidth) {
-    font-size: map-get(map-get($font-scales, mobile), $level);
+    font-size: map.get(map.get($font-scales, mobile), $level);
   }
 }
 

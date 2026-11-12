@@ -1,4 +1,4 @@
-@import '../../utils/mixins';
+@use '../../utils/mixins' as *;
 
 // Interface de l'outil Midigen : noir et blanc, filets d'un pixel, petites capitales espacées,
 // inversion blanc/noir au survol — même vocabulaire que le menu de l'accueil du site.

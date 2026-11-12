@@ -10,11 +10,9 @@ ENV CHROME_PATH=/usr/bin/chromium
 
 WORKDIR /app
 
-# Copier package.json et package-lock.json
+# Installation reproductible à partir du package-lock.json
 COPY package*.json ./
-
-# Installer les dépendances
-RUN npm install
+RUN npm ci
 
 # Copier le code source
 COPY . .
