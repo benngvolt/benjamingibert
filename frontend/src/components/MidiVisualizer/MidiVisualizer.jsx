@@ -5,6 +5,7 @@ import { loadMidiSources, prepareGroups, applyStyling, computeRange } from '../.
 import { renderFrame } from '../../lib/midi/renderFrame';
 import { renderIris } from '../../lib/midi/renderIris';
 import { renderSnow } from '../../lib/midi/renderSnow';
+import { renderFlute } from '../../lib/midi/renderFlute';
 import { loadCustomShapeImages } from '../../lib/midi/customSprite';
 
 // Composant public minimal : aucune UI de réglage, aucun export. Se synchronise uniquement sur
@@ -35,6 +36,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
     mode = 'notes',
     iris,
     snow,
+    flute,
     tint = 0.35,
     ariaLabel,
     className,
@@ -48,6 +50,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
   const spriteCacheRef = useRef([]);
   const irisCacheRef = useRef({});
   const snowCacheRef = useRef({});
+  const fluteCacheRef = useRef({});
   const customImagesRef = useRef([]);
   const onReadyRef = useRef(onReady);
   const [songVersion, setSongVersion] = useState(0);
@@ -104,6 +107,8 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
             duration: prepared.duration,
             bpm,
             groups: prepared.groups.map(g => ({ name: g.name, drums: g.drums, noteCount: g.notes.length })),
+            // Notes distinctes hors percussions : c'est le nombre de trous de la flûte.
+            pitchCount: new Set(prepared.groups.filter(g => !g.drums).flatMap(g => g.notes.map(n => n.pitch))).size,
           });
         }
         setSongVersion(v => v + 1);
@@ -140,6 +145,12 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
       }, irisCacheRef.current);
       return;
     }
+    if (mode === 'flute') {
+      renderFlute(ctx, canvas.width, canvas.height, {
+        groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, ...flute,
+      }, fluteCacheRef.current);
+      return;
+    }
     if (mode === 'snow') {
       renderSnow(ctx, canvas.width, canvas.height, {
         groups: song.groups, notes: song.notes, t, lo: song.lo, hi: song.hi, ...snow,
@@ -152,7 +163,7 @@ const MidiVisualizer = forwardRef(function MidiVisualizer(
       size: noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, shape, tint, customImages: customImagesRef.current, spin: spinSpeed * Math.PI / 180,
     }, spriteCacheRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, shape, tint, customImageVersion, mode, iris, snow]);
+  }, [audioRef, offset, rate, secondsVisible, headPosition, noteSize, spread, lines, steps, glow, trail, whiteLine, playheadLine, spinSpeed, shape, tint, customImageVersion, mode, iris, snow, flute]);
 
   // Couleurs/visibilité par piste : recalculées sans reparser le fichier.
   useEffect(() => {

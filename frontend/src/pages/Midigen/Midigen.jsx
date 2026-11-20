@@ -127,6 +127,43 @@ function Midigen() {
     }),
     [snowArms, snowBranches, snowAngle, snowLength, snowSub, snowRings, snowShape, snowCrystal, snowOrganic, snowSeed, snowBase, snowFuse, snowFill, snowSize, snowBand, snowDecay, snowVibration, snowGain, snowThickness, snowSpin, snowPerArm, snowTrackColors, snowColor]
   );
+  // Quatrième onglet : une flûte fictive (cylindre vertical) dont les trous s'allument quand leur note est jouée.
+  const [pitchCount, setPitchCount] = useState(0);
+  const [fluteLength, setFluteLength] = useState(0.86);
+  const [fluteWidth, setFluteWidth] = useState(0.09);
+  const [fluteHoleSize, setFluteHoleSize] = useState(1);
+  const [fluteStub, setFluteStub] = useState(1.5);
+  // Au hasard : chaque trou prend une taille et une longueur entre ce minimum (en % du maximum) et le maximum.
+  const [fluteMinSize, setFluteMinSize] = useState(0.55);
+  const [fluteMinLen, setFluteMinLen] = useState(0.55);
+  // Écart au milieu du tube (0 = au centre, 100 % = sur le bord) : chaque trou en tire un entre ces deux bornes.
+  const [fluteOffMin, setFluteOffMin] = useState(0.15);
+  const [fluteOffMax, setFluteOffMax] = useState(1);
+  const [fluteMaxHoles, setFluteMaxHoles] = useState(24);
+  const [fluteLayout, setFluteLayout] = useState('random');
+  const [fluteSeed, setFluteSeed] = useState(1);
+  const [fluteTrail, setFluteTrail] = useState(0.6);
+  const [fluteDiffuse, setFluteDiffuse] = useState(0.7);
+  // Souches : 2 à 5 trous voisins partagent un « premier étage » posé sur le tronc, au sommet plat.
+  const [fluteStumps, setFluteStumps] = useState(false);
+  const [fluteStumpMin, setFluteStumpMin] = useState(2);
+  const [fluteStumpGroup, setFluteStumpGroup] = useState(5);
+  const [fluteStumpThick, setFluteStumpThick] = useState(0.8);
+  const [fluteStumpRandom, setFluteStumpRandom] = useState(true);
+  const [fluteStumpBare, setFluteStumpBare] = useState(0.25);
+  const [fluteLife, setFluteLife] = useState(1.2);
+  const [fluteGain, setFluteGain] = useState(1.2);
+  const [fluteThickness, setFluteThickness] = useState(1);
+  const [fluteTrackColors, setFluteTrackColors] = useState(false);
+  const [fluteColor, setFluteColor] = useState('#ffd39a');
+  const flute = useMemo(
+    () => ({
+      length: fluteLength, width: fluteWidth, holeSize: fluteHoleSize, stub: fluteStub, minSize: fluteMinSize, minLen: fluteMinLen, offMin: fluteOffMin, offMax: fluteOffMax, maxHoles: fluteMaxHoles, layout: fluteLayout, seed: fluteSeed,
+      trail: fluteTrail, diffuse: fluteDiffuse,
+      stumps: fluteStumps, stumpMin: fluteStumpMin, stumpGroup: fluteStumpGroup, stumpThick: fluteStumpThick, stumpRandom: fluteStumpRandom, stumpBare: fluteStumpBare, life: fluteLife, gain: fluteGain, thickness: fluteThickness, trackColors: fluteTrackColors, color: fluteColor,
+    }),
+    [fluteLength, fluteWidth, fluteHoleSize, fluteStub, fluteMinSize, fluteMinLen, fluteOffMin, fluteOffMax, fluteMaxHoles, fluteLayout, fluteSeed, fluteTrail, fluteDiffuse, fluteStumps, fluteStumpMin, fluteStumpGroup, fluteStumpThick, fluteStumpRandom, fluteStumpBare, fluteLife, fluteGain, fluteThickness, fluteTrackColors, fluteColor]
+  );
   const [spinMode, setSpinMode] = useState('fixed');
   const [spinDegPerSec, setSpinDegPerSec] = useState(10);
   const spinSpeed = spinMode === 'spin' ? spinDegPerSec : 0;
@@ -359,8 +396,9 @@ function Midigen() {
     if (!rest.length && shape === 'custom') setShape('circles');
   };
 
-  const handleReady = useCallback(({ duration: d, bpm, groups }) => {
+  const handleReady = useCallback(({ duration: d, bpm, groups, pitchCount: pc }) => {
     setMidiDuration(d);
+    setPitchCount(pc || 0);
     setMidiBpm(bpm);
     setTrackMeta(groups);
     setTracks((prev) => {
@@ -504,6 +542,7 @@ function Midigen() {
       mode,
       iris,
       snow,
+      flute,
       rate,
       duration,
       offset: audioUrl ? offset : 0,
@@ -568,6 +607,7 @@ function Midigen() {
             mode={mode}
             iris={iris}
             snow={snow}
+            flute={flute}
             tint={tint}
             onReady={handleReady}
             ariaLabel="Aperçu du visuel MIDI"
@@ -584,7 +624,9 @@ function Midigen() {
               ? 'Chaque note devient une forme, les lignes suivent les voix.'
               : mode === 'iris'
                 ? 'Chaque note libère une irisation qui se diffuse depuis la barre.'
-                : 'Chaque note fait vibrer le flocon : les graves au centre, les aigus à la pointe.'}
+                : mode === 'snow'
+                  ? 'Chaque note fait vibrer le flocon : les graves au centre, les aigus à la pointe.'
+                  : 'Chaque note allume son trou dans la flûte : les graves en bas, les aigus en haut.'}
           </p>
         </div>
 
@@ -592,6 +634,7 @@ function Midigen() {
           <button type="button" role="tab" aria-selected={mode === 'notes'} onClick={() => setMode('notes')}>Flow</button>
           <button type="button" role="tab" aria-selected={mode === 'iris'} onClick={() => setMode('iris')}>Irisation</button>
           <button type="button" role="tab" aria-selected={mode === 'snow'} onClick={() => setMode('snow')}>Snowflake</button>
+          <button type="button" role="tab" aria-selected={mode === 'flute'} onClick={() => setMode('flute')}>Flûte</button>
         </div>
 
         <div className="midigen_transport">
@@ -687,7 +730,7 @@ function Midigen() {
                 <input type="range" min="2" max="24" step="0.5" value={secondsVisible} onChange={(e) => setSecondsVisible(parseFloat(e.target.value))} />
               </label>
             )}
-            {mode !== 'snow' && (
+            {(mode === 'notes' || mode === 'iris') && (
               <label className="midigen_field">
                 <span>{mode === 'notes' ? 'Position de la tête de lecture' : 'Position de la barre'}</span>
                 <input type="range" min="0.15" max="0.85" step="0.01" value={headPosition} onChange={(e) => setHeadPosition(parseFloat(e.target.value))} />
@@ -953,6 +996,117 @@ function Midigen() {
                 </label>
               )}
               <p className="midigen_info">À l’export, la vidéo se prolonge de quelques secondes pour que la dernière note s’éteigne.</p>
+            </>)}
+            {mode === 'flute' && (<>
+              <p className="midigen_info">
+                {pitchCount
+                  ? pitchCount + ' note' + (pitchCount > 1 ? 's' : '') + ' distincte' + (pitchCount > 1 ? 's' : '') + ' dans le MIDI → '
+                    + Math.min(pitchCount, fluteMaxHoles) + ' trou' + (Math.min(pitchCount, fluteMaxHoles) > 1 ? 's' : '')
+                    + (pitchCount > fluteMaxHoles ? ' (des notes voisines se partagent un trou)' : '') + '.'
+                  : 'Charge un MIDI : la flûte aura un trou par note distincte.'}
+              </p>
+              <label className="midigen_field">
+                <span>Nombre de trous maximum <b>{fluteMaxHoles}</b></span>
+                <input type="range" min="4" max="48" step="1" value={fluteMaxHoles} onChange={(e) => setFluteMaxHoles(parseInt(e.target.value, 10))} />
+              </label>
+              <div className="midigen_field">
+                <span>Côté des trous</span>
+                <div className="midigen_seg midigen_seg--tabs">
+                  <button type="button" aria-pressed={fluteLayout === 'random'} onClick={() => setFluteLayout('random')}>Au hasard</button>
+                  <button type="button" aria-pressed={fluteLayout === 'alternate'} onClick={() => setFluteLayout('alternate')}>Alternés</button>
+                </div>
+              </div>
+              <label className="midigen_field">
+                <span>Écart au milieu · minimum <b>{Math.round(fluteOffMin * 100)} %</b></span>
+                <input type="range" min="0" max="1" step="0.05" value={fluteOffMin} onChange={(e) => setFluteOffMin(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Écart au milieu · maximum <b>{Math.round(fluteOffMax * 100)} %</b></span>
+                <input type="range" min="0" max="1" step="0.05" value={fluteOffMax} onChange={(e) => setFluteOffMax(parseFloat(e.target.value))} />
+              </label>
+              <button type="button" className="midigen_btn" onClick={() => setFluteSeed((v) => v + 1)}>
+                Nouveau tirage
+              </button>
+              <label className="midigen_field">
+                <span>Longueur de la flûte <b>{Math.round(fluteLength * 100)} %</b></span>
+                <input type="range" min="0.4" max="0.98" step="0.01" value={fluteLength} onChange={(e) => setFluteLength(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Diamètre <b>{Math.round(fluteWidth * 100)} %</b></span>
+                <input type="range" min="0.03" max="0.16" step="0.005" value={fluteWidth} onChange={(e) => setFluteWidth(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Grosseur maximum <b>{Math.round(fluteHoleSize * 100)} %</b></span>
+                <input type="range" min="0.4" max="2" step="0.05" value={fluteHoleSize} onChange={(e) => setFluteHoleSize(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Grosseur minimum <b>{Math.round(fluteMinSize * 100)} %</b></span>
+                <input type="range" min="0.2" max="1" step="0.05" value={fluteMinSize} onChange={(e) => setFluteMinSize(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Longueur maximum <b>{Math.round(fluteStub * 100)} %</b></span>
+                <input type="range" min="0.2" max="2.5" step="0.05" value={fluteStub} onChange={(e) => setFluteStub(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Longueur minimum <b>{Math.round(fluteMinLen * 100)} %</b></span>
+                <input type="range" min="0.2" max="1" step="0.05" value={fluteMinLen} onChange={(e) => setFluteMinLen(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Longueur de la traînée <b>{Math.round(fluteTrail * 100)} %</b></span>
+                <input type="range" min="0.15" max="1.2" step="0.01" value={fluteTrail} onChange={(e) => setFluteTrail(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_check">
+                <input type="checkbox" checked={fluteStumps} onChange={(e) => setFluteStumps(e.target.checked)} /> Souches communes sous les trous
+              </label>
+              {fluteStumps && (<>
+                <label className="midigen_field">
+                  <span>Trous par souche · minimum <b>{fluteStumpMin}</b></span>
+                  <input type="range" min="1" max="8" step="1" value={fluteStumpMin} onChange={(e) => setFluteStumpMin(parseInt(e.target.value, 10))} />
+                </label>
+                <label className="midigen_field">
+                  <span>Trous par souche · maximum <b>{fluteStumpGroup}</b></span>
+                  <input type="range" min="1" max="8" step="1" value={fluteStumpGroup} onChange={(e) => setFluteStumpGroup(parseInt(e.target.value, 10))} />
+                </label>
+                <label className="midigen_field">
+                  <span>Épaisseur des souches · maximum <b>{fluteStumpThick === 0 ? 'aucune' : Math.round(fluteStumpThick * 100) + ' %'}</b></span>
+                  <input type="range" min="0" max="1.5" step="0.05" value={fluteStumpThick} onChange={(e) => setFluteStumpThick(parseFloat(e.target.value))} />
+                </label>
+                <label className="midigen_field">
+                  <span>Trous directement sur la flûte <b>{Math.round(fluteStumpBare * 100)} %</b></span>
+                  <input type="range" min="0" max="0.8" step="0.05" value={fluteStumpBare} onChange={(e) => setFluteStumpBare(parseFloat(e.target.value))} />
+                </label>
+                <label className="midigen_check">
+                  <input type="checkbox" checked={fluteStumpRandom} onChange={(e) => setFluteStumpRandom(e.target.checked)} /> Épaisseur aléatoire
+                </label>
+              </>)}
+              <label className="midigen_field">
+                <span>Diffusion du souffle <b>{Math.round(fluteDiffuse * 100)} %</b></span>
+                <input type="range" min="0" max="1" step="0.05" value={fluteDiffuse} onChange={(e) => setFluteDiffuse(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Persistance <b>{fluteLife.toFixed(1)} s</b></span>
+                <input type="range" min="0.3" max="4" step="0.1" value={fluteLife} onChange={(e) => setFluteLife(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Intensité <b>{fluteGain.toFixed(2)}</b></span>
+                <input type="range" min="0.4" max="3" step="0.05" value={fluteGain} onChange={(e) => setFluteGain(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_field">
+                <span>Épaisseur du trait <b>{Math.round(fluteThickness * 100)} %</b></span>
+                <input type="range" min="0.5" max="3" step="0.05" value={fluteThickness} onChange={(e) => setFluteThickness(parseFloat(e.target.value))} />
+              </label>
+              <label className="midigen_check">
+                <input type="checkbox" checked={fluteTrackColors} onChange={(e) => setFluteTrackColors(e.target.checked)} /> Couleurs des pistes
+              </label>
+              {!fluteTrackColors && (
+                <label className="midigen_field">
+                  <span>Couleur de la lumière</span>
+                  <div className="midigen_palette">
+                    <input type="color" value={fluteColor} aria-label="Couleur de la lumière" onChange={(e) => setFluteColor(e.target.value)} />
+                  </div>
+                </label>
+              )}
+              <p className="midigen_info">À l’export, la vidéo se prolonge de quelques secondes pour que le dernier trait de lumière s’éteigne.</p>
             </>)}
           </div>
         </details>
